@@ -18,16 +18,16 @@ const About = ({navigation, theme}: any) => {
     navigation.goBack();
   };
 
+  const desc = `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${
+    LAYOUT.window.width
+  } x ${LAYOUT.window.height}`;
+
   useEffect(() => {
     setName(DeviceInfo.getApplicationName() || '');
     setVersion(`${DeviceInfo.getModel()} ${DeviceInfo.getSystemVersion()}`);
-    setDescription(
-      `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${
-        LAYOUT.window.width
-      } x ${LAYOUT.window.height}`,
-    );
+    setDescription(desc);
     setBundle(DeviceInfo.getVersion());
-  }, []);
+  }, [desc]);
 
   return (
     <GradientContainer
