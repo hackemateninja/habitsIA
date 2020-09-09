@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Info from './components/Info';
-import {getApplicationName } from 'react-native-device-info';
+import DeviceInfo from 'react-native-device-info';
 
 // @ts-ignore
 import {connect} from 'react-redux';
-import {GLOBAL_STYLES} from '../../constants';
+import {GLOBAL_STYLES, LAYOUT} from '../../constants';
 import {View} from 'react-native';
 import {GradientContainer, Header} from '../../components';
 import ItemInfo from './components/ItemInfo';
@@ -19,10 +19,14 @@ const About = ({navigation, theme}: any) => {
   };
 
   useEffect(() => {
-    setName(getApplicationName() || '');
-    setVersion('');
-    setDescription('');
-    setBundle('');
+    setName(DeviceInfo.getApplicationName() || '');
+    setVersion(`${DeviceInfo.getModel()} ${DeviceInfo.getSystemVersion()}`);
+    setDescription(
+      `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${
+        LAYOUT.window.width
+      } x ${LAYOUT.window.height}`,
+    );
+    setBundle(DeviceInfo.getVersion());
   }, []);
 
   return (
@@ -31,7 +35,7 @@ const About = ({navigation, theme}: any) => {
       bottomColor={theme.colors.backGroundScreen}>
       <Header
         textColor={theme.colors.mainText}
-        hasBack={false}
+        hasBack={true}
         title="A cerca de"
         background={theme.colors.backGroundScreen}
         leftAction={leftAction}
@@ -41,7 +45,7 @@ const About = ({navigation, theme}: any) => {
           <ItemInfo color={theme.colors.mainText} title="Nombre" info={name} />
           <ItemInfo
             color={theme.colors.mainText}
-            title="Versión"
+            title="Versión del sistema"
             info={version}
           />
           <ItemInfo
@@ -51,7 +55,7 @@ const About = ({navigation, theme}: any) => {
           />
           <ItemInfo
             color={theme.colors.mainText}
-            title="Expo versión"
+            title="Build version"
             info={bundle}
           />
         </Info>
@@ -62,5 +66,5 @@ const About = ({navigation, theme}: any) => {
 const mapStateToProps = (state: object) => {
   return state;
 };
-const mapDispatchToProps = (dispatch: Event) => ({});
+const mapDispatchToProps = () => ({});
 export default connect(mapStateToProps, mapDispatchToProps)(About);
