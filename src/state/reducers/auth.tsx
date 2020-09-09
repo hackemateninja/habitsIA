@@ -27,6 +27,9 @@ const initialState = {
     message: '',
     resolvedTest: false,
     messageBoarding: [],
+    avatar: '',
+    company: {},
+    email: '',
   },
   register: {
     companyId: '',
@@ -76,6 +79,9 @@ export default (state = initialState, action: any) => {
           message: action.message,
           resolvedTest: action.resolvedTest,
           messageBoarding: action.messageBoarding,
+          avatar: action.avatar,
+          company: action.company,
+          email: action.email,
         },
       };
     case REGISTER:

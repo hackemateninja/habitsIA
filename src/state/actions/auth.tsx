@@ -40,6 +40,9 @@ export function login(
   message: string,
   resolvedTest: boolean,
   messageBoarding: Array<any>,
+  avatar: string,
+  company: object,
+  email: string,
 ) {
   return {
     type: LOGIN,
@@ -49,6 +52,9 @@ export function login(
     message,
     resolvedTest,
     messageBoarding,
+    avatar,
+    company,
+    email,
   };
 }
 

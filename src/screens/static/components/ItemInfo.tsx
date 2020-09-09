@@ -19,7 +19,7 @@ export default ({title, info, color}: ItemType) => {
       <View>
         <Text style={titleStyle}>{title}</Text>
       </View>
-      <View style={{width: '50%'}}>
+      <View style={{width: '60%'}}>
         <Text style={StaticStyles.infoStyle}>{info}</Text>
       </View>
     </View>

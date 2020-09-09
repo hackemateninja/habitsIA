@@ -14,7 +14,7 @@ import {
 export function asyncClear(context: string) {
   return (dispatch: ActionCreator<any>) => {
     if (context === 'login') {
-      dispatch(login(false, '', '', '', false, []));
+      dispatch(login(false, '', '', '', false, [], '', {}, ''));
     } else if (context === 'register') {
       dispatch(register('', ''));
       dispatch(getCompany('', '', []));
@@ -66,6 +66,7 @@ export function asyncGetCompany(body: object) {
 export function asyncLogin(body: object) {
   return async (dispatch: ActionCreator<any>) => {
     const response = await useHTTP('POST', body, 'login');
+    console.log(response);
     if (response.token) {
       const responseStringy = JSON.stringify(response);
       await AsyncStorage.setItem('@Login', responseStringy);
@@ -77,14 +78,17 @@ export function asyncLogin(body: object) {
           response.message.title,
           response.resolvedTest,
           response.messageBoarding,
+          response.avatar,
+          response.company,
+          response.email,
         ),
       );
     } else {
-      dispatch(login(false, '', '', response.message, false, []));
+      dispatch(login(false, '', '', response.message, false, [], '', {}, ''));
     }
   };
 }
-export function asyncLoginVerify(data: any){
+export function asyncLoginVerify(data: any) {
   return async (dispatch: ActionCreator<any>) => {
     await dispatch(
       login(
@@ -94,6 +98,9 @@ export function asyncLoginVerify(data: any){
         data.message,
         data.resolvedText,
         data.messageBoarding,
+        data.avatar,
+        data.company,
+        data.email,
       ),
     );
   };
@@ -101,7 +108,7 @@ export function asyncLoginVerify(data: any){
 
 export function asyncLogout() {
   return async (dispatch: ActionCreator<any>) => {
-    dispatch(login(false, '', '', '', false, []));
+    dispatch(login(false, '', '', '', false, [], '', {}, ''));
     await AsyncStorage.clear();
   };
 }

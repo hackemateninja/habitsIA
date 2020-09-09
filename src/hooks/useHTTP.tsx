@@ -1,5 +1,5 @@
 // @ts-ignore
-import {API, AUDIENCE} from '@env';
+import {API} from '@env';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default async (
@@ -18,12 +18,10 @@ export default async (
   }
 
   const url = `${API}/${endpoint}/${query || ''}`;
-  const audience = AUDIENCE;
   try {
     const response = await fetch(url, {
       method: method,
       body: JSON.stringify({
-        audience: audience,
         ...body,
       }),
       headers: {

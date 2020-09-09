@@ -2,7 +2,7 @@
  * Componente que decide que navegación se va a renderizar según el estado
  *
  * */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {useColorScheme} from 'react-native';
@@ -12,8 +12,6 @@ import {asyncChangeTheme, asyncLoginVerify} from '../state/thunks/';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Navigation = ({auth, changeTheme, verifyLogin}: any) => {
-  //const [isLogged, setIsLogged] = useState(true);
-
   //verifica el thema predetereminado del telefono y lo cambia
   const colorScheme = useColorScheme();
   useEffect(() => {
@@ -28,6 +26,9 @@ const Navigation = ({auth, changeTheme, verifyLogin}: any) => {
       message: '',
       resolvedTest: false,
       messageBoarding: [],
+      avatar: '',
+      company: {},
+      email: '',
     };
     AsyncStorage.getItem('@Login')
       .then((e) => {
@@ -39,6 +40,9 @@ const Navigation = ({auth, changeTheme, verifyLogin}: any) => {
           message: dataStorage.message.title,
           resolvedTest: dataStorage.resolvedTest,
           messageBoarding: dataStorage.messageBoarding,
+          avatar: dataStorage.avatar,
+          company: dataStorage.company,
+          email: dataStorage.email,
         };
         verifyLogin(data);
       })

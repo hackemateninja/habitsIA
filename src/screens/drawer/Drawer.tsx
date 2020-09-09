@@ -28,11 +28,9 @@ const Drawer = (props: any) => {
       scrollEnabled={true}>
       <AvatarContainer
         name={auth.login.user}
-        company="Habits.ai"
-        avatar={
-          'https://www.tribuna.com.mx/u/fotografias/m/2019/11/7/f850x638-79459_156948_5050.jpg'
-        }
-        logo={'https://yogalayout.com/static/reactnative.4e03ea5d.png'}
+        company={auth.login.company.name}
+        avatar={auth.login.avatar}
+        logo={auth.login.company.logo}
         theme={theme.colors}
       />
       <View style={DrawerStyles.itemsContainer}>
@@ -42,7 +40,7 @@ const Drawer = (props: any) => {
           }}
           icon={'ios-calendar-outline'}
           label={'Actividades'}
-          focused={true}
+          focused={false}
           color={theme.colors.mainText}
         />
         <DrawerItem

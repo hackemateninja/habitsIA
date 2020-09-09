@@ -7,7 +7,7 @@ import BottomAuthScreenContainer from './components/BottomAuthScreenContainer';
 import Input from './components/Input';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {ValidateEmail} from '../../hooks';
+import {useValidateEmail} from '../../hooks';
 import {Button, GradientContainer, Waiting} from '../../components';
 import {asyncClear, asyncForgot} from '../../state/thunks/auth';
 
@@ -41,7 +41,8 @@ const Forgot = ({navigation, theme, getCode, auth, clear}: any) => {
   };
   //valida el campo del mail
   useEffect(() => {
-    if (ValidateEmail(mail)) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    if (useValidateEmail(mail)) {
       setDisableChangeButton(false);
       setMailError('');
     } else {
@@ -63,7 +64,7 @@ const Forgot = ({navigation, theme, getCode, auth, clear}: any) => {
         clear('forgot');
       }
     }
-  }, [auth.forgot]);
+  }, [auth.forgot, clear, mail.length, navigation]);
 
   return (
     <GradientContainer

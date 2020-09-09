@@ -4,12 +4,12 @@ import DeviceInfo from 'react-native-device-info';
 
 // @ts-ignore
 import {connect} from 'react-redux';
-import {GLOBAL_STYLES, LAYOUT} from '../../constants';
-import {View} from 'react-native';
+import {COLORS, GLOBAL_STYLES, LAYOUT} from '../../constants';
+import {Linking, Text, TouchableOpacity, View} from 'react-native';
 import {GradientContainer, Header} from '../../components';
 import ItemInfo from './components/ItemInfo';
 
-const About = ({navigation, theme}: any) => {
+const About = ({navigation, theme, auth}: any) => {
   const [name, setName] = useState('');
   const [version, setVersion] = useState('');
   const [description, setDescription] = useState('');
@@ -18,9 +18,7 @@ const About = ({navigation, theme}: any) => {
     navigation.goBack();
   };
 
-  const desc = `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${
-    LAYOUT.window.width.toFixed()
-  } x ${LAYOUT.window.height.toFixed()}`;
+  const desc = `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${LAYOUT.window.width.toFixed()} x ${LAYOUT.window.height.toFixed()}`;
 
   useEffect(() => {
     setName(DeviceInfo.getApplicationName() || '');
@@ -28,6 +26,14 @@ const About = ({navigation, theme}: any) => {
     setDescription(desc);
     setBundle(DeviceInfo.getVersion());
   }, [desc]);
+
+  const sendHelp = async () => {
+    const user = auth.login.user;
+    const mail = auth.login.email;
+    const message = `Hola tengo problemas en la app, con el tipo de dispositivo: ${description}, soy el usuario: ${user} registrado con el email: ${mail} que tiene el sistema: ${version}`;
+    const number = '+52 55 7767 8352';
+    await Linking.openURL(`whatsapp://send?text=${message}&phone=${number}`);
+  };
 
   return (
     <GradientContainer
@@ -45,7 +51,7 @@ const About = ({navigation, theme}: any) => {
           <ItemInfo color={theme.colors.mainText} title="Nombre" info={name} />
           <ItemInfo
             color={theme.colors.mainText}
-            title="Versión del sistema"
+            title="Sistema"
             info={version}
           />
           <ItemInfo
@@ -55,11 +61,32 @@ const About = ({navigation, theme}: any) => {
           />
           <ItemInfo
             color={theme.colors.mainText}
-            title="Build version"
+            title="Versión"
             info={bundle}
+          />
+          <ItemInfo
+            color={theme.colors.mainText}
+            title="Usuario"
+            info={auth.login.user}
+          />
+          <ItemInfo
+            color={theme.colors.mainText}
+            title="Email"
+            info={auth.login.email}
           />
         </Info>
       </View>
+      <TouchableOpacity onPress={sendHelp}>
+        <Text
+          style={{
+            color: COLORS.greenPastel,
+            textDecorationLine: 'underline',
+            textAlign: 'center',
+            ...GLOBAL_STYLES.h6,
+          }}>
+          Solicitar ayuda
+        </Text>
+      </TouchableOpacity>
     </GradientContainer>
   );
 };
