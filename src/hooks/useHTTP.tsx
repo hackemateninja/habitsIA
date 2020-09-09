@@ -8,7 +8,6 @@ export default async (
   endpoint: string,
   query?: string,
 ) => {
-  //TODO hacerlo hook real para reiniciar login y obtener queries
   let token = '';
   try {
     const jsonValue = await AsyncStorage.getItem('@login');

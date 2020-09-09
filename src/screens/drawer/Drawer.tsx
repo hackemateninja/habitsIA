@@ -9,7 +9,7 @@ import {DrawerContentScrollView} from '@react-navigation/drawer';
 import DrawerItem from './components/DrawerItem';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {ChangeStatusBar} from '../../hooks';
+import {useChangeStatusBar} from '../../hooks';
 import {View} from 'react-native';
 import {asyncLogout} from '../../state/thunks/auth';
 import AvatarContainer from './components/AvatarContainer';
@@ -17,7 +17,10 @@ import AvatarContainer from './components/AvatarContainer';
 const Drawer = (props: any) => {
   const {theme, navigation, logout} = props;
 
-  ChangeStatusBar(theme.colors.backGroundDrawer, theme.colors.backGroundScreen);
+  useChangeStatusBar(
+    theme.colors.backGroundDrawer,
+    theme.colors.backGroundScreen,
+  );
   // TODO crear un componente dinamico en base a los props
   return (
     <DrawerContentScrollView

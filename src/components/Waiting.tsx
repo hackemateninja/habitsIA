@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import {CheckAndroid} from '../hooks';
+import {useCheckAndroid} from '../hooks';
 import {LAYOUT} from '../constants';
 
 const styles = StyleSheet.create({
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 export default ({color, visible}: {color: string; visible: boolean}) => {
-  const size = CheckAndroid() ? 75 : 'large';
+  const size = useCheckAndroid() ? 75 : 'large';
   if (visible) {
     return (
       <View style={styles.waitingContainer}>

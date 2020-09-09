@@ -9,7 +9,7 @@ import GradientContainer from './GradientContainer';
 import {GLOBAL_STYLES, LAYOUT} from '../constants';
 import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
 import {LoadingType} from '../types';
-import {CheckAndroid} from '../hooks';
+import {useCheckAndroid} from '../hooks';
 
 //logo
 const LOGO = '../../assets/icons/logo.png';
@@ -42,7 +42,7 @@ export default ({topColor, bottomColor, textColor, message}: LoadingType) => {
     ...GLOBAL_STYLES.p,
   };
 
-  const size = CheckAndroid() ? 75 : 'large';
+  const size = useCheckAndroid() ? 75 : 'large';
   return (
     <GradientContainer topColor={topColor} bottomColor={bottomColor}>
       <View style={styles.LoadingContainer}>

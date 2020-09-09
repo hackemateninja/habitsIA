@@ -19,12 +19,10 @@ const BottomTab = ({navigation, theme, style}: any) => {
     activeTintColor: COLORS.primary,
     inactiveTintColor: COLORS.grey,
     adaptive: true,
-    showLabel: true,
-    style: {
-      backgroundColor: theme.colors.backGroundScreen,
-      //paddingBottom: PixelRatio.get() > 2.5 && !CheckAndroid() ? 17 : 0,
+    labelStyle: {
+      fontFamily: 'roboto-bold',
     },
-    tabStyle: {
+    style: {
       backgroundColor: theme.colors.backGroundScreen,
     },
   };
@@ -34,7 +32,6 @@ const BottomTab = ({navigation, theme, style}: any) => {
     ...GLOBAL_STYLES.screen,
   };
 
-  // TODO crear un bottom tap compoente
   return (
     <Animated.View style={styles}>
       <Tab.Navigator
