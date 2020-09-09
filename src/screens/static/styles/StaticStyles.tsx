@@ -2,6 +2,12 @@ import {StyleSheet} from 'react-native';
 import {COLORS, GLOBAL_STYLES, LAYOUT} from '../../../constants';
 
 export default StyleSheet.create({
+  help: {
+    color: COLORS.greenPastel,
+    textDecorationLine: 'underline',
+    textAlign: 'center',
+    ...GLOBAL_STYLES.h6,
+  },
   infoStyle: {
     color: COLORS.primary,
     textAlign: 'right',

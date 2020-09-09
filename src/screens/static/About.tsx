@@ -4,16 +4,19 @@ import DeviceInfo from 'react-native-device-info';
 
 // @ts-ignore
 import {connect} from 'react-redux';
-import {COLORS, GLOBAL_STYLES, LAYOUT} from '../../constants';
+import {GLOBAL_STYLES, LAYOUT} from '../../constants';
 import {Linking, Text, TouchableOpacity, View} from 'react-native';
 import {GradientContainer, Header} from '../../components';
 import ItemInfo from './components/ItemInfo';
+import StaticStyles from './styles/StaticStyles';
 
 const About = ({navigation, theme, auth}: any) => {
   const [name, setName] = useState('');
   const [version, setVersion] = useState('');
   const [description, setDescription] = useState('');
   const [bundle, setBundle] = useState('');
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState('');
   const leftAction = () => {
     navigation.goBack();
   };
@@ -25,12 +28,12 @@ const About = ({navigation, theme, auth}: any) => {
     setVersion(`${DeviceInfo.getModel()} ${DeviceInfo.getSystemVersion()}`);
     setDescription(desc);
     setBundle(DeviceInfo.getVersion());
-  }, [desc]);
+    setEmail(auth.login.email);
+    setUser(auth.login.user);
+  }, [auth.login.email, auth.login.user, desc]);
 
   const sendHelp = async () => {
-    const user = auth.login.user;
-    const mail = auth.login.email;
-    const message = `Hola tengo problemas en la app, con el tipo de dispositivo: ${description}, soy el usuario: ${user} registrado con el email: ${mail} que tiene el sistema: ${version}`;
+    const message = `Hola tengo problemas en la app, con el tipo de dispositivo: ${description}, soy el usuario: ${user} registrado con el email: ${email} que tiene el sistema: ${version}`;
     const number = '+52 55 7767 8352';
     await Linking.openURL(`whatsapp://send?text=${message}&phone=${number}`);
   };
@@ -64,28 +67,12 @@ const About = ({navigation, theme, auth}: any) => {
             title="Versión"
             info={bundle}
           />
-          <ItemInfo
-            color={theme.colors.mainText}
-            title="Usuario"
-            info={auth.login.user}
-          />
-          <ItemInfo
-            color={theme.colors.mainText}
-            title="Email"
-            info={auth.login.email}
-          />
+          <ItemInfo color={theme.colors.mainText} title="Usuario" info={user} />
+          <ItemInfo color={theme.colors.mainText} title="Email" info={email} />
         </Info>
       </View>
       <TouchableOpacity onPress={sendHelp}>
-        <Text
-          style={{
-            color: COLORS.greenPastel,
-            textDecorationLine: 'underline',
-            textAlign: 'center',
-            ...GLOBAL_STYLES.h6,
-          }}>
-          Solicitar ayuda
-        </Text>
+        <Text style={StaticStyles.help}>Solicitar ayuda</Text>
       </TouchableOpacity>
     </GradientContainer>
   );
