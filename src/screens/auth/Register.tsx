@@ -86,7 +86,7 @@ const Register = ({
         Keyboard.dismiss();
       }
     }
-  }, [auth.company, clear]);
+  }, []);
 
   //efecto que verifica que se cumpla el patron en el text input y obtiene los datos
   useEffect(() => {
@@ -101,7 +101,7 @@ const Register = ({
       const string = start + '-' + end;
       setCode(string);
     }
-  }, [code, getData]);
+  }, [code]);
 
   const InputComponent = () => {
     if (validData && auth.company.name) {

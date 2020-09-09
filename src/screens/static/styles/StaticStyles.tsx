@@ -5,7 +5,7 @@ export default StyleSheet.create({
   infoStyle: {
     color: COLORS.primary,
     textAlign: 'right',
-    ...GLOBAL_STYLES.h5,
+    ...GLOBAL_STYLES.h6,
   },
   infoContainer: {
     height: '80%',

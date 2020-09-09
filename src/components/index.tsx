@@ -1,6 +1,7 @@
 /*
  * Exportación de todos los componentes en orden alfabético
  * */
+export {default as Alert} from './Alert';
 export {default as BottomTabItem} from './BottomTabItem';
 export {default as Button} from './Button';
 export {default as Chart} from './Chart';

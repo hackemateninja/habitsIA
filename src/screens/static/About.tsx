@@ -19,8 +19,8 @@ const About = ({navigation, theme}: any) => {
   };
 
   const desc = `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${
-    LAYOUT.window.width
-  } x ${LAYOUT.window.height}`;
+    LAYOUT.window.width.toFixed()
+  } x ${LAYOUT.window.height.toFixed()}`;
 
   useEffect(() => {
     setName(DeviceInfo.getApplicationName() || '');

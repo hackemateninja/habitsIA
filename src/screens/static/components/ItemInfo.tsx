@@ -6,7 +6,7 @@ import {Text, View} from 'react-native';
 export default ({title, info, color}: ItemType) => {
   const titleStyle = {
     color: color,
-    ...GLOBAL_STYLES.h5,
+    ...GLOBAL_STYLES.h6,
   };
 
   const itemStyle = {

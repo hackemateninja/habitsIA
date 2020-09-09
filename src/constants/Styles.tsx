@@ -89,15 +89,15 @@ export default StyleSheet.create({
   },
   smallText: {
     fontFamily: 'roboto',
-    fontSize: PixelRatio.get() < 2 ? 10 : 14,
+    fontSize: PixelRatio.get() < 2 ? 10 : 12,
   },
   smallTextBold: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2 ? 10 : 14,
+    fontSize: PixelRatio.get() < 2 ? 10 : 12,
   },
   superSmallText: {
-    fontFamily: 'roboto',
-    fontSize: PixelRatio.get() < 2 ? 8 : 10,
+    fontFamily: 'roboto-medium',
+    fontSize: PixelRatio.get() < 2.5 ? 8 : 10,
   },
   shadow: {
     shadowColor: '#000',

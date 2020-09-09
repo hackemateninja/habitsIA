@@ -44,7 +44,7 @@ const Day = ({navigation, theme}: any) => {
             week.map((i) => {
               return (
                 <Tab.Screen key={i.name} name={`${i.date} ${i.name}`}>
-                  {(props) => (
+                  {() => (
                     <DayResume
                       name={i.name}
                       date={i.date}
