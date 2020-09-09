@@ -12,7 +12,7 @@ import {useValidateEmail} from '../../hooks';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {asyncLogin, asyncClear} from '../../state/thunks/auth';
-import {Button, GradientContainer, Waiting} from '../../components';
+import {Button, GradientContainer, Waiting, Alert} from '../../components';
 
 // TODO usar stado local para manejar el store
 const Login = ({theme, navigation, login, auth, clear}: any) => {
@@ -22,6 +22,12 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   const [enable, setEnable] = useState(false);
   const [errorEmailMessage, setEmailErrorMessage] = useState('');
   const [showWaiting, setShowWaiting] = useState(false);
+  const [alert, setAlert] = useState({
+    message: '',
+    title: '',
+    show: false,
+    type: '',
+  });
 
   //borra los datos del estado cuando navega hacia atrás
   const goBack = () => {
@@ -61,11 +67,16 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   //se actualiza con el cambio del estado
   useEffect(() => {
     if (auth.login.message.length > 1 && !auth.login.isLogged) {
-      alert(auth.login.message);
-      clear(LOGIN.clearContext);
+      //alert(auth.login.message);
+      setAlert({
+        title: 'Error',
+        message: auth.login.message,
+        show: true,
+        type: 'error',
+      });
       setShowWaiting(false);
     }
-  }, [auth.login.isLogged, auth.login.message, clear]);
+  }, [auth.login.isLogged, auth.login.message]);
 
   return (
     <GradientContainer
@@ -113,7 +124,22 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
           color={theme.colors.authButton}
         />
       </BottomAuthScreenContainer>
-      <Waiting color={theme.colors.primary} visible={showWaiting} />
+      <Waiting visible={showWaiting} />
+      <Alert
+        title={alert.title}
+        desc={alert.message}
+        type={alert.type}
+        onPress={() => {
+          setAlert({
+            title: '',
+            message: '',
+            show: false,
+            type: '',
+          });
+          clear(LOGIN.clearContext);
+        }}
+        visible={alert.show}
+      />
     </GradientContainer>
   );
 };

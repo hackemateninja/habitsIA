@@ -31,6 +31,7 @@ const Day = ({navigation, theme}: any) => {
         <Tab.Navigator
           lazy={true}
           swipeEnabled={false}
+          removeClippedSubviews={true}
           tabBar={(props) => (
             <Calendar
               state={props.state}

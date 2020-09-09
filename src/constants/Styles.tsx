@@ -12,6 +12,7 @@ export default StyleSheet.create({
   center: {
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
   },
   columnBetweenCenter: {
     flexDirection: 'column',
@@ -48,7 +49,7 @@ export default StyleSheet.create({
     fontSize: PixelRatio.get() < 2.5 ? 14 : 18,
   },
   iconSize: {
-    fontSize: PixelRatio.get() < 2.5 ? 22 : 26,
+    fontSize: 26,
   },
   link: {
     textDecorationLine: 'underline',

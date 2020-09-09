@@ -1,26 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {useCheckAndroid} from '../hooks';
-import {LAYOUT} from '../constants';
+import {COLORS, GLOBAL_STYLES, LAYOUT} from '../constants';
 
 const styles = StyleSheet.create({
   waitingContainer: {
-    alignItems: 'center',
-    alignSelf: 'center',
     backgroundColor: 'transparent',
     height: LAYOUT.window.height,
-    justifyContent: 'center',
     position: 'absolute',
     width: LAYOUT.window.width,
+    ...GLOBAL_STYLES.center,
   },
 });
 
-export default ({color, visible}: {color: string; visible: boolean}) => {
+export default ({visible}: {visible: boolean}) => {
   const size = useCheckAndroid() ? 75 : 'large';
   if (visible) {
     return (
       <View style={styles.waitingContainer}>
-        <ActivityIndicator color={color} size={size} />
+        <ActivityIndicator color={COLORS.primary} size={size} />
       </View>
     );
   }

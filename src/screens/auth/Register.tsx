@@ -76,7 +76,6 @@ const Register = ({
     if (companyData.name.length > 1) {
       if (companyData.id.length < 1) {
         setValidData(false);
-        // eslint-disable-next-line no-alert
         alert(companyData.name);
         clear(REGISTER.clearContext);
         setShowWaiting(false);
@@ -92,6 +91,7 @@ const Register = ({
   useEffect(() => {
     if (code.length >= 7) {
       getData();
+      setShowWaiting(true);
     } else {
       setValidData(false);
     }
