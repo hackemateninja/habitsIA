@@ -89,13 +89,8 @@ export function asyncLogin(body: object) {
 
 export function asyncLogout() {
   return async (dispatch: ActionCreator<any>) => {
-    AsyncStorage.clear()
-      .then(() => {
-        dispatch(login(false, '', '', '', false, []));
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    dispatch(login(false, '', '', '', false, []));
+    await AsyncStorage.clear();
   };
 }
 
