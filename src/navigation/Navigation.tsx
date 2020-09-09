@@ -21,18 +21,30 @@ const Navigation = ({auth, changeTheme, verifyLogin}: any) => {
   }, [colorScheme]);
 
   useEffect(() => {
-    AsyncStorage.getItem('@Login').then((e) => {
-      const dataStorage = e != null ? JSON.parse(e) : null;
-      const data = {
-        isLogged: dataStorage.token !== null,
-        user: dataStorage.user,
-        token: dataStorage.token,
-        message: dataStorage.message.title,
-        resolvedTest: dataStorage.resolvedTest,
-        messageBoarding: dataStorage.messageBoarding,
-      };
-      verifyLogin(data);
-    });
+    let data = {
+      isLogged: false,
+      user: '',
+      token: '',
+      message: '',
+      resolvedTest: false,
+      messageBoarding: [],
+    };
+    AsyncStorage.getItem('@Login')
+      .then((e) => {
+        const dataStorage = e != null ? JSON.parse(e) : null;
+        data = {
+          isLogged: dataStorage.token !== null,
+          user: dataStorage.user,
+          token: dataStorage.token,
+          message: dataStorage.message.title,
+          resolvedTest: dataStorage.resolvedTest,
+          messageBoarding: dataStorage.messageBoarding,
+        };
+        verifyLogin(data);
+      })
+      .catch(() => {
+        verifyLogin(data);
+      });
   }, [auth.login.isLogged]);
 
   if (auth.login.isLogged) {
