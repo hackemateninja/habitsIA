@@ -8,7 +8,7 @@ import React from 'react';
 import {COLORS} from '../constants';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/Ionicons';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {GLOBAL_STYLES} from '../constants';
 import {BottomTabItemType} from '../types';
 
@@ -35,12 +35,10 @@ export default ({focused, icon, colors}: BottomTabItemType) => {
   const color = focused ? COLORS.white : COLORS.primary;
 
   return (
-    <View style={bottomTabItemStyle}>
-      <Icon
-        name={icon}
-        color={color}
-        size={GLOBAL_STYLES.iconSize.fontSize - 2}
-      />
-    </View>
+    <Icon
+      name={icon}
+      color={color}
+      size={GLOBAL_STYLES.iconSize.fontSize - 2}
+    />
   );
 };

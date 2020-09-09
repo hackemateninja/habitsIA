@@ -101,7 +101,7 @@ const Register = ({
       const string = start + '-' + end;
       setCode(string);
     }
-  }, [code]);
+  }, [code, getData]);
 
   const InputComponent = () => {
     if (validData && auth.company.name) {
