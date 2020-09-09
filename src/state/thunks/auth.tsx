@@ -14,7 +14,7 @@ import {
 export function asyncClear(context: string) {
   return (dispatch: ActionCreator<any>) => {
     if (context === 'login') {
-      dispatch(login(false, '', '', ''));
+      dispatch(login(false, '', '', '', false, []));
     } else if (context === 'register') {
       dispatch(register('', ''));
       dispatch(getCompany('', '', []));
@@ -68,13 +68,21 @@ export function asyncLogin(body: object) {
     const response = await useHTTP('POST', body, 'login');
     if (response.token) {
       const responseStringy = JSON.stringify(response);
-      await AsyncStorage.setItem('@login', responseStringy).then(() => {
-        dispatch(
-          login(true, response.user, response.token, response.message.title),
-        );
-      });
+      await AsyncStorage.setItem('@login', responseStringy);
+      const jsonValue = await AsyncStorage.getItem('@login');
+      const data = jsonValue != null ? JSON.parse(jsonValue) : null;
+      dispatch(
+        login(
+          data.token !== null,
+          data.user,
+          data.token,
+          data.message.title,
+          data.resolvedTest,
+          data.messageBoarding,
+        ),
+      );
     } else {
-      dispatch(login(false, '', '', response.message));
+      dispatch(login(false, '', '', response.message, false, []));
     }
   };
 }
@@ -83,7 +91,7 @@ export function asyncLogout() {
   return async (dispatch: ActionCreator<any>) => {
     AsyncStorage.clear()
       .then(() => {
-        dispatch(login(false, '', '', ''));
+        dispatch(login(false, '', '', '', false, []));
       })
       .catch((e) => {
         console.log(e);

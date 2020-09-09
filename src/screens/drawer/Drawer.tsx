@@ -15,7 +15,7 @@ import {asyncLogout} from '../../state/thunks/auth';
 import AvatarContainer from './components/AvatarContainer';
 
 const Drawer = (props: any) => {
-  const {theme, navigation, logout} = props;
+  const {theme, navigation, logout, auth} = props;
 
   useChangeStatusBar(
     theme.colors.backGroundDrawer,
@@ -27,7 +27,7 @@ const Drawer = (props: any) => {
       style={DrawerStyles.drawerContainer}
       scrollEnabled={true}>
       <AvatarContainer
-        name="Mc Lovin"
+        name={auth.login.user}
         company="Habits.ai"
         avatar={
           'https://www.tribuna.com.mx/u/fotografias/m/2019/11/7/f850x638-79459_156948_5050.jpg'
