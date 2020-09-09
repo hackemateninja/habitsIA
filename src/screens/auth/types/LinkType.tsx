@@ -1,1 +1,4 @@
-export default interface LinkType  {text: string, onPress: any};
+export default interface LinkType {
+  text: string;
+  onPress: any;
+};

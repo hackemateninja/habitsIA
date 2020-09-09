@@ -1,10 +1,31 @@
-import React from "react";
-import {StatusBar, Text, View} from "react-native";
+import React from 'react';
+import {GradientContainer, Header} from '../../components';
+// @ts-ignore
+import {connect} from 'react-redux';
 
-export default ()=>{
-	return(
-		<View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-			<Text>Ana Description</Text>
-		</View>
-	)
-}
+const AnaDescription = ({navigation, theme}: any) => {
+  const leftAction = () => {
+    navigation.goBack();
+  };
+
+  navigation.setOptions();
+
+  return (
+    <GradientContainer
+      topColor={theme.colors.topAna}
+      bottomColor={theme.colors.backGroundAna}>
+      <Header
+        textColor={theme.colors.headerTextAna}
+        hasBack={true}
+        title="ANA description"
+        background={theme.colors.topAna}
+        leftAction={leftAction}
+      />
+    </GradientContainer>
+  );
+};
+const mapToStateProps = (state: any) => {
+  return state;
+};
+
+export default connect(mapToStateProps)(AnaDescription);
