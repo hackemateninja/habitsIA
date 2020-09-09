@@ -10,7 +10,7 @@ export default async (
 ) => {
   let token = '';
   try {
-    const jsonValue = await AsyncStorage.getItem('@login');
+    const jsonValue = await AsyncStorage.getItem('@Login');
     const data = jsonValue != null ? JSON.parse(jsonValue) : null;
     token = data.token;
   } catch (e) {

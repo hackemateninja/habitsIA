@@ -68,22 +68,34 @@ export function asyncLogin(body: object) {
     const response = await useHTTP('POST', body, 'login');
     if (response.token) {
       const responseStringy = JSON.stringify(response);
-      await AsyncStorage.setItem('@login', responseStringy);
-      const jsonValue = await AsyncStorage.getItem('@login');
-      const data = jsonValue != null ? JSON.parse(jsonValue) : null;
+      await AsyncStorage.setItem('@Login', responseStringy);
       dispatch(
         login(
-          data.token !== null,
-          data.user,
-          data.token,
-          data.message.title,
-          data.resolvedTest,
-          data.messageBoarding,
+          true,
+          response.user,
+          response.token,
+          response.message.title,
+          response.resolvedTest,
+          response.messageBoarding,
         ),
       );
     } else {
       dispatch(login(false, '', '', response.message, false, []));
     }
+  };
+}
+export function asyncLoginVerify(data: any){
+  return async (dispatch: ActionCreator<any>) => {
+    await dispatch(
+      login(
+        data.isLogged,
+        data.user,
+        data.token,
+        data.message,
+        data.resolvedText,
+        data.messageBoarding,
+      ),
+    );
   };
 }
 
