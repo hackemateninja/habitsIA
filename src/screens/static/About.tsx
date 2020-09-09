@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Info from './components/Info';
+import {getApplicationName } from 'react-native-device-info';
 
 // @ts-ignore
 import {connect} from 'react-redux';
@@ -18,10 +19,10 @@ const About = ({navigation, theme}: any) => {
   };
 
   useEffect(() => {
-    /* setName(Constants.manifest.name || '');
-    setVersion(Constants.manifest.version || '');
-    setDescription(Constants.manifest.description || '');
-    setBundle(Constants.manifest.sdkVersion || '');*/
+    setName(getApplicationName() || '');
+    setVersion('');
+    setDescription('');
+    setBundle('');
   }, []);
 
   return (
@@ -30,7 +31,7 @@ const About = ({navigation, theme}: any) => {
       bottomColor={theme.colors.backGroundScreen}>
       <Header
         textColor={theme.colors.mainText}
-        hasBack={true}
+        hasBack={false}
         title="A cerca de"
         background={theme.colors.backGroundScreen}
         leftAction={leftAction}

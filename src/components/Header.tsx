@@ -35,12 +35,12 @@ export default ({
   return (
     <View style={headerStyle}>
       <IconButton
-        icon={!hasBack ? 'md-menu' : 'ios-arrow-back'}
+        icon={!hasBack ? 'md-menu' : 'chevron-back-outline'}
         iconColor={textColor}
         onPress={leftAction}
       />
       <Text style={[GLOBAL_STYLES.p, {color: textColor}]}>{title}</Text>
-      <IconButton icon={'md-menu'} iconColor="transparent" onPress={() => {}} />
+      <IconButton icon={'ios-menu-outline'} iconColor="transparent" onPress={() => {}} />
     </View>
   );
 };

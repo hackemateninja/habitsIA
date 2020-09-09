@@ -8,7 +8,7 @@ import LOGIN from './mocks/loginMock';
 import TopAuthScreenContainer from './components/TopAuthScreenContainer';
 import BottomAuthScreenContainer from './components/BottomAuthScreenContainer';
 import Input from './components/Input';
-import {ValidateEmail} from '../../hooks';
+import {useValidateEmail} from '../../hooks';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {asyncLogin, asyncClear} from '../../state/thunks/auth';
@@ -49,7 +49,7 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   }, [auth.forgot.mail, auth.registerPersonal.to]);
   //valida y habilita botón
   useEffect(() => {
-    const enable = ValidateEmail(mail);
+    const enable = useValidateEmail(mail);
     setEnable(enable && pass.length >= 8);
     if (!enable && mail.length > 1) {
       setEmailErrorMessage('Correo inválido');

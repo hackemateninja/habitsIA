@@ -7,7 +7,7 @@ import TopAuthScreenContainer from './components/TopAuthScreenContainer';
 import BottomAuthScreenContainer from './components/BottomAuthScreenContainer';
 import Input from './components/Input';
 import Checkbox from './components/Checkbox';
-import {ValidateEmail} from '../../hooks';
+import {useValidateEmail} from '../../hooks';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {asyncClear, asyncRegisterPersonal} from '../../state/thunks/auth';
@@ -76,7 +76,7 @@ const RegisterPersonalInfo = ({
 
   //verifica que el campo del mail sea valido
   const checkMail = () => {
-    if (!ValidateEmail(mail)) {
+    if (!useValidateEmail(mail)) {
       setErrorMail('Email inválido');
     } else {
       setErrorMail('');
@@ -130,7 +130,7 @@ const RegisterPersonalInfo = ({
   //verifica y valida que los campos sean correctos para poder activar el boton
   useEffect(() => {
     const validName = name.length >= 4;
-    const validMail = ValidateEmail(mail);
+    const validMail = useValidateEmail(mail);
     const validPassword = pass.length >= 8;
     const validPasswordVerify = passVerify === pass;
 
