@@ -20,6 +20,7 @@ import {
 import {GradientContainer, Button, Waiting} from '../../components';
 
 // TODO usar stado local para manejar el store
+// TODO agregar bottom sheet
 const Register = ({
   navigation,
   theme,
@@ -91,7 +92,6 @@ const Register = ({
   useEffect(() => {
     if (code.length >= 7) {
       getData();
-      setShowWaiting(true);
     } else {
       setValidData(false);
     }
@@ -161,7 +161,7 @@ const Register = ({
         <Link text={REGISTER.linkTitle} onPress={sendMail} />
         <InputComponent />
       </BottomAuthScreenContainer>
-      <Waiting color={theme.colors.primary} visible={shoWaiting} />
+      <Waiting visible={shoWaiting} />
     </GradientContainer>
   );
 };

@@ -11,12 +11,10 @@
 		0176047DB0A94B23A569C1C4 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1291C6EB4ABF4B27801434D3 /* Roboto-Medium.ttf */; };
 		0FE71829D7474DFF99C97544 /* 3.svg in Resources */ = {isa = PBXBuildFile; fileRef = D1E74DCAD79A49EBB6FAE983 /* 3.svg */; };
 		103339584E694CA0B0CB6619 /* Group 4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 971180ED15F94014A228E12F /* Group 4@2x.png */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1735D70C195E47AEB592E863 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7371D609A0F94BEBA06F2050 /* OpenSans-ExtraBold.ttf */; };
 		18B0B4721A3B45EAB7C28DD7 /* avatarana.png in Resources */ = {isa = PBXBuildFile; fileRef = DD02A3FF45B04193B8A3DDDE /* avatarana.png */; };
-		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* HabitsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HabitsTests.m */; };
@@ -31,6 +29,8 @@
 		99887A3B0F404C5C9E4402B5 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE32BC0B6198432B98DB847D /* logo.png */; };
 		AA599606A4F446D0BE411DD2 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 10FE74FD9CD142419425AD6D /* icon.png */; };
 		C7B91CC68A05412E99E14503 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E39C5C418F5347D28B6D4E73 /* Roboto-Bold.ttf */; };
+		CE44CB95250B9D55008BBAA3 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE44CB98250B9D55008BBAA3 /* AppDelegate.mm */; };
+		CE44CB96250B9D55008BBAA3 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE44CB98250B9D55008BBAA3 /* AppDelegate.mm */; };
 		D3281235A6EE451CA483A1B6 /* FontsFree-Net-SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3B018474C0BA4790A3EE4521 /* FontsFree-Net-SFProDisplay-Semibold.ttf */; };
 		E6C54B8825E0455FA3396F2F /* 1.svg in Resources */ = {isa = PBXBuildFile; fileRef = A0F63FAD026147AA93DAAAF2 /* 1.svg */; };
 		E8DFB784164A4F6AA1292413 /* Group 4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A96FBF5D3E67421CB588215D /* Group 4@3x.png */; };
@@ -60,38 +60,38 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HabitsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HabitsTests.m; sourceTree = "<group>"; };
 		035BC0484A00519CA61EFCC7 /* Pods-Habits-HabitsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Habits-HabitsTests.release.xcconfig"; path = "Target Support Files/Pods-Habits-HabitsTests/Pods-Habits-HabitsTests.release.xcconfig"; sourceTree = "<group>"; };
-		10FE74FD9CD142419425AD6D /* icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = icon.png; path = ../assets/icon.png; sourceTree = "<group>"; };
-		1291C6EB4ABF4B27801434D3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		10FE74FD9CD142419425AD6D /* icon.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icon.png; path = ../assets/icon.png; sourceTree = "<group>"; };
+		1291C6EB4ABF4B27801434D3 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Habits/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Habits/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Habits/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Habits/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Habits/main.m; sourceTree = "<group>"; };
-		2B3949DFCBF944739254AD51 /* ana.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = ana.png; path = ../assets/images/ana.png; sourceTree = "<group>"; };
+		2B3949DFCBF944739254AD51 /* ana.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = ana.png; path = ../assets/images/ana.png; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Habits-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habits-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Habits-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habits-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B018474C0BA4790A3EE4521 /* FontsFree-Net-SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FontsFree-Net-SFProDisplay-Semibold.ttf"; path = "../assets/fonts/FontsFree-Net-SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
-		541C2AA39DAF4A8188B87ED7 /* 2.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 2.svg; path = ../assets/images/2.svg; sourceTree = "<group>"; };
+		3B018474C0BA4790A3EE4521 /* FontsFree-Net-SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FontsFree-Net-SFProDisplay-Semibold.ttf"; path = "../assets/fonts/FontsFree-Net-SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
+		541C2AA39DAF4A8188B87ED7 /* 2.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = 2.svg; path = ../assets/images/2.svg; sourceTree = "<group>"; };
 		6BAD2DCB571352D637F74F41 /* libPods-Habits-HabitsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Habits-HabitsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7371D609A0F94BEBA06F2050 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		7371D609A0F94BEBA06F2050 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Habits/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		897CE8306E454AAA929755F3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		971180ED15F94014A228E12F /* Group 4@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Group 4@2x.png"; path = "../assets/icons/Group 4@2x.png"; sourceTree = "<group>"; };
+		897CE8306E454AAA929755F3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		971180ED15F94014A228E12F /* Group 4@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Group 4@2x.png"; path = "../assets/icons/Group 4@2x.png"; sourceTree = "<group>"; };
 		99E39C05304E1C809257158F /* Pods-Habits.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Habits.release.xcconfig"; path = "Target Support Files/Pods-Habits/Pods-Habits.release.xcconfig"; sourceTree = "<group>"; };
-		A0F63FAD026147AA93DAAAF2 /* 1.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 1.svg; path = ../assets/images/1.svg; sourceTree = "<group>"; };
+		A0F63FAD026147AA93DAAAF2 /* 1.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = 1.svg; path = ../assets/images/1.svg; sourceTree = "<group>"; };
 		A58B669EF921173F9EBECA4F /* Pods-Habits.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Habits.debug.xcconfig"; path = "Target Support Files/Pods-Habits/Pods-Habits.debug.xcconfig"; sourceTree = "<group>"; };
-		A96FBF5D3E67421CB588215D /* Group 4@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Group 4@3x.png"; path = "../assets/icons/Group 4@3x.png"; sourceTree = "<group>"; };
-		AE32BC0B6198432B98DB847D /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../assets/icons/logo.png; sourceTree = "<group>"; };
-		D1E74DCAD79A49EBB6FAE983 /* 3.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 3.svg; path = ../assets/images/3.svg; sourceTree = "<group>"; };
+		A96FBF5D3E67421CB588215D /* Group 4@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Group 4@3x.png"; path = "../assets/icons/Group 4@3x.png"; sourceTree = "<group>"; };
+		AE32BC0B6198432B98DB847D /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../assets/icons/logo.png; sourceTree = "<group>"; };
+		CE44CB97250B9D55008BBAA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = Base; path = Base.lproj/AppDelegate.mm; sourceTree = "<group>"; };
+		D1E74DCAD79A49EBB6FAE983 /* 3.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = 3.svg; path = ../assets/images/3.svg; sourceTree = "<group>"; };
 		DCA9AA1BCAA1A4643F14B554 /* Pods-Habits-HabitsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Habits-HabitsTests.debug.xcconfig"; path = "Target Support Files/Pods-Habits-HabitsTests/Pods-Habits-HabitsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DD02A3FF45B04193B8A3DDDE /* avatarana.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = avatarana.png; path = ../assets/images/avatarana.png; sourceTree = "<group>"; };
-		E1DABCBD0398475B9DC1601E /* Activate.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Activate.png; path = ../assets/images/Activate.png; sourceTree = "<group>"; };
-		E37E0A1EADAA4B48988D9FB4 /* splash.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = splash.png; path = ../assets/splash.png; sourceTree = "<group>"; };
-		E39C5C418F5347D28B6D4E73 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		DD02A3FF45B04193B8A3DDDE /* avatarana.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = avatarana.png; path = ../assets/images/avatarana.png; sourceTree = "<group>"; };
+		E1DABCBD0398475B9DC1601E /* Activate.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Activate.png; path = ../assets/images/Activate.png; sourceTree = "<group>"; };
+		E37E0A1EADAA4B48988D9FB4 /* splash.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = splash.png; path = ../assets/splash.png; sourceTree = "<group>"; };
+		E39C5C418F5347D28B6D4E73 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F4D5EEA38DBF473298DBFEC3 /* Group4.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Group4.png; path = ../assets/icons/Group4.png; sourceTree = "<group>"; };
+		F4D5EEA38DBF473298DBFEC3 /* Group4.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Group4.png; path = ../assets/icons/Group4.png; sourceTree = "<group>"; };
 		FF42350A5AE9EEA2D503A008 /* libPods-Habits.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Habits.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,7 +151,7 @@
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				CE44CB98250B9D55008BBAA3 /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -227,7 +227,6 @@
 				897CE8306E454AAA929755F3 /* Roboto-Regular.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		9EB6AFBD4F1827F02E047462 /* Pods */ = {
@@ -238,7 +237,6 @@
 				DCA9AA1BCAA1A4643F14B554 /* Pods-Habits-HabitsTests.debug.xcconfig */,
 				035BC0484A00519CA61EFCC7 /* Pods-Habits-HabitsTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -647,7 +645,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				CE44CB95250B9D55008BBAA3 /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,7 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
-				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+				CE44CB96250B9D55008BBAA3 /* AppDelegate.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +681,18 @@
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE44CB98250B9D55008BBAA3 /* AppDelegate.mm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE44CB97250B9D55008BBAA3 /* Base */,
+			);
+			name = AppDelegate.mm;
+			path = Habits;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {

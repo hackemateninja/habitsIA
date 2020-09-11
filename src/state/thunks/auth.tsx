@@ -30,7 +30,7 @@ export function asyncClear(context: string) {
 
 export function asyncForgot(body: {mail: string}) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'changePass');
+    const response = await useHTTP('POST', body, 'api/changePass');
     dispatch(
       forgot(
         response.data,
@@ -46,7 +46,8 @@ export function asyncForgot(body: {mail: string}) {
 //obtiene los datos de la companía
 export function asyncGetCompany(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'getCompany');
+    const response = await useHTTP('POST', body, 'api/getCompany');
+    console.log(response);
     let areas: string[] = [];
     if (response.company) {
       const filters = response.company.filtros;
@@ -123,7 +124,7 @@ export function asyncRegisterCompany(companyId: string, dep: string) {
 //registra los datos personales
 export function asyncRegisterPersonal(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'saveUser');
+    const response = await useHTTP('POST', body, 'api/saveUser');
     if (response.user) {
       dispatch(
         registerPersonal(
@@ -142,7 +143,7 @@ export function asyncRegisterPersonal(body: object) {
 //resetea la contraseña
 export function asyncReset(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    useHTTP('PUT', body, 'user/updatePassword')
+    useHTTP('PUT', body, 'api/user/updatePassword')
       .then((e) => {
         dispatch(reset(e.message, true));
       })

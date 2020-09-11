@@ -55,6 +55,7 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   }, [auth.forgot.mail, auth.registerPersonal.to]);
   //valida y habilita botón
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const enable = useValidateEmail(mail);
     setEnable(enable && pass.length >= 8);
     if (!enable && mail.length > 1) {

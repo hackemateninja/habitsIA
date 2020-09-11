@@ -29,7 +29,7 @@ const DrawerNav = createDrawerNavigator();
 
 const DrawerNavigation = ({theme}: any) => {
   const [progress, setProgress] = React.useState(new Animated.Value(0));
-  const scale = Animated.interpolate(progress, {
+  const scale = Animated.interpolateNode(progress, {
     inputRange: [0, 1],
     outputRange: [1, 0.85],
   });
