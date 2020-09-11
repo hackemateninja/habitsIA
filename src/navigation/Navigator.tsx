@@ -1,24 +1,38 @@
 /*
- * Componente que decide que navegación se va a renderizar según el estado
- *
+ * Stack de navegacion central
  * */
-import React, {useEffect} from 'react';
+
+import React from 'react';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {useColorScheme} from 'react-native';
-import Drawer from './Drawer';
-import Auth from './Auth';
 import {asyncChangeTheme, asyncLoginVerify} from '../state/thunks/';
 import AsyncStorage from '@react-native-community/async-storage';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {
+  Ana,
+  CareTest,
+  Forgot,
+  Login,
+  OneBoarding,
+  Register,
+  RegisterPersonalInfo,
+  Reset,
+  Welcome,
+} from '../screens';
+import Drawer from './Drawer';
 
-const Navigation = ({auth, changeTheme, verifyLogin}: any) => {
+const Stack = createStackNavigator();
+
+const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
   //verifica el thema predetereminado del telefono y lo cambia
   const colorScheme = useColorScheme();
-  useEffect(() => {
+  React.useEffect(() => {
     changeTheme(colorScheme);
   }, [colorScheme]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let data = {
       isLogged: false,
       user: '',
@@ -51,13 +65,32 @@ const Navigation = ({auth, changeTheme, verifyLogin}: any) => {
       });
   }, [auth.login.isLogged]);
 
-  if (auth.login.isLogged) {
-    return <Drawer />;
-  } else {
-    return <Auth />;
-  }
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        headerMode="none"
+        mode={auth.login.isLogged ? 'modal' : 'card'}>
+        {!auth.login.isLogged ? (
+          <>
+            <Stack.Screen name="Welcome" component={Welcome} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="RegisterPersonal" component={RegisterPersonalInfo}/>
+            <Stack.Screen name="Forgot" component={Forgot} />
+            <Stack.Screen name="Reset" component={Reset} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="OneBoarding" component={OneBoarding} />
+            <Stack.Screen name="CareTest" component={CareTest} />
+            <Stack.Screen name="Drawer" component={Drawer} />
+            <Stack.Screen name="Ana" component={Ana} />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
-
 //exporta el estado a los props
 const mapToStateToProps = (state: any) => {
   return state;
@@ -69,4 +102,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 //conecta las acciones y los props y luego exporta la navegación
-export default connect(mapToStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapToStateToProps, mapDispatchToProps)(Navigator);

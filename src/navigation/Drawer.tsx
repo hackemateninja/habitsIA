@@ -52,43 +52,40 @@ const DrawerNavigation = ({theme}: any) => {
   };
   // TODO incrustar en la navegaciòn general
   return (
-    <NavigationContainer>
-      <DrawerNav.Navigator
-        initialRouteName="BottomTab"
-        drawerType="back"
-        drawerStyle={drawerStyle}
-        sceneContainerStyle={sceneStyle}
-        overlayColor="transparent"
-        statusBarAnimation="slide"
-        screenOptions={{
-          swipeEnabled: false,
-        }}
+    <DrawerNav.Navigator
+      initialRouteName="BottomTab"
+      drawerType="back"
+      drawerStyle={drawerStyle}
+      sceneContainerStyle={sceneStyle}
+      overlayColor="transparent"
+      statusBarAnimation="slide"
+      screenOptions={{
+        swipeEnabled: true,
+      }}
+      // @ts-ignore
+      drawerContent={(
+        props: DrawerContentComponentProps<DrawerContentOptions>,
+      ) => {
         // @ts-ignore
-        drawerContent={(
-          props: DrawerContentComponentProps<DrawerContentOptions>,
-        ) => {
-          // @ts-ignore
-          setProgress(props.progress);
-          return <Drawer {...props} />;
+        setProgress(props.progress);
+        return <Drawer {...props} />;
+      }}>
+      <DrawerNav.Screen
+        name="BottomTab"
+        options={{
+          swipeEnabled: true,
         }}>
-        <DrawerNav.Screen
-          name="BottomTab"
-          options={{
-            swipeEnabled: true,
-          }}>
-          {(props) => <BottomTab {...props} style={animatedStyle} />}
-        </DrawerNav.Screen>
-        <DrawerNav.Screen name="Progress" component={MyProgress} />
-        <DrawerNav.Screen name="Diet" component={Diet} />
-        <DrawerNav.Screen name="Points" component={Points} />
-        <DrawerNav.Screen name="History" component={History} />
-        <DrawerNav.Screen name="Connect" component={Connect} />
-        <DrawerNav.Screen name="FAQ" component={FAQ} />
-        <DrawerNav.Screen name="About" component={About} />
-        <DrawerNav.Screen name="Settings" component={Settings} />
-        <DrawerNav.Screen name="Ana" component={Ana} />
-      </DrawerNav.Navigator>
-    </NavigationContainer>
+        {(props) => <BottomTab {...props} style={animatedStyle} />}
+      </DrawerNav.Screen>
+      <DrawerNav.Screen name="Progress" component={MyProgress} />
+      <DrawerNav.Screen name="Diet" component={Diet} />
+      <DrawerNav.Screen name="Points" component={Points} />
+      <DrawerNav.Screen name="History" component={History} />
+      <DrawerNav.Screen name="Connect" component={Connect} />
+      <DrawerNav.Screen name="FAQ" component={FAQ} />
+      <DrawerNav.Screen name="About" component={About} />
+      <DrawerNav.Screen name="Settings" component={Settings} />
+    </DrawerNav.Navigator>
   );
 };
 const mapStateToProps = (state: object) => {
