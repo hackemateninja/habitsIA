@@ -4,7 +4,6 @@
 import React, {useEffect, useState} from 'react';
 import OneBoardingItem from './components/OneBoardingItem';
 import CareStyles from './styles/CareStyles';
-import AsyncStorage from '@react-native-community/async-storage';
 import {GradientContainer, Loading} from '../../components';
 // @ts-ignore
 import {connect} from 'react-redux';
@@ -16,7 +15,6 @@ import {Text, View} from 'react-native';
 const OneBoarding = ({navigation, theme, auth, getTest}: any) => {
   //estado local
   const [activeIndex, setActiveIndex] = useState(0);
-  const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
 
   //funcion que selecciona el item actual
@@ -26,14 +24,6 @@ const OneBoarding = ({navigation, theme, auth, getTest}: any) => {
 
   //trae los datos de local storage
   useEffect(() => {
-    AsyncStorage.getItem('@login')
-      .then((e) => {
-        const d = e != null ? JSON.parse(e) : null;
-        setData(d.messageBoarding);
-      })
-      .catch((e) => {
-        return e;
-      });
     setTimeout(() => {
       setShowLoading(false);
     }, 2000);
@@ -44,7 +34,7 @@ const OneBoarding = ({navigation, theme, auth, getTest}: any) => {
   }, []);
 
   //llena los datos
-  const items: any[] = data;
+  const items: any[] = auth.login.messageBoarding;
 
   if (showLoading) {
     return (
@@ -78,7 +68,7 @@ const OneBoarding = ({navigation, theme, auth, getTest}: any) => {
                   colorDescription={theme.colors.careDescription}
                   colorTitle={theme.colors.careTitle}
                   itemNumber={activeIndex}
-                  action={() => navigation.navigate('CareTest')}
+                  action={() => navigation.navigate('Drawer')}
                 />
               );
             })}
