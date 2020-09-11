@@ -90,7 +90,7 @@ const Drawer = (props: any) => {
         />
         <DrawerItem
           onPress={() => {
-            navigation.navigate('FAQ');
+            navigation.navigate('Support');
           }}
           icon={'ios-help-buoy-outline'}
           label={'Soporte'}

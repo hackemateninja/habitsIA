@@ -11,4 +11,4 @@ export type {default as DrawerItemType} from './components/DrawerItemType';
 export type {default as GradientContainerType} from './components/GradientContainerType';
 export type {default as HeaderType} from './components/HeaderType';
 export type {default as IconButtonType} from './components/IconButtonType';
-export type {default as LoadingType} from './components/LoadingType';
+export type {default as LoadingType} from '../screens/care/types/LoadingType';

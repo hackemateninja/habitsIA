@@ -7,21 +7,23 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {useColorScheme} from 'react-native';
 import {asyncChangeTheme, asyncLoginVerify} from '../state/thunks/';
-import AsyncStorage from '@react-native-community/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   Ana,
+  CareLoading,
   CareTest,
+  CareTestResult,
   Forgot,
   Login,
-  OneBoarding,
+  CareOneBoarding,
   Register,
   RegisterPersonalInfo,
   Reset,
   Welcome,
 } from '../screens';
 import Drawer from './Drawer';
+import {useLoginVerify} from '../hooks/';
 
 const Stack = createStackNavigator();
 
@@ -32,57 +34,32 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
     changeTheme(colorScheme);
   }, [colorScheme]);
 
-  React.useEffect(() => {
-    let data = {
-      isLogged: false,
-      user: '',
-      token: '',
-      message: '',
-      resolvedTest: false,
-      messageBoarding: [],
-      avatar: '',
-      company: {},
-      email: '',
-    };
-    AsyncStorage.getItem('@Login')
-      .then((e) => {
-        const dataStorage = e != null ? JSON.parse(e) : null;
-        data = {
-          isLogged: dataStorage.token !== null,
-          user: dataStorage.user,
-          token: dataStorage.token,
-          message: dataStorage.message.title,
-          resolvedTest: dataStorage.resolvedTest,
-          messageBoarding: dataStorage.messageBoarding,
-          avatar: dataStorage.avatar,
-          company: dataStorage.company,
-          email: dataStorage.email,
-        };
-        verifyLogin(data);
-      })
-      .catch(() => {
-        verifyLogin(data);
-      });
-  }, [auth.login.isLogged]);
+  const logged = useLoginVerify(verifyLogin, auth.login.isLogged);
 
   return (
     <NavigationContainer>
       <Stack.Navigator
         headerMode="none"
-        mode={auth.login.isLogged ? 'modal' : 'card'}>
-        {!auth.login.isLogged ? (
+        initialRouteName={auth.login.isLogged ? 'Loading' : 'Welcome'}
+        mode={logged ? 'modal' : 'card'}>
+        {!logged ? (
           <>
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="RegisterPersonal" component={RegisterPersonalInfo}/>
+            <Stack.Screen
+              name="RegisterPersonal"
+              component={RegisterPersonalInfo}
+            />
             <Stack.Screen name="Forgot" component={Forgot} />
             <Stack.Screen name="Reset" component={Reset} />
           </>
         ) : (
           <>
-            <Stack.Screen name="OneBoarding" component={OneBoarding} />
+            <Stack.Screen name="Loading" component={CareLoading} />
+            <Stack.Screen name="OneBoarding" component={CareOneBoarding} />
             <Stack.Screen name="CareTest" component={CareTest} />
+            <Stack.Screen name="CareTestResult" component={CareTestResult} />
             <Stack.Screen name="Drawer" component={Drawer} />
             <Stack.Screen name="Ana" component={Ana} />
           </>

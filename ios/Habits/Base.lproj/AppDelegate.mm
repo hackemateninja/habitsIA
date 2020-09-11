@@ -74,7 +74,7 @@ RCTEnableTurboModule(YES);
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge {
-#ifdef DEBUG
+#ifdef FB_SONARKIT_ENABLED
   return
       [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"
                                                      fallbackResource:nil];

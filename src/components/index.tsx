@@ -10,5 +10,5 @@ export {default as Choice} from './Choice';
 export {default as GradientContainer} from './GradientContainer';
 export {default as Header} from './Header';
 export {default as IconButton} from './IconButton';
-export {default as Loading} from './Loading';
+export {default as Loading} from '../screens/care/CareLoading';
 export {default as Waiting} from './Waiting';

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {GradientContainer, Header} from "../../components";
 
 
-const MyProgress = ({navigation, theme}:any) => {
+const Progress = ({navigation, theme}:any) => {
 	const leftAction=()=>{
 		navigation.goBack()
 	}
@@ -29,5 +29,5 @@ const mapStateToProps = (state: object)=>{
 const mapDispatchToProps = (dispatch: Event)=>({
 
 });
-export default connect(mapStateToProps, mapDispatchToProps)(MyProgress);
+export default connect(mapStateToProps, mapDispatchToProps)(Progress);
 

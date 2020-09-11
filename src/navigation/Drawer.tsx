@@ -6,7 +6,6 @@ import BottomTab from './BottomTab';
 import Animated from 'react-native-reanimated';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
@@ -14,11 +13,10 @@ import {
 } from '@react-navigation/drawer';
 import {
   About,
-  FAQ,
+  Support,
   Settings,
   Connect,
-  Ana,
-  MyProgress,
+  Progress,
   Drawer,
   Diet,
   Points,
@@ -77,12 +75,12 @@ const DrawerNavigation = ({theme}: any) => {
         }}>
         {(props) => <BottomTab {...props} style={animatedStyle} />}
       </DrawerNav.Screen>
-      <DrawerNav.Screen name="Progress" component={MyProgress} />
+      <DrawerNav.Screen name="Progress" component={Progress} />
       <DrawerNav.Screen name="Diet" component={Diet} />
       <DrawerNav.Screen name="Points" component={Points} />
       <DrawerNav.Screen name="History" component={History} />
       <DrawerNav.Screen name="Connect" component={Connect} />
-      <DrawerNav.Screen name="FAQ" component={FAQ} />
+      <DrawerNav.Screen name="Support" component={Support} />
       <DrawerNav.Screen name="About" component={About} />
       <DrawerNav.Screen name="Settings" component={Settings} />
     </DrawerNav.Navigator>

@@ -97,7 +97,7 @@ export function asyncLoginVerify(data: any) {
         data.user,
         data.token,
         data.message,
-        data.resolvedText,
+        data.resolvedTest,
         data.messageBoarding,
         data.avatar,
         data.company,

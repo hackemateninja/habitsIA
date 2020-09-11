@@ -4,6 +4,10 @@ import {COLORS, GLOBAL_STYLES, LAYOUT} from '../../../constants';
 import Layout from '../../../constants/Layout';
 
 export default StyleSheet.create({
+  activityIndicator: {
+    marginTop: 30,
+    marginBottom: LAYOUT.window.height * 0.2,
+  },
   avatar: {
     height: '100%',
     resizeMode: 'contain',
@@ -61,6 +65,10 @@ export default StyleSheet.create({
     height: LAYOUT.window.height * 0.5,
     resizeMode: 'contain',
     width: LAYOUT.window.width,
+  },
+  loadingContainer: {
+    marginTop: LAYOUT.window.width * 0.35,
+    ...GLOBAL_STYLES.center,
   },
   oneBoardingItem: {
     height: '100%',

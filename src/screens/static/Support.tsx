@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {GradientContainer, Header} from '../../components';
 import WebView from 'react-native-webview';
 
-const FAQ = ({navigation, theme}: any) => {
+const Support = ({navigation, theme}: any) => {
   const leftAction = () => {
     navigation.goBack();
   };
@@ -33,5 +33,5 @@ const FAQ = ({navigation, theme}: any) => {
 const mapStateToProps = (state: object) => {
   return state;
 };
-const mapDispatchToProps = (dispatch: Event) => ({});
-export default connect(mapStateToProps, mapDispatchToProps)(FAQ);
+const mapDispatchToProps = () => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(Support);
