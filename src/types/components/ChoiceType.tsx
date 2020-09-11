@@ -1,5 +1,5 @@
-export default interface ChoiceType{
-	title: string,
-	isSelected: boolean,
-	onPress: any
+export default interface ChoiceType {
+  title: string;
+  isSelected: boolean;
+  onPress: any;
 }

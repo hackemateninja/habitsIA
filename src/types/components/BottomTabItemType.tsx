@@ -1,5 +1,5 @@
-export default interface BottomTabItemType{
-	focused: boolean,
-	icon: string,
-	colors:any
+export default interface BottomTabItemType {
+  focused: boolean;
+  icon: string;
+  colors: any;
 }

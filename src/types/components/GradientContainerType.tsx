@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 export default interface GradientContainerType {
-	children: React.ReactNode,
-	topColor: string,
-	bottomColor: string
+  children: React.ReactNode;
+  topColor: string;
+  bottomColor: string;
 }
