@@ -48,7 +48,6 @@ const DrawerNavigation = ({theme}: any) => {
     backgroundColor: backgroundColor,
     elevation: 0,
   };
-  // TODO incrustar en la navegaciòn general
   return (
     <DrawerNav.Navigator
       initialRouteName="BottomTab"
@@ -58,7 +57,7 @@ const DrawerNavigation = ({theme}: any) => {
       overlayColor="transparent"
       statusBarAnimation="slide"
       screenOptions={{
-        swipeEnabled: true,
+        swipeEnabled: false,
       }}
       // @ts-ignore
       drawerContent={(

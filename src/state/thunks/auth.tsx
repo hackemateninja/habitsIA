@@ -47,7 +47,6 @@ export function asyncForgot(body: {mail: string}) {
 export function asyncGetCompany(body: object) {
   return async (dispatch: ActionCreator<any>) => {
     const response = await useHTTP('POST', body, 'api/getCompany');
-    console.log(response);
     let areas: string[] = [];
     if (response.company) {
       const filters = response.company.filtros;
@@ -67,7 +66,6 @@ export function asyncGetCompany(body: object) {
 export function asyncLogin(body: object) {
   return async (dispatch: ActionCreator<any>) => {
     const response = await useHTTP('POST', body, 'login');
-    console.log(response);
     if (response.token) {
       const responseStringy = JSON.stringify(response);
       await AsyncStorage.setItem('@Login', responseStringy);

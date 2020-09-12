@@ -4,10 +4,10 @@
  *
  * */
 // TODO create new hook responsive
-import {PixelRatio, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import LAYOUT from './Layout';
+import {useResponsive} from '../hooks';
 
-// TODO Hook responsive
 export default StyleSheet.create({
   center: {
     alignItems: 'center',
@@ -21,35 +21,43 @@ export default StyleSheet.create({
   },
   h1: {
     fontFamily: 'roboto',
-    fontSize: PixelRatio.get() < 2.5 ? 32 : 36,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(36),
   },
   h1Bold: {
     fontFamily: 'roboto-bold',
-    fontSize: PixelRatio.get() < 2.5 ? 32 : 36,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(36),
   },
   h2: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2.5 ? 26 : 30,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(30),
   },
   h3: {
     fontFamily: 'roboto',
-    fontSize: PixelRatio.get() < 2.5 ? 24 : 28,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(28),
   },
   h4: {
     fontFamily: 'roboto',
-    fontSize: PixelRatio.get() < 2.5 ? 22 : 26,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(26),
     lineHeight: 36,
   },
   h5: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2.5 ? 18 : 22,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(22),
   },
   h6: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2.5 ? 14 : 18,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(18),
   },
   iconSize: {
-    fontSize: 26,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(26),
   },
   link: {
     textDecorationLine: 'underline',
@@ -60,7 +68,8 @@ export default StyleSheet.create({
   },
   p: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2 ? 12 : 16,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(16),
   },
   rowAroundCenter: {
     flexDirection: 'row',
@@ -90,15 +99,18 @@ export default StyleSheet.create({
   },
   smallText: {
     fontFamily: 'roboto',
-    fontSize: PixelRatio.get() < 2 ? 10 : 12,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(12),
   },
   smallTextBold: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2 ? 10 : 12,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(12),
   },
   superSmallText: {
     fontFamily: 'roboto-medium',
-    fontSize: PixelRatio.get() < 2.5 ? 8 : 10,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    fontSize: useResponsive(10),
   },
   shadow: {
     shadowColor: '#000',

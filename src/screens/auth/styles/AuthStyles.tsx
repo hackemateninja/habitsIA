@@ -1,8 +1,8 @@
-import React from 'react';
-import {PixelRatio, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import COLORS from '../../../constants/Colors';
 import {GLOBAL_STYLES, LAYOUT} from '../../../constants';
 import Layout from '../../../constants/Layout';
+import {useResponsive} from "../../../hooks";
 
 export default StyleSheet.create({
   bottomAuthScreen: {
@@ -93,7 +93,8 @@ export default StyleSheet.create({
     marginBottom: Layout.window.height * 0.04,
   },
   pickerIOS: {
-    top: PixelRatio.get() < 2.5 ? '-110%' : '-70%',
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    top: useResponsive(100),
     height: '100%',
     width: '100%',
   },

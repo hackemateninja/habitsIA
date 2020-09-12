@@ -6,4 +6,5 @@ export {default as useChangeStatusBar} from './useChangeStatusBar';
 export {default as useDaysOfWeek} from './useDaysOfWeek';
 export {default as useHTTP} from './useHTTP';
 export {default as useLoginVerify} from './useLoginVerify';
+export {default as useResponsive} from './useResponsive';
 export {default as useValidateEmail} from './useValidateEmail';

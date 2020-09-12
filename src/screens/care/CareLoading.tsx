@@ -45,7 +45,7 @@ const CareLoading = ({theme, auth, getTest, navigation}: LoadingType) => {
       auth.login.resolvedTest
         ? navigation.navigate('Drawer')
         : navigation.navigate('OneBoarding');
-    }, 3000);
+    }, 2000);
   }, []);
 
   const size = useCheckAndroid() ? 75 : 'large';
