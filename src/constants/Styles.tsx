@@ -6,7 +6,7 @@
 // TODO create new hook responsive
 import {StyleSheet} from 'react-native';
 import LAYOUT from './Layout';
-import {useResponsive} from '../hooks';
+import useResponsive from '../hooks/useResponsive';
 
 export default StyleSheet.create({
   center: {
@@ -32,7 +32,7 @@ export default StyleSheet.create({
   h2: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(30),
+    fontSize: useResponsive(32),
   },
   h3: {
     fontFamily: 'roboto',
@@ -42,18 +42,18 @@ export default StyleSheet.create({
   h4: {
     fontFamily: 'roboto',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(26),
+    fontSize: useResponsive(24),
     lineHeight: 36,
   },
   h5: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(22),
+    fontSize: useResponsive(18),
   },
   h6: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(18),
+    fontSize: useResponsive(16),
   },
   iconSize: {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -100,17 +100,17 @@ export default StyleSheet.create({
   smallText: {
     fontFamily: 'roboto',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(12),
+    fontSize: useResponsive(14),
   },
   smallTextBold: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(12),
+    fontSize: useResponsive(14),
   },
   superSmallText: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(10),
+    fontSize: useResponsive(12),
   },
   shadow: {
     shadowColor: '#000',

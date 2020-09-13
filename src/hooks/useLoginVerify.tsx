@@ -11,7 +11,7 @@ let data = {
   company: {},
   email: '',
 };
-export default (verifyLogin: any, dep: boolean): boolean => {
+export default (verifyLogin: any): boolean => {
   const [logged, setIsLogged] = React.useState(false);
   React.useEffect(() => {
     AsyncStorage.getItem('@Login')
@@ -35,6 +35,6 @@ export default (verifyLogin: any, dep: boolean): boolean => {
         verifyLogin(data);
         setIsLogged(false);
       });
-  }, [dep, verifyLogin]);
+  }, [verifyLogin]);
   return logged;
 };

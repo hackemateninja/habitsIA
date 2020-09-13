@@ -10,11 +10,11 @@ export default (size: number): number => {
     case 2.5:
       return size - 1.5;
     case 2:
-      return size - 3;
+      return size - 2.5;
     case 1.5:
-      return size - 4;
+      return size - 3;
     case 1:
-      return size - 5;
+      return size - 4;
     default:
       return PixelRatio.getPixelSizeForLayoutSize(size / 2);
   }

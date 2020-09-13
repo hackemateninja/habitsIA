@@ -34,15 +34,30 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
     changeTheme(colorScheme);
   }, [colorScheme]);
 
-  const logged = useLoginVerify(verifyLogin, auth.login.isLogged);
+  useLoginVerify(verifyLogin);
 
+  const logged = auth.login.isLogged;
   return (
     <NavigationContainer>
       <Stack.Navigator
         headerMode="none"
-        initialRouteName={auth.login.isLogged ? 'Loading' : 'Welcome'}
+        initialRouteName={logged ? 'Loading' : 'Welcome'}
+        screenOptions={{gestureEnabled: false}}
         mode={logged ? 'modal' : 'card'}>
-        {!logged ? (
+        {logged ? (
+          <>
+            <Stack.Screen name="Loading" component={CareLoading} />
+            <Stack.Screen name="OneBoarding" component={CareOneBoarding} />
+            <Stack.Screen name="CareTest" component={CareTest} />
+            <Stack.Screen name="CareTestResult" component={CareTestResult} />
+            <Stack.Screen name="Drawer" component={Drawer} />
+            <Stack.Screen
+              name="Ana"
+              options={{gestureEnabled: true}}
+              component={Ana}
+            />
+          </>
+        ) : (
           <>
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="Login" component={Login} />
@@ -53,15 +68,6 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
             />
             <Stack.Screen name="Forgot" component={Forgot} />
             <Stack.Screen name="Reset" component={Reset} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Loading" component={CareLoading} />
-            <Stack.Screen name="OneBoarding" component={CareOneBoarding} />
-            <Stack.Screen name="CareTest" component={CareTest} />
-            <Stack.Screen name="CareTestResult" component={CareTestResult} />
-            <Stack.Screen name="Drawer" component={Drawer} />
-            <Stack.Screen name="Ana" component={Ana} />
           </>
         )}
       </Stack.Navigator>
