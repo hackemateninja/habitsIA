@@ -19,6 +19,11 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  columnEvenlyCenter: {
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
   h1: {
     fontFamily: 'roboto',
     // eslint-disable-next-line react-hooks/rules-of-hooks

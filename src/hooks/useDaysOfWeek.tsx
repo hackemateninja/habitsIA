@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export default () => {
-  const weekStart = moment().startOf('week').locale('es-us');
+  const weekStart = moment().startOf('week');
   const date = moment().date();
   const name = moment().format('dddd');
   const calendar = [

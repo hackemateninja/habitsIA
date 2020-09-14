@@ -30,7 +30,7 @@ export default StyleSheet.create({
   cardContainer: {
     borderColor: COLORS.hardBlueSecondary,
     borderRadius: 8,
-    borderWidth: 0.2,
+    borderWidth: 0.3,
     height: '100%',
     marginRight: 10,
     padding: 8,
@@ -39,12 +39,26 @@ export default StyleSheet.create({
   cardContainerLarge: {
     borderColor: COLORS.hardBlueSecondary,
     borderRadius: 8,
-    borderWidth: 0.2,
+    borderWidth: 0.3,
     height: '100%',
     marginRight: 10,
     padding: 8,
     width: LAYOUT.window.width * 0.9,
     ...GLOBAL_STYLES.rowBetweenCenter,
+  },
+  cardEmptyCircle: {
+    borderRadius: 25,
+    height: 50,
+    width: 50,
+    ...GLOBAL_STYLES.center,
+  },
+  cardEmptyData: {
+    borderColor: COLORS.hardBlueSecondary,
+    borderRadius: 8,
+    borderWidth: 0.3,
+    height: LAYOUT.window.height * 0.15,
+    marginRight: 24,
+    ...GLOBAL_STYLES.columnEvenlyCenter,
   },
   cardIcon: {
     borderRadius: 25,
