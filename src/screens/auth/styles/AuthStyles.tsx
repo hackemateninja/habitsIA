@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native';
 import COLORS from '../../../constants/Colors';
 import {GLOBAL_STYLES, LAYOUT} from '../../../constants';
-import Layout from '../../../constants/Layout';
-import {useResponsive} from "../../../hooks";
+import {useResponsive} from '../../../hooks';
 
 export default StyleSheet.create({
   bottomAuthScreen: {
@@ -25,21 +24,20 @@ export default StyleSheet.create({
     ...GLOBAL_STYLES.smallText,
   },
   checkBoxContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
     marginBottom: LAYOUT.window.height * 0.02,
     width: '100%',
+    ...GLOBAL_STYLES.center,
   },
   checkBoxStyle: {
     color: COLORS.black,
     ...GLOBAL_STYLES.p,
   },
   inputContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: LAYOUT.window.height * 0.06,
+    backgroundColor: COLORS.light,
+    height: 40,
     marginBottom: 10,
     width: '100%',
+    ...GLOBAL_STYLES.rowBetweenCenter,
   },
   inputErrorMessage: {
     color: COLORS.red,
@@ -47,9 +45,9 @@ export default StyleSheet.create({
     top: -12,
     ...GLOBAL_STYLES.superSmallText,
   },
-  inputValue: {
+  input: {
     color: COLORS.black,
-    height: LAYOUT.window.height * 0.05,
+    height: '100%',
     letterSpacing: 2,
     marginTop: 10,
     paddingBottom: 12,
@@ -59,11 +57,10 @@ export default StyleSheet.create({
     ...GLOBAL_STYLES.p,
   },
   inputIcon: {
-    alignItems: 'center',
-    justifyContent: 'center',
     height: '100%',
     position: 'absolute',
     right: 0,
+    ...GLOBAL_STYLES.center,
   },
   label: {
     color: COLORS.hardGrey,
@@ -76,25 +73,24 @@ export default StyleSheet.create({
   },
   linkContainer: {
     width: '60%',
-    marginBottom: Layout.window.height * 0.04,
+    marginBottom: LAYOUT.window.height * 0.04,
   },
   pickerContainer: {
     backgroundColor: COLORS.light,
     height: LAYOUT.window.height * 0.06,
     width: '100%',
-    marginBottom: Layout.window.height * 0.04,
+    marginBottom: LAYOUT.window.height * 0.04,
   },
   pickerContainerIOS: {
     backgroundColor: COLORS.light,
     overflow: 'hidden',
-    height: Layout.window.height * 0.1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: Layout.window.height * 0.04,
+    height: LAYOUT.window.height * 0.1,
+    marginBottom: LAYOUT.window.height * 0.04,
+    ...GLOBAL_STYLES.center,
   },
   pickerIOS: {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    top: useResponsive(100),
+    top: 100,
     height: '100%',
     width: '100%',
   },
@@ -121,10 +117,10 @@ export default StyleSheet.create({
     ...GLOBAL_STYLES.screenContainer,
   },
   welcomeLogo: {
-    height: Layout.window.height * 0.1,
+    height: LAYOUT.window.height * 0.1,
     marginBottom: '5%',
     resizeMode: 'contain',
-    width: Layout.window.width * 0.15,
+    width: LAYOUT.window.width * 0.15,
   },
   welcomeSubTitle: {
     marginBottom: '10%',

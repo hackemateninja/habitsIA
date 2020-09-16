@@ -1,10 +1,8 @@
 import React, {memo} from 'react';
 import {Text, View} from 'react-native';
-import CardActivity from './CardActivity';
 import DayStyles from '../styles/DayStyles';
-import ScrollComponent from './ScrollComponent';
 import CardEmptyData from './CardEmptyData';
-import CardChallenge from "./CardChallenge";
+import CardChallenge from './CardChallenge';
 import {FlatList} from 'react-native-gesture-handler';
 
 export default ({
@@ -29,7 +27,7 @@ export default ({
     />
   ));
 
-  const Item = ({item}: {item: any})=>{
+  const Item = ({item}: {item: any}) => {
     return (
       <CardChallenge
         key={item.title}
@@ -43,7 +41,7 @@ export default ({
         description={item.description}
       />
     );
-  }
+  };
 
   if (data.length < 1) {
     return <Empty />;
@@ -58,7 +56,7 @@ export default ({
             horizontal={true}
             data={data}
             indicatorStyle="black"
-            keyExtractor={(item: any) => item.description}
+            keyExtractor={(item: any) => item.id}
             renderItem={Item}
           />
         </View>

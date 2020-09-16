@@ -28,14 +28,6 @@ export default ({
     setFocus((prev) => !prev);
   };
 
-  const inputStyle = {
-    ...AuthStyles.inputContainer,
-    backgroundColor: focus ? COLORS.white : COLORS.light,
-    borderWidth: focus ? 2 : 0,
-    borderColor: focus ? COLORS.light : 'transparent',
-  };
-
-  const underlayColor = focus ? COLORS.primary : COLORS.light;
   const icon = showPass ? 'ios-eye-off' : 'ios-eye';
   const capitalize = type === 'code' ? 'characters' : 'none';
   const placeHolderColor = COLORS.grey;
@@ -84,7 +76,7 @@ export default ({
   return (
     <>
       <Text style={AuthStyles.label}>{label}</Text>
-      <View style={inputStyle}>
+      <View style={AuthStyles.inputContainer}>
         <TextInput
           allowFontScaling={true}
           autoCapitalize={capitalize}
@@ -101,9 +93,8 @@ export default ({
           onFocus={changeFocus}
           onBlur={changeFocus}
           secureTextEntry={showPass}
-          style={AuthStyles.inputValue}
+          style={AuthStyles.input}
           textAlignVertical="center"
-          underlineColorAndroid={underlayColor}
           value={value}
         />
         <IconInput />

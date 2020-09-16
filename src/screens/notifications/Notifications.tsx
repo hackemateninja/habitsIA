@@ -15,7 +15,7 @@ const Settings = ({navigation, theme}: any) => {
       <Header
         textColor={theme.colors.mainText}
         hasBack={false}
-        title="Configuraciòn"
+        title="Notifications"
         background={theme.colors.backGroundScreen}
         leftAction={leftAction}
       />
@@ -25,5 +25,5 @@ const Settings = ({navigation, theme}: any) => {
 const mapStateToProps = (state: object) => {
   return state;
 };
-const mapDispatchToProps = (dispatch: Event) => ({});
+const mapDispatchToProps = () => ({});
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

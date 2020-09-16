@@ -4,9 +4,9 @@ export default (size: number): number => {
   const density = PixelRatio.get();
   switch (density) {
     case 3.5:
-      return size + 6;
+      return size;
     case 3:
-      return size + 1;
+      return size;
     case 2.5:
       return size - 1.5;
     case 2:

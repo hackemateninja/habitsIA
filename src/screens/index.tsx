@@ -36,6 +36,9 @@ export {default as Drawer} from './drawer/Drawer';
 //history
 export {default as History} from './history/History';
 
+//Notifications
+export {default as Notifications} from './notifications/Notifications';
+
 //Points
 export {default as Points} from './points/Points';
 

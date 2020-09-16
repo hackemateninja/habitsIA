@@ -8,7 +8,7 @@ import {ActionCreator} from 'redux';
 import {GradientContainer} from '../../components';
 import Activities from './components/Activities';
 import Tests from './components/Tests';
-import Challenges from './components/Challenges';
+import Challenge from './components/Challenge';
 
 const DayResume = (props: any) => {
   const {theme, name, calendar, month, date, full, getData, day} = props;
@@ -25,7 +25,7 @@ const DayResume = (props: any) => {
       <View style={{paddingLeft: 24}}>
         <Subtitle date={date} month={month} day={calendar} dayName={name} />
         <Activities data={day.activities} color={colors} title="Actividades" />
-        <Challenges data={day.challenges} color={colors} title="Retos" />
+        <Challenge data={day.challenges} color={colors} title="Retos" />
         <Tests data={day.tests} color={colors} title="Evaluaciones" />
       </View>
     </GradientContainer>

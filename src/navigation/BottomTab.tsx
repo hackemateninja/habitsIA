@@ -2,18 +2,21 @@
  * Navegación que contiene el bottom tab y muestra las vistas principales
  * */
 import React from 'react';
-import Animated from 'react-native-reanimated';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/Ionicons';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {COLORS, GLOBAL_STYLES} from '../constants';
-import {Day, Community, Profile, Ana} from '../screens';
+import {Day, Community, Profile, Ana, Notifications} from '../screens';
+import {BottomTabItem} from '../components';
+import Animated from 'react-native-reanimated';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTab = ({navigation, theme, style}: any) => {
+const BottomTab = (props: any) => {
+  const {navigation, theme, style} = props;
+
   const options = {
     allowFontScaling: true,
     activeTintColor: COLORS.primary,
@@ -27,40 +30,24 @@ const BottomTab = ({navigation, theme, style}: any) => {
     },
   };
 
-  const styles = {
-    ...style,
+  const tabBarStyle = {
     ...GLOBAL_STYLES.screen,
+    ...style,
   };
 
   return (
-    <Animated.View style={styles}>
+    <Animated.View style={tabBarStyle}>
       <Tab.Navigator
-        initialRouteName="Day"
+        initialRouteName="Me"
         lazy={true}
         tabBarOptions={{...options}}>
         <Tab.Screen
-          name="Day"
-          component={Day}
+          name="Me"
+          component={Profile}
           options={{
-            tabBarLabel: 'Mi día',
+            tabBarLabel: 'Yo',
             tabBarIcon: ({color, size}) => (
-              <Icon name="ios-calendar-outline" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Ana"
-          component={Ana}
-          listeners={{
-            tabPress: (e) => {
-              e.preventDefault();
-              navigation.navigate('Ana');
-            },
-          }}
-          options={{
-            tabBarLabel: 'Ana',
-            tabBarIcon: ({color, size}) => (
-              <Icon name="ios-chatbubble-outline" color={color} size={size} />
+              <Icon name="ios-person-outline" color={color} size={size} />
             ),
           }}
         />
@@ -75,12 +62,42 @@ const BottomTab = ({navigation, theme, style}: any) => {
           }}
         />
         <Tab.Screen
-          name="Me"
-          component={Profile}
+          name="Ana"
+          component={Ana}
+          listeners={{
+            tabPress: (e) => {
+              e.preventDefault();
+              navigation.navigate('Ana');
+            },
+          }}
           options={{
-            tabBarLabel: 'Yo',
+            tabBarBadge: 1,
+            tabBarLabel: '',
+            tabBarIcon: () => <BottomTabItem />,
+          }}
+        />
+        <Tab.Screen
+          name="Day"
+          component={Day}
+          options={{
+            tabBarLabel: 'Mi día',
             tabBarIcon: ({color, size}) => (
-              <Icon name="ios-person-outline" color={color} size={size} />
+              <Icon name="ios-calendar-outline" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{
+            tabBarBadge: 5,
+            tabBarLabel: 'Notificaciones',
+            tabBarIcon: ({color, size}) => (
+              <Icon
+                name="ios-notifications-outline"
+                color={color}
+                size={size}
+              />
             ),
           }}
         />

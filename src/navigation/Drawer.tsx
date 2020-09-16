@@ -1,9 +1,9 @@
 /*
  * Menú lateral que sale al presionar un botòn o al hacer swipe
  * */
-import React from 'react';
+import React, {useState} from 'react';
 import BottomTab from './BottomTab';
-import Animated from 'react-native-reanimated';
+import Animated, {Extrapolate} from 'react-native-reanimated';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {
@@ -13,30 +13,27 @@ import {
 } from '@react-navigation/drawer';
 import {
   About,
-  Support,
-  Settings,
   Connect,
-  Progress,
-  Drawer,
   Diet,
-  Points,
+  Drawer,
   History,
+  Points,
+  Progress,
+  Settings,
+  Support,
 } from '../screens';
 
 const DrawerNav = createDrawerNavigator();
 
 const DrawerNavigation = ({theme}: any) => {
-  const [progress, setProgress] = React.useState(new Animated.Value(0));
+  const [progress, setProgress] = useState(new Animated.Value(0));
   const scale = Animated.interpolateNode(progress, {
     inputRange: [0, 1],
     outputRange: [1, 0.85],
+    extrapolate: Extrapolate.CLAMP,
   });
 
   const backgroundColor = theme.colors.backGroundDrawer;
-
-  const animatedStyle = {
-    transform: [{scale}],
-  };
 
   const drawerStyle = {
     backgroundColor: backgroundColor,
@@ -48,6 +45,11 @@ const DrawerNavigation = ({theme}: any) => {
     backgroundColor: backgroundColor,
     elevation: 0,
   };
+
+  const animatedStyle = {
+    transform: [{scale}],
+  };
+
   return (
     <DrawerNav.Navigator
       initialRouteName="BottomTab"
@@ -59,7 +61,6 @@ const DrawerNavigation = ({theme}: any) => {
       screenOptions={{
         swipeEnabled: false,
       }}
-      // @ts-ignore
       drawerContent={(
         props: DrawerContentComponentProps<DrawerContentOptions>,
       ) => {
@@ -72,7 +73,9 @@ const DrawerNavigation = ({theme}: any) => {
         options={{
           swipeEnabled: true,
         }}>
-        {(props) => <BottomTab {...props} style={animatedStyle} />}
+        {(props) => {
+          return <BottomTab {...props} style={animatedStyle} />;
+        }}
       </DrawerNav.Screen>
       <DrawerNav.Screen name="Progress" component={Progress} />
       <DrawerNav.Screen name="Diet" component={Diet} />

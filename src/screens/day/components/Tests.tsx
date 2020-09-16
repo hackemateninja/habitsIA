@@ -52,7 +52,7 @@ export default ({
             showsHorizontalScrollIndicator={false}
             horizontal={true}
             data={data}
-            keyExtractor={(item: any) => item.description}
+            keyExtractor={(item: any) => item.id}
             renderItem={Item}
           />
         </View>

@@ -5,40 +5,41 @@
 
 //importaciones multilinea hasta el final
 import React from 'react';
-import {COLORS} from '../constants';
+import {COLORS, LAYOUT} from '../constants';
 // @ts-ignore
-import Icon from 'react-native-vector-icons/Ionicons';
-import {StyleSheet} from 'react-native';
+import {Image, StyleSheet, Text} from 'react-native';
 import {GLOBAL_STYLES} from '../constants';
-import {BottomTabItemType} from '../types';
+import LinearGradient from 'react-native-linear-gradient';
 
 const styles = StyleSheet.create({
   bottomTabContainer: {
-    alignItems: 'center',
-    borderRadius: 10,
-    borderWidth: 0.2,
-    height: GLOBAL_STYLES.iconSize.fontSize + 3,
-    justifyContent: 'center',
-    width: GLOBAL_STYLES.iconSize.fontSize + 6,
+    backgroundColor: COLORS.primary,
+    borderRadius: 20,
+    height: LAYOUT.window.width * 0.14,
+    marginBottom: -15,
+    padding: 8,
+    width: LAYOUT.window.width * 0.14,
+    ...GLOBAL_STYLES.columnBetweenCenter,
+  },
+  image: {width: '70%', height: '70%'},
+  label: {
+    textAlign: 'center',
+    color: COLORS.white,
+    ...GLOBAL_STYLES.smallTextBold,
   },
 });
 
-export default ({focused, icon, colors}: BottomTabItemType) => {
-  const bottomTabItemStyle = {
-    backgroundColor: focused
-      ? colors.bottomTabActive
-      : colors.bottomTabInactive,
-    borderColor: COLORS.softPrimary,
-    ...styles.bottomTabContainer,
-  };
-
-  const color = focused ? COLORS.white : COLORS.primary;
-
+export default () => {
   return (
-    <Icon
-      name={icon}
-      color={color}
-      size={GLOBAL_STYLES.iconSize.fontSize - 2}
-    />
+    <LinearGradient
+      colors={[COLORS.primary, COLORS.hardPrimary]}
+      style={styles.bottomTabContainer}>
+      <Image
+        source={require('../../assets/images/anatrans.png')}
+        style={styles.image}
+        resizeMode={'contain'}
+      />
+      <Text style={styles.label}>Ana</Text>
+    </LinearGradient>
   );
 };

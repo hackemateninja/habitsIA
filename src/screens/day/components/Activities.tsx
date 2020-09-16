@@ -55,7 +55,7 @@ export default ({
             horizontal={true}
             data={data}
             indicatorStyle="black"
-            keyExtractor={(item: any) => item.description}
+            keyExtractor={(item: any) => item.id}
             renderItem={Item}
           />
         </View>
