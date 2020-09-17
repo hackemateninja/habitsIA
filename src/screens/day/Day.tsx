@@ -27,7 +27,7 @@ const Day = ({navigation, theme}: any) => {
         background={theme.colors.backGroundScreen}
         leftAction={leftAction}
       />
-      <ScrollView>
+      <ScrollView indicatorStyle="black">
         <Tab.Navigator
           lazy={true}
           swipeEnabled={false}

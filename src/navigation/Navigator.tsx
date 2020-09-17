@@ -43,7 +43,7 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
         headerMode="none"
         initialRouteName={logged ? 'Loading' : 'Welcome'}
         screenOptions={{gestureEnabled: false}}
-        mode={logged ? 'modal' : 'card'}>
+        mode={'card'}>
         {logged ? (
           <>
             <Stack.Screen name="Loading" component={CareLoading} />

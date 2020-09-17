@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
   bottomTabContainer: {
     backgroundColor: COLORS.primary,
     borderRadius: 20,
-    height: LAYOUT.window.width * 0.14,
+    height: LAYOUT.window.width * 0.13,
     marginBottom: -15,
     padding: 8,
-    width: LAYOUT.window.width * 0.14,
+    width: LAYOUT.window.width * 0.13,
     ...GLOBAL_STYLES.columnBetweenCenter,
   },
   image: {width: '70%', height: '70%'},

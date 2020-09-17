@@ -30,13 +30,8 @@ const BottomTab = (props: any) => {
     },
   };
 
-  const tabBarStyle = {
-    ...GLOBAL_STYLES.screen,
-    ...style,
-  };
-
   return (
-    <Animated.View style={tabBarStyle}>
+    <Animated.View style={[GLOBAL_STYLES.screen, style]}>
       <Tab.Navigator
         initialRouteName="Me"
         lazy={true}
