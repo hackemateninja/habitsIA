@@ -21,6 +21,9 @@ import {
   RegisterPersonalInfo,
   Reset,
   Welcome,
+  Course,
+  ActivityMedia,
+  ActivityRead,
 } from '../screens';
 import Drawer from './Drawer';
 import {useLoginVerify} from '../hooks/';
@@ -51,6 +54,9 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
             <Stack.Screen name="CareTest" component={CareTest} />
             <Stack.Screen name="CareTestResult" component={CareTestResult} />
             <Stack.Screen name="Drawer" component={Drawer} />
+            <Stack.Screen name="Course" component={Course} />
+            <Stack.Screen name="Read" component={ActivityRead} />
+            <Stack.Screen name="Media" component={ActivityMedia} />
             <Stack.Screen
               name="Ana"
               options={{gestureEnabled: true}}

@@ -21,12 +21,12 @@ export default StyleSheet.create({
   },
   bottomAuthDescription: {
     color: COLORS.grey,
-    ...GLOBAL_STYLES.smallText,
+    ...GLOBAL_STYLES.p,
   },
   checkBoxContainer: {
     marginBottom: LAYOUT.window.height * 0.02,
-    width: '100%',
-    ...GLOBAL_STYLES.center,
+    width: '60%',
+    ...GLOBAL_STYLES.rowBetweenCenter,
   },
   checkBoxStyle: {
     color: COLORS.black,
@@ -81,22 +81,9 @@ export default StyleSheet.create({
     width: '100%',
     marginBottom: LAYOUT.window.height * 0.04,
   },
-  pickerContainerIOS: {
-    backgroundColor: COLORS.light,
-    overflow: 'hidden',
-    height: LAYOUT.window.height * 0.1,
-    marginBottom: LAYOUT.window.height * 0.04,
-    ...GLOBAL_STYLES.center,
-  },
-  pickerIOS: {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    top: 100,
-    height: '100%',
-    width: '100%',
-  },
   pickerValueIOS: {
     color: COLORS.black,
-    ...GLOBAL_STYLES.p,
+    ...GLOBAL_STYLES.h6,
   },
   separator: {
     marginBottom: LAYOUT.window.height * 0.04,

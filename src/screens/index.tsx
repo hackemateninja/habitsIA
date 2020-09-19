@@ -1,6 +1,9 @@
+//Activities
+export {default as ActivityMedia} from './activities/ActivityMedia';
+export {default as ActivityRead} from './activities/ActivityRead';
+
 //ana
 export {default as Ana} from './ana/Ana';
-export {default as AnaFeed} from './ana/AnaFeed';
 
 //auth
 export {default as Forgot} from './auth/Forgot';
@@ -13,7 +16,7 @@ export {default as Welcome} from './auth/Welcome';
 //care
 export {default as CareLoading} from './care/CareLoading';
 export {default as CareOneBoarding} from './care/CareOneBoarding';
-export {default as CareTest} from './care/CareTest';
+export {default as CareTest} from './ana/CareTest';
 export {default as CareTestResult} from './care/CareTestResult';
 
 //community
@@ -23,6 +26,10 @@ export {default as CommunityTeam} from './community/CommunityTeam';
 
 //Connect
 export {default as Connect} from './connect/Connect';
+
+//Courses
+export {default as Courses} from './courses/Courses';
+export {default as Course} from './courses/Course';
 
 //day
 export {default as Day} from './day/Day';

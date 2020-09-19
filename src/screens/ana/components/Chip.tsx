@@ -1,6 +1,6 @@
 import React from 'react';
-import CareStyles from '../styles/CareStyles';
-import ChipType from '../types/ChipType';
+import CareStyles from '../../care/styles/CareStyles';
+import ChipType from '../../care/types/ChipType';
 import {Text, TouchableOpacity} from 'react-native';
 
 export default ({title, colorText, color, onPress, isLarge}: ChipType) => {

@@ -19,6 +19,11 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  columnBetweenStart: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
   columnEvenlyCenter: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
@@ -53,12 +58,12 @@ export default StyleSheet.create({
   h5: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(18),
+    fontSize: useResponsive(20),
   },
   h6: {
     fontFamily: 'roboto-medium',
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    fontSize: useResponsive(16),
+    fontSize: useResponsive(18),
   },
   iconSize: {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -91,7 +96,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    alignSelf: 'center',
   },
   screen: {
     flex: 1,

@@ -3,7 +3,9 @@
  * */
 export default {
   black: '#011223',
+  blue: '#1D68CE',
   green: '#70E800',
+  greenHard: '#5BC500',
   greenPastel: '#13FFD4',
   grey: '#B2B7BD',
   hardBlue: '#011223',

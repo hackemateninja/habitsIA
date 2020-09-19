@@ -1,7 +1,5 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
 import {COLORS, GLOBAL_STYLES, LAYOUT} from '../../../constants';
-import Layout from '../../../constants/Layout';
 
 export default StyleSheet.create({
   activityIndicator: {
@@ -17,9 +15,9 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     borderRadius: 30,
     backgroundColor: 'blue',
-    height: Layout.window.width * 0.08,
+    height: LAYOUT.window.width * 0.08,
     marginRight: 5,
-    width: Layout.window.width * 0.08,
+    width: LAYOUT.window.width * 0.08,
   },
   bubbleContainer: {
     alignSelf: 'flex-end',
@@ -29,7 +27,7 @@ export default StyleSheet.create({
     width: '100%',
   },
   bubbleStyle: {
-    bottom: Layout.window.width * 0.04,
+    bottom: LAYOUT.window.width * 0.04,
     borderBottomEndRadius: 14,
     borderTopEndRadius: 14,
     borderTopStartRadius: 14,
@@ -41,7 +39,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     paddingVertical: 10,
-    width: Layout.window.width,
+    width: LAYOUT.window.width,
   },
   chip: {
     alignItems: 'center',

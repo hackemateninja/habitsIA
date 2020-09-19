@@ -218,7 +218,7 @@ const RegisterPersonalInfo = ({
         <View style={AuthStyles.separator} />
         <View style={AuthStyles.separator} />
       </BottomAuthScreenContainer>
-      <Waiting color={theme.colors.primary} visible={shoWaiting} />
+      <Waiting visible={shoWaiting} />
     </GradientContainer>
   );
 };

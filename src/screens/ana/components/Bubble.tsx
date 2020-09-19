@@ -1,5 +1,5 @@
 import React from 'react';
-import CareStyles from '../styles/CareStyles';
+import CareStyles from '../../care/styles/CareStyles';
 import {Image, Text, View} from 'react-native';
 
 const avatarAna = require('../../../../assets/images/avatarana.png');

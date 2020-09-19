@@ -87,6 +87,7 @@ const Forgot = ({navigation, theme, getCode, auth, clear}: any) => {
           label="Correo eléctronico"
           errorMessage={mailError}
           clearText={clearText}
+          autofocus={true}
         />
         <Button
           color={theme.colors.authButton}

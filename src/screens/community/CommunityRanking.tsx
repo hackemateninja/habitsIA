@@ -1,7 +1,7 @@
 import React from 'react';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {GradientContainer, Header} from '../../components';
+import {GradientContainer} from '../../components';
 import {ScrollView} from 'react-native';
 import RankingResume from './components/RankingResume';
 
@@ -20,5 +20,5 @@ const CommunityRanking = ({navigation, theme}: any) => {
 const mapStateToProps = (state: object) => {
   return state;
 };
-const mapDispatchToProps = (dispatch: Event) => ({});
+const mapDispatchToProps = () => ({});
 export default connect(mapStateToProps, mapDispatchToProps)(CommunityRanking);

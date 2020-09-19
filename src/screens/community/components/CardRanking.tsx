@@ -9,10 +9,8 @@ export default ({textColor}: {textColor: String}) => {
         width: '100%',
         borderBottomWidth: 0.2,
         borderBottomColor: COLORS.grey,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
         paddingBottom: 20,
+        ...GLOBAL_STYLES.rowBetweenCenter,
       }}>
       <View
         style={{

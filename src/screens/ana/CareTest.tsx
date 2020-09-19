@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import CareStyles from './styles/CareStyles';
+import CareStyles from '../care/styles/CareStyles';
 import Chip from './components/Chip';
 import Bubble from './components/Bubble';
 // @ts-ignore
@@ -80,7 +80,7 @@ const CareTest = ({navigation, theme, care}: any) => {
         alwaysBounceVertical={true}
         style={{
           backgroundColor: theme.colors.backGroundAna,
-          flexDirection: 'column-reverse',
+          flexDirection: 'column',
           height: '100%',
           ...GLOBAL_STYLES.screenContainer,
         }}>

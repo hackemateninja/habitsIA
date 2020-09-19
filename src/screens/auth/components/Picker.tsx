@@ -12,18 +12,15 @@ export default ({label, value, items, onValueChange}: PickerType) => {
     return (
       <>
         <Text style={AuthStyles.label}>{label}</Text>
-        <View style={AuthStyles.pickerContainerIOS}>
-          <Picker
-            mode="dropdown"
-            selectedValue={value}
-            style={AuthStyles.pickerIOS}
-            itemStyle={AuthStyles.pickerValueIOS}
-            onValueChange={onValueChange}>
-            {items.map((item: string) => (
-              <Picker.Item key={item} label={item} value={item} />
-            ))}
-          </Picker>
-        </View>
+        <Picker
+          mode="dropdown"
+          selectedValue={value}
+          itemStyle={AuthStyles.pickerValueIOS}
+          onValueChange={onValueChange}>
+          {items.map((item: string) => (
+            <Picker.Item key={item} label={item} value={item} />
+          ))}
+        </Picker>
       </>
     );
   }

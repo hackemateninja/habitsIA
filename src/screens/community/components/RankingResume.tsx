@@ -8,9 +8,7 @@ export default ({color, title}: {color: string; title: string}) => {
     <View style={{marginBottom: 30}}>
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+          ...GLOBAL_STYLES.rowBetweenCenter,
           marginBottom: 20,
         }}>
         <Text

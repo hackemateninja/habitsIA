@@ -45,6 +45,15 @@ const Drawer = (props: any) => {
         />
         <DrawerItem
           onPress={() => {
+            navigation.navigate('Courses');
+          }}
+          icon={'ios-library-outline'}
+          label={'Cursos'}
+          focused={false}
+          color={theme.colors.mainText}
+        />
+        <DrawerItem
+          onPress={() => {
             navigation.navigate('Progress');
           }}
           icon={'stats-chart-outline'}

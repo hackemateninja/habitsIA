@@ -52,7 +52,7 @@ const Register = ({
 
   //funcion que sirve para mostrar el indicador en pantalla en caso de que haga un dismiss keyboard
   const onEndEditing = () => {
-    if (auth.company.name.length < 1 && code.length >= 7) {
+    if (code.length >= 7) {
       setShowWaiting(true);
       getData();
     }
@@ -90,11 +90,6 @@ const Register = ({
 
   //efecto que verifica que se cumpla el patron en el text input y obtiene los datos
   useEffect(() => {
-    if (code.length >= 7) {
-      getData();
-    } else {
-      setValidData(false);
-    }
     if (code.length >= 3) {
       const start = code.substring(0, 3);
       const end = code.substring(4, 7);
@@ -147,14 +142,12 @@ const Register = ({
         description={REGISTER.subTitle}>
         <Input
           autofocus={true}
-          maxLength={9}
+          maxLength={8}
           value={code}
           label={REGISTER.codeLabel}
           type={REGISTER.codeType}
           placeholder={REGISTER.codePlaceHolder}
-          onChange={(value: string) => {
-            setCode(value);
-          }}
+          onChange={(value: string) => setCode(value)}
           onEndEditing={onEndEditing}
           clearText={clearText}
         />

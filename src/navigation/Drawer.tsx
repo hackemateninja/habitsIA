@@ -13,7 +13,7 @@ import {
 } from '@react-navigation/drawer';
 import {
   About,
-  Connect,
+  Connect, Courses,
   Diet,
   Drawer,
   History,
@@ -78,6 +78,7 @@ const DrawerNavigation = ({theme}: any) => {
         }}
       </DrawerNav.Screen>
       <DrawerNav.Screen name="Progress" component={Progress} />
+      <DrawerNav.Screen name="Courses" component={Courses} />
       <DrawerNav.Screen name="Diet" component={Diet} />
       <DrawerNav.Screen name="Points" component={Points} />
       <DrawerNav.Screen name="History" component={History} />
