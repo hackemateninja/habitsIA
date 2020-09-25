@@ -81,6 +81,18 @@ export default StyleSheet.create({
     width: '100%',
     marginBottom: LAYOUT.window.height * 0.04,
   },
+  pickerContainerIosValue: {
+    width: '100%',
+    padding: 8,
+  },
+  pickerIos: {
+    backgroundColor: COLORS.light,
+    height: 40,
+    marginBottom: 20,
+    paddingHorizontal: 8,
+    width: '100%',
+    ...GLOBAL_STYLES.rowBetweenCenter,
+  },
   pickerValueIOS: {
     color: COLORS.black,
     ...GLOBAL_STYLES.h6,

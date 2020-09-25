@@ -16,11 +16,9 @@ import {
   asyncGetCompany,
   asyncClear,
   asyncRegisterCompany,
-} from '../../state/thunks/auth';
+} from '../../state/thunks';
 import {GradientContainer, Button, Waiting} from '../../components';
 
-// TODO usar stado local para manejar el store
-// TODO agregar bottom sheet
 const Register = ({
   navigation,
   theme,
@@ -30,7 +28,7 @@ const Register = ({
   clear,
 }: any) => {
   //estado local
-  const [dep, setDep] = useState('');
+  const [dep, setDep] = useState([]);
   const [code, setCode] = useState('');
   const [validData, setValidData] = useState(false);
   const [shoWaiting, setShowWaiting] = useState(false);
@@ -53,7 +51,6 @@ const Register = ({
   //funcion que sirve para mostrar el indicador en pantalla en caso de que haga un dismiss keyboard
   const onEndEditing = () => {
     if (code.length >= 7) {
-      setShowWaiting(true);
       getData();
     }
   };
@@ -98,34 +95,68 @@ const Register = ({
     }
   }, [code]);
 
+  const items = [
+    {
+      values: [
+        'Libélula Soft',
+        'Murguía',
+        'Asyste',
+        'Biocodex',
+        'Seguros Monterrey New York Life',
+        'Habits',
+        'Farmapronto',
+        'THE',
+        'Otra',
+        'Natura',
+      ],
+      _id: '5ebddc2b404d8e002418af82',
+      name: 'empresa',
+    },
+    {
+      values: [
+        'Otra',
+        'Comercial',
+        'Marketing',
+        'Administrativo',
+        'Finanzas',
+        'Operaciones',
+      ],
+      _id: '5ebddc2b404d8e002418af83',
+      name: 'areas',
+    },
+  ];
+
   const InputComponent = () => {
-    if (validData && auth.company.name) {
-      return (
-        <>
-          <Input
-            value={auth.company.name}
-            label={REGISTER.companyLabel}
-            onChange={() => {}}
-            editable={false}
-          />
-          <Picker
-            value={dep}
-            items={auth.company.deps}
-            label={REGISTER.depLabel}
-            onValueChange={(itemValue: React.ReactText) =>
-              setDep(itemValue.toString())
-            }
-          />
-          <Button
-            title={REGISTER.buttonTitle}
-            colorText={theme.colors.authButtonText}
-            color={theme.colors.authButton}
-            action={nav}
-          />
-        </>
-      );
-    }
-    return null;
+    return (
+      <>
+        <Input
+          value={auth.company.name}
+          label={REGISTER.companyLabel}
+          onChange={() => {}}
+          editable={false}
+        />
+        {items.map((i, idx) => {
+          return (
+            <Picker
+              key={i.name}
+              value={dep[idx]}
+              items={i.values}
+              label={i.name.toUpperCase()}
+              onValueChange={(itemValue: React.ReactText) => {
+                // @ts-ignore
+                setDep((prevState) => [...prevState, itemValue.toString()]);
+              }}
+            />
+          );
+        })}
+        <Button
+          title={REGISTER.buttonTitle}
+          colorText={theme.colors.authButtonText}
+          color={theme.colors.authButton}
+          action={nav}
+        />
+      </>
+    );
   };
 
   return (

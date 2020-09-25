@@ -14,7 +14,6 @@ import {connect} from 'react-redux';
 import {asyncLogin, asyncClear} from '../../state/thunks/auth';
 import {Button, GradientContainer, Waiting, Alert} from '../../components';
 
-// TODO usar stado local para manejar el store
 const Login = ({theme, navigation, login, auth, clear}: any) => {
   //estado local
   const [mail, setMail] = useState('');
@@ -30,23 +29,30 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   });
 
   //borra los datos del estado cuando navega hacia atrás
-  const goBack = () => {
+  const handleGoBack = () => {
     navigation.goBack();
     clear(LOGIN.clearContext);
   };
 
+  //ciera la alerta y limpia el estado
+  const handleCloseAlert = () => {
+    setAlert({
+      title: '',
+      message: '',
+      show: false,
+      type: '',
+    });
+    clear(LOGIN.clearContext);
+  };
+
   //namanda los parametros del body al thunk
-  const sendLogin = async () => {
+  const handleSendLogin = async () => {
     const body = {
       mail: mail,
       pass: pass,
     };
     login(body);
     setShowWaiting(true);
-  };
-  //limpia el campo de mail
-  const clearText = () => {
-    setMail('');
   };
 
   //asigna el valor inicial del input del mail
@@ -68,7 +74,6 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   //se actualiza con el cambio del estado
   useEffect(() => {
     if (auth.login.message.length > 1 && !auth.login.isLogged) {
-      //alert(auth.login.message);
       setAlert({
         title: 'Error',
         message: auth.login.message,
@@ -86,7 +91,7 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
       <TopAuthScreenContainer
         colorText={theme.colors.h1Auth}
         title={LOGIN.topTitle}
-        onPress={goBack}
+        onPress={handleGoBack}
       />
       <BottomAuthScreenContainer
         title={LOGIN.title}
@@ -101,7 +106,6 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
           }}
           errorMessage={errorEmailMessage}
           label={LOGIN.mailLabel}
-          clearText={clearText}
         />
         <Input
           autofocus={mail.length >= 1}
@@ -120,7 +124,7 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
         <Button
           title={LOGIN.buttonTitle}
           disable={!enable}
-          action={() => sendLogin()}
+          action={handleSendLogin}
           colorText={theme.colors.authButtonText}
           color={theme.colors.authButton}
         />
@@ -130,15 +134,7 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
         title={alert.title}
         desc={alert.message}
         type={alert.type}
-        onPress={() => {
-          setAlert({
-            title: '',
-            message: '',
-            show: false,
-            type: '',
-          });
-          clear(LOGIN.clearContext);
-        }}
+        onPress={handleCloseAlert}
         visible={alert.show}
       />
     </GradientContainer>

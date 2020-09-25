@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
   alertContainer: {
     backgroundColor: COLORS.hardBlue,
     borderRadius: 14,
-    height: '25%',
-    padding: 20,
-    width: '90%',
+    height: LAYOUT.window.height * 0.3,
+    padding: 15,
+    width: LAYOUT.window.width * 0.9,
     ...GLOBAL_STYLES.columnBetweenCenter,
   },
   title: {

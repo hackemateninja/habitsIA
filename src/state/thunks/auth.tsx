@@ -51,13 +51,13 @@ export function asyncGetCompany(body: object) {
     if (response.company) {
       const filters = response.company.filtros;
       filters.forEach((filter: any) => {
-        if (filter.name === 'areas') {
-          areas = filter.values;
+        if (filter.name !== 'genero') {
+          areas = filter;
         }
       });
       dispatch(getCompany(response.company.name, response.company._id, areas));
     } else {
-      dispatch(getCompany('Código no existe', '', areas));
+      dispatch(getCompany('Codigo no existe', '', areas));
     }
   };
 }
@@ -83,7 +83,9 @@ export function asyncLogin(body: object) {
         ),
       );
     } else {
-      dispatch(login(false, '', '', response.message, false, [], '', {}, ''));
+      dispatch(
+        login(false, '', '', response.global.es_MX, false, [], '', {}, ''),
+      );
     }
   };
 }

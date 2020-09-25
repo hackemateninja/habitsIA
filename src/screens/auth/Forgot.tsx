@@ -11,7 +11,6 @@ import {useValidateEmail} from '../../hooks';
 import {Button, GradientContainer, Waiting} from '../../components';
 import {asyncClear, asyncForgot} from '../../state/thunks/auth';
 
-// TODO usar stado local para manejar el store
 //componente que recibe la navegación y los props del store
 const Forgot = ({navigation, theme, getCode, auth, clear}: any) => {
   //estado local
@@ -59,7 +58,6 @@ const Forgot = ({navigation, theme, getCode, auth, clear}: any) => {
         navigation.navigate('Reset');
       } else {
         setShowWaiting(false);
-        //TODO agregar componente de alerta
         alert(auth.forgot.message);
         clear('forgot');
       }

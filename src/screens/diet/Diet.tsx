@@ -1,7 +1,9 @@
 import React from 'react';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {GradientContainer, Header} from '../../components';
+import {Chip, GradientContainer, Header} from '../../components';
+import {Image, ScrollView, Text, View} from 'react-native';
+import {COLORS, GLOBAL_STYLES} from '../../constants';
 
 const Diet = ({navigation, theme}: any) => {
   const leftAction = () => {
@@ -19,6 +21,14 @@ const Diet = ({navigation, theme}: any) => {
         background={theme.colors.backGroundScreen}
         leftAction={leftAction}
       />
+      <View style={{height: 50, ...GLOBAL_STYLES.rowBetweenCenter}}>
+        <Chip width={100} color={COLORS.grey} textColor={COLORS.white} title={"desayuno"} />
+        <Chip width={100} color={COLORS.greenPastel} textColor={COLORS.white} title={"desayuno"} />
+        <Chip width={100} color={COLORS.red} textColor={COLORS.white} title={"desayuno"} />
+        <Chip width={100} color={COLORS.yellow} textColor={COLORS.white} title={"desayuno"} />
+        <Chip width={100} color={COLORS.blue} textColor={COLORS.white} title={"desayuno"} />
+      </View>
+
     </GradientContainer>
   );
 };

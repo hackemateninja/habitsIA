@@ -4,7 +4,7 @@ import {getTest} from '../actions/care';
 
 export function asyncGetTest(body: object) {
   return (dispatch: ActionCreator<any>) => {
-    useHTTP('POST', body, 'getTest')
+    useHTTP('POST', body, 'api/getTest')
       .then((e) => {
         dispatch(getTest(e.test[0].name, e.test[0].question));
       })
