@@ -8,7 +8,12 @@ import {StatusBar} from 'react-native';
 import {useIsDrawerOpen} from '@react-navigation/drawer';
 import {COLORS} from '../constants';
 
-export default (openColor: string, closeColor: string): void => {
+interface UseChangeStatusBarType {
+  openColor: string,
+  closeColor: string,
+}
+
+export default ({openColor, closeColor}: UseChangeStatusBarType): void => {
   const isDrawerOpen = useIsDrawerOpen();
   const isAndroid = useCheckAndroid();
 

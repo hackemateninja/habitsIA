@@ -2,7 +2,7 @@
  * Todos los colores que van en la versión light
  * */
 
-import COLORS from './Colors';
+import COLORS from './colors';
 // TODO clean unused colors
 export default {
   authBackgroundColor: COLORS.primary,

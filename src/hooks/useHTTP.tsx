@@ -2,6 +2,7 @@
 import {API} from '@env';
 import AsyncStorage from '@react-native-community/async-storage';
 
+// TODO revisar los tipos aca
 export default async (
   method: string,
   endpoint: string,

@@ -2,7 +2,7 @@
  * Aquì va el objeto con los colores que van en la versión dark
  * */
 
-import COLORS from './Colors';
+import COLORS from './colors';
 // TODO clean unused colors
 export default {
   authBackgroundColor: COLORS.black,

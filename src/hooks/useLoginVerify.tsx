@@ -1,5 +1,8 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+
+// TODO revisar los tipos aca
+
 let data = {
   token: '',
   isLogged: false,

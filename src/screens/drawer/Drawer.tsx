@@ -16,12 +16,10 @@ import AvatarContainer from './components/AvatarContainer';
 
 const Drawer = (props: any) => {
   const {theme, navigation, logout, auth} = props;
+  const openColor = theme.colors.backGroundDrawer;
+  const closeColor = theme.colors.backGroundScreen;
+  useChangeStatusBar({openColor: openColor, closeColor: closeColor});
 
-  useChangeStatusBar(
-    theme.colors.backGroundDrawer,
-    theme.colors.backGroundScreen,
-  );
-  // TODO crear un componente dinamico en base a los props
   return (
     <DrawerContentScrollView
       style={DrawerStyles.drawerContainer}

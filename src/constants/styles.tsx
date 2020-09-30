@@ -3,9 +3,8 @@
  * no colocar estilos específicos solo generales
  *
  * */
-// TODO create new hook responsive
 import {StyleSheet} from 'react-native';
-import LAYOUT from './Layout';
+import LAYOUT from './layout';
 import useResponsive from '../hooks/useResponsive';
 
 export default StyleSheet.create({
