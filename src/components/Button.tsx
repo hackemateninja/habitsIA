@@ -4,18 +4,17 @@
 
 //comentarios multilìnea al final
 import React from 'react';
-import {ButtonType} from '../types';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {COLORS, GLOBAL_STYLES, LAYOUT} from '../constants';
+import {Text, TouchableOpacity} from 'react-native';
+import {COLORS, GLOBAL_STYLES} from '../constants';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    ...GLOBAL_STYLES.center,
-    borderRadius: 12,
-    paddingVertical: Number(LAYOUT.window.height / 70),
-    width: '100%',
-  },
-});
+interface ButtonType {
+  disable?: boolean;
+  title: string;
+  action: any;
+  colorText: string;
+  color: string;
+}
 
 export default ({
   disable = false,
@@ -25,13 +24,13 @@ export default ({
   color = COLORS.hardGrey,
 }: ButtonType) => {
   const buttonStyle = {
-    ...styles.buttonContainer,
     backgroundColor: disable ? COLORS.grey : color,
+    ...styles.buttonContainer,
   };
 
   const buttonTextStyle = {
-    ...GLOBAL_STYLES.p,
     color: colorText,
+    ...GLOBAL_STYLES.p,
   };
 
   // por defecto siempre devuelve un touchable que activa una función llamada onPress

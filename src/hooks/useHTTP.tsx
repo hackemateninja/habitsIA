@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export default async (
   method: string,
-  body: object,
   endpoint: string,
+  body?: object,
   query?: string,
 ) => {
   let token = '';

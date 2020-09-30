@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   checkBoxContainer: {
     marginBottom: LAYOUT.window.height * 0.02,
-    width: '60%',
+    width: '70%',
     ...GLOBAL_STYLES.rowBetweenCenter,
   },
   checkBoxStyle: {

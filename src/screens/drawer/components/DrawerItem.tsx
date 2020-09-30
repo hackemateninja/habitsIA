@@ -5,7 +5,7 @@
 
 //importaciones múltiples al final
 import React from 'react';
-import {DrawerItemType} from '../../../types';
+import {DrawerItemType} from '../../../components/types';
 import {IconButton} from '../../../components';
 import {COLORS} from '../../../constants';
 import {Text, TouchableOpacity, View} from 'react-native';

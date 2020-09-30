@@ -5,20 +5,17 @@
 //importaciones múltiples al final
 import React from 'react';
 import IconButton from './IconButton';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import {GLOBAL_STYLES} from '../constants';
-import {HeaderType} from '../types';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  HeaderContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 24,
-    paddingVertical: 5,
-    width: '100%',
-  },
-});
+interface HeaderType {
+  title: string;
+  leftAction: any;
+  hasBack: boolean;
+  background: string;
+  textColor: string;
+}
 
 export default ({
   title,
@@ -28,8 +25,8 @@ export default ({
   textColor,
 }: HeaderType) => {
   const headerStyle = {
-    ...styles.HeaderContainer,
     backgroundColor: background,
+    ...styles.headerContainer,
   };
 
   return (
@@ -40,7 +37,11 @@ export default ({
         onPress={leftAction}
       />
       <Text style={[GLOBAL_STYLES.p, {color: textColor}]}>{title}</Text>
-      <IconButton icon={'ios-menu-outline'} iconColor="transparent" onPress={() => {}} />
+      <IconButton
+        icon={'ios-menu-outline'}
+        iconColor="transparent"
+        onPress={() => {}}
+      />
     </View>
   );
 };

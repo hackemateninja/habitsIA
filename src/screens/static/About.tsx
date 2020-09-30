@@ -5,7 +5,7 @@ import DeviceInfo from 'react-native-device-info';
 // @ts-ignore
 import {connect} from 'react-redux';
 import {GLOBAL_STYLES, LAYOUT} from '../../constants';
-import {Linking, Text, TouchableOpacity, View} from 'react-native';
+import {Linking, PixelRatio, Text, TouchableOpacity, View} from 'react-native';
 import {GradientContainer, Header} from '../../components';
 import ItemInfo from './components/ItemInfo';
 import StaticStyles from './styles/StaticStyles';
@@ -21,7 +21,7 @@ const About = ({navigation, theme, auth}: any) => {
     navigation.goBack();
   };
 
-  const desc = `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${LAYOUT.window.width.toFixed()} x ${LAYOUT.window.height.toFixed()}`;
+  const desc = `${DeviceInfo.getSystemName()} tipo: ${DeviceInfo.getDeviceType()} size: ${LAYOUT.window.width.toFixed()} x ${LAYOUT.window.height.toFixed()} ratio: ${PixelRatio.get()}`;
 
   useEffect(() => {
     setName(DeviceInfo.getApplicationName() || '');
@@ -33,7 +33,7 @@ const About = ({navigation, theme, auth}: any) => {
   }, [auth.login.email, auth.login.user, desc]);
 
   const sendHelp = async () => {
-    const message = `Hola tengo problemas en la app, con el tipo de dispositivo: ${description}, soy el usuario: ${user} registrado con el email: ${email} que tiene el sistema: ${version}`;
+    const message = `Hola tengo problemas con la app, tengo un dispositivo: ${description}, soy el usuario: ${user} registrado con el email: ${email} que tiene el sistema: ${version}`;
     const number = '+52 55 7767 8352';
     await Linking.openURL(`whatsapp://send?text=${message}&phone=${number}`);
   };

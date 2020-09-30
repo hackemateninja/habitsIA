@@ -7,7 +7,13 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/Ionicons';
 import {GLOBAL_STYLES} from '../constants';
-import {IconButtonType} from '../types';
+
+interface IconButtonType {
+  icon: string;
+  onPress?: any;
+  iconColor: string;
+  size?: number;
+}
 
 export default ({icon, onPress, iconColor, size}: IconButtonType) => {
   const setSize = size ? size : GLOBAL_STYLES.iconSize.fontSize;

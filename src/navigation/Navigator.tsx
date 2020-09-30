@@ -44,7 +44,7 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
     <NavigationContainer>
       <Stack.Navigator
         headerMode="none"
-        initialRouteName={logged ? 'Loading' : 'Welcome'}
+        initialRouteName={'CareTest'}//logged ? 'CareTest' : 'CareTest'}
         screenOptions={{gestureEnabled: false}}
         mode={'card'}>
         {logged ? (
@@ -65,6 +65,7 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
           </>
         ) : (
           <>
+            <Stack.Screen name="CareTest" component={CareTest} />
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />

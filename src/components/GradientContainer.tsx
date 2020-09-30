@@ -7,8 +7,13 @@ import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS, GLOBAL_STYLES} from '../constants';
 import {KeyboardAvoidingView, SafeAreaView, StatusBar} from 'react-native';
-import {GradientContainerType} from '../types';
 import {useCheckAndroid} from '../hooks';
+
+interface GradientContainerType {
+  children: React.ReactNode;
+  topColor: string;
+  bottomColor?: string;
+}
 
 export default ({children, topColor, bottomColor}: GradientContainerType) => {
   const barStyleColor =
@@ -31,7 +36,7 @@ export default ({children, topColor, bottomColor}: GradientContainerType) => {
         <KeyboardAvoidingView behavior={behavior} style={GLOBAL_STYLES.screen}>
           <LinearGradient
             style={GLOBAL_STYLES.screen}
-            colors={[topColor, bottomColor]}>
+            colors={[topColor, bottomColor || topColor]}>
             {children}
           </LinearGradient>
         </KeyboardAvoidingView>

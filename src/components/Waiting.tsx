@@ -1,19 +1,13 @@
 import React from 'react';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import {useCheckAndroid} from '../hooks';
-import {COLORS, GLOBAL_STYLES, LAYOUT} from '../constants';
+import {COLORS} from '../constants';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  waitingContainer: {
-    backgroundColor: 'transparent',
-    height: LAYOUT.window.height,
-    position: 'absolute',
-    width: LAYOUT.window.width,
-    ...GLOBAL_STYLES.center,
-  },
-});
-
-export default ({visible}: {visible: boolean}) => {
+interface WaitingType {
+  visible: boolean;
+}
+export default ({visible}: WaitingType) => {
   const size = useCheckAndroid() ? 75 : 'large';
   if (visible) {
     return (

@@ -30,7 +30,7 @@ export function asyncClear(context: string) {
 
 export function asyncForgot(body: {mail: string}) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'api/changePass');
+    const response = await useHTTP('POST', body, 'api/user/changePass');
     dispatch(
       forgot(
         response.data,
@@ -47,12 +47,13 @@ export function asyncForgot(body: {mail: string}) {
 export function asyncGetCompany(body: object) {
   return async (dispatch: ActionCreator<any>) => {
     const response = await useHTTP('POST', body, 'api/getCompany');
+    console.log(response);
     let areas: string[] = [];
     if (response.company) {
       const filters = response.company.filtros;
       filters.forEach((filter: any) => {
-        if (filter.name !== 'genero') {
-          areas = filter;
+        if (filter.name === 'areas') {
+          areas = filter.values;
         }
       });
       dispatch(getCompany(response.company.name, response.company._id, areas));
@@ -124,7 +125,7 @@ export function asyncRegisterCompany(companyId: string, dep: string) {
 //registra los datos personales
 export function asyncRegisterPersonal(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'api/saveUser');
+    const response = await useHTTP('POST', body, 'api/user/saveUser');
     if (response.user) {
       dispatch(
         registerPersonal(

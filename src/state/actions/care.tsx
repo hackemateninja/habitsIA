@@ -1,9 +1,9 @@
 import {GET_TEST} from '../actionTypes';
 
-export const getTest = (title: string, question: []) => {
+export const getTest = (title: string, questios: []) => {
   return {
     type: GET_TEST,
     title,
-    question,
+    questions,
   };
 };

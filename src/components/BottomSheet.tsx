@@ -1,5 +1,5 @@
 import React, {ReactNode, useEffect} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
 import {COLORS, GLOBAL_STYLES, LAYOUT} from '../constants';
 import Animated, {
   Easing,
@@ -7,36 +7,15 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  sheetOverlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    height: LAYOUT.window.height,
-    position: 'absolute',
-    width: LAYOUT.window.width,
-  },
-  sheetOverlayTouchable: {
-    height: LAYOUT.window.height,
-  },
-  sheetPickerContainer: {
-    height: '70%',
-  },
-  sheetText: {
-    color: COLORS.primary,
-    textAlign: 'right',
-    ...GLOBAL_STYLES.h6,
-  },
-});
-
-export default ({
-  visible,
-  onClose,
-  children,
-}: {
+interface BottomSheetType {
   visible: boolean;
   onClose: any;
   children: ReactNode;
-}) => {
+}
+
+export default ({visible, onClose, children}: BottomSheetType) => {
   const height = useSharedValue(0);
 
   const animatedSheet = useAnimatedStyle(() => {
@@ -61,19 +40,20 @@ export default ({
   }, [visible]);
 
   return (
-    <Animated.View style={visible ? styles.sheetOverlay : {display: 'none'}}>
+    <Animated.View
+      style={visible ? styles.bottomSheetOverlay : {display: 'none'}}>
       <TouchableOpacity
         onPress={onClose}
-        style={styles.sheetOverlayTouchable}
+        style={styles.bottomSheetOverlayTouchable}
       />
       <Animated.View style={animatedSheet}>
-        <View style={styles.sheetPickerContainer}>{children}</View>
+        <View style={styles.bottomSheetPickerContainer}>{children}</View>
         <View style={GLOBAL_STYLES.rowBetweenCenter}>
           <TouchableOpacity onPress={onClose}>
-            <Text style={styles.sheetText}>Cancelar</Text>
+            <Text style={styles.bottomSheetText}>Cancelar</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={onClose}>
-            <Text style={styles.sheetText}>Aceptar</Text>
+            <Text style={styles.bottomSheetText}>Aceptar</Text>
           </TouchableOpacity>
         </View>
       </Animated.View>

@@ -53,12 +53,10 @@ const RegisterPersonalInfo = ({
       mail: mail,
       pass: pass,
       company: auth.register.companyId,
-      filtros: [
-        {
-          name: 'Área',
-          value: auth.register.dep,
-        },
-      ],
+      //id de la categoria
+      filter: ['5f73798a0e525a0ab633feb6', '5f737a380e525a0ab633feba'],
+      //id del tipo de categoria
+      filter_category: ['5f73779c85538c0a1d0d610e', '5f7377f685538c0a1d0d610f'],
     };
     register(body);
     setShowWaiting(true);

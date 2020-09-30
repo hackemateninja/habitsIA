@@ -1,26 +1,29 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import {GLOBAL_STYLES} from '../constants';
-import {ChipType} from '../types';
+import {Text, View} from 'react-native';
+import styles from './styles';
+
+interface ChipType {
+  title: string;
+  color: string;
+  textColor: string;
+  width: any;
+}
 
 export default ({title, color, textColor, width}: ChipType) => {
-  const style = StyleSheet.create({
-    chipContainer: {
-      borderRadius: 8,
-      backgroundColor: color,
-      padding: 3,
-      width: width,
-    },
-    textStyle: {
-      color: textColor,
-      textAlign: 'center',
-      ...GLOBAL_STYLES.smallTextBold,
-    },
-  });
+  const chipStyle = {
+    backgroundColor: color,
+    width: width,
+    ...styles.chipContainer,
+  };
+
+  const chipTextStyle = {
+    color: textColor,
+    ...styles.chipText,
+  };
 
   return (
-    <View style={style.chipContainer}>
-      <Text style={style.textStyle}>{title}</Text>
+    <View style={chipStyle}>
+      <Text style={chipTextStyle}>{title}</Text>
     </View>
   );
 };

@@ -10,7 +10,7 @@ import GradientContainer from '../../components/GradientContainer';
 import {connect} from 'react-redux';
 import {GLOBAL_STYLES, LAYOUT} from '../../constants';
 import {ActivityIndicator, Image, Text, View} from 'react-native';
-import {LoadingType} from '../../types';
+import {LoadingType} from '../../components/types';
 import {useCheckAndroid} from '../../hooks';
 import CareStyles from './styles/CareStyles';
 import {ActionCreator} from 'redux';

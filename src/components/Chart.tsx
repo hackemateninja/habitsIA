@@ -6,38 +6,9 @@
 //importaciones múltiples al final
 import React from 'react';
 import {ProgressChart} from 'react-native-chart-kit';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import {COLORS, LAYOUT, GLOBAL_STYLES} from '../constants';
-
-const styles = StyleSheet.create({
-  careTestResultChartContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  careTestResultLeft: {
-    width: '50%',
-  },
-  careTestResultRight: {
-    alignItems: 'flex-start',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '50%',
-  },
-  careTestResultRightItem: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 15,
-  },
-  careTestResultRightTextContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    width: '70%',
-  },
-});
+import styles from './styles';
 
 export default ({data}: any) => {
   //constante que almacena los los tados que vienen por props
@@ -73,8 +44,8 @@ export default ({data}: any) => {
     data: [0.4, 0.6, 0.8],
   };
   return (
-    <View style={styles.careTestResultChartContainer}>
-      <View style={styles.careTestResultLeft}>
+    <View style={styles.chartContainer}>
+      <View style={styles.chartLeft}>
         <ProgressChart
           data={d}
           width={LAYOUT.window.width / 2}
@@ -88,29 +59,24 @@ export default ({data}: any) => {
           paddingLeft={''}
         />
       </View>
-      <View style={styles.careTestResultRight}>
+      <View style={styles.chartRight}>
         {CARE_RESULT_LOCAL.map((item: any) => {
           return (
-            <View style={styles.careTestResultRightItem} key={item.id}>
-              <View style={styles.careTestResultRightTextContainer}>
+            <View style={styles.chartRightItem} key={item.id}>
+              <View style={styles.chartRightTextContainer}>
                 <View
                   style={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: 4,
                     backgroundColor: item.color,
-                    marginRight: 5,
+                    ...styles.chartRightTextLabel,
                   }}
                 />
                 <Text style={GLOBAL_STYLES.smallTextBold}>{item.label}</Text>
               </View>
-              <View style={{width: '30%'}}>
+              <View style={styles.chartRightTextContainerPercentage}>
                 <Text
                   style={{
-                    textAlign: 'right',
-                    fontFamily: 'roboto',
-                    fontSize: 12,
                     color: min === item.porcent ? COLORS.red : COLORS.black,
+                    ...styles.chartRightTextPercentage,
                   }}>
                   {`${item.porcent.toFixed()}%`}
                 </Text>

@@ -127,36 +127,39 @@ const Register = ({
   ];
 
   const InputComponent = () => {
-    return (
-      <>
-        <Input
-          value={auth.company.name}
-          label={REGISTER.companyLabel}
-          onChange={() => {}}
-          editable={false}
-        />
-        {items.map((i, idx) => {
-          return (
-            <Picker
-              key={i.name}
-              value={dep[idx]}
-              items={i.values}
-              label={i.name.toUpperCase()}
-              onValueChange={(itemValue: React.ReactText) => {
-                // @ts-ignore
-                setDep((prevState) => [...prevState, itemValue.toString()]);
-              }}
-            />
-          );
-        })}
-        <Button
-          title={REGISTER.buttonTitle}
-          colorText={theme.colors.authButtonText}
-          color={theme.colors.authButton}
-          action={nav}
-        />
-      </>
-    );
+    if (auth.company.deps.length > 1){
+      return (
+        <>
+          <Input
+            value={auth.company.name}
+            label={REGISTER.companyLabel}
+            onChange={() => {}}
+            editable={false}
+          />
+          {items.map((i, idx) => {
+            return (
+              <Picker
+                key={i.name}
+                value={dep[idx]}
+                items={i.values}
+                label={i.name.toUpperCase()}
+                onValueChange={(itemValue: React.ReactText) => {
+                  // @ts-ignore
+                  setDep((prevState) => [...prevState, itemValue.toString()]);
+                }}
+              />
+            );
+          })}
+          <Button
+            title={REGISTER.buttonTitle}
+            colorText={theme.colors.authButtonText}
+            color={theme.colors.authButton}
+            action={nav}
+          />
+        </>
+      );
+    }
+    return null;
   };
 
   return (

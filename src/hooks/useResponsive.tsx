@@ -16,6 +16,6 @@ export default (size: number): number => {
     case 1:
       return size - 4;
     default:
-      return PixelRatio.getPixelSizeForLayoutSize(size / 2);
+      return size;
   }
 };

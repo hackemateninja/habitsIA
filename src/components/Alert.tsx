@@ -1,51 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {COLORS, GLOBAL_STYLES, LAYOUT} from '../constants';
+import {View, Text} from 'react-native';
+import {COLORS} from '../constants';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/Ionicons';
 import Button from './Button';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  alertOverlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    height: LAYOUT.window.height,
-    position: 'absolute',
-    width: LAYOUT.window.width,
-    ...GLOBAL_STYLES.center,
-  },
-  alertContainer: {
-    backgroundColor: COLORS.hardBlue,
-    borderRadius: 14,
-    height: LAYOUT.window.height * 0.3,
-    padding: 15,
-    width: LAYOUT.window.width * 0.9,
-    ...GLOBAL_STYLES.columnBetweenCenter,
-  },
-  title: {
-    color: COLORS.primary,
-    textAlign: 'center',
-    ...GLOBAL_STYLES.h2,
-  },
-  description: {
-    color: COLORS.grey,
-    textAlign: 'center',
-    ...GLOBAL_STYLES.p,
-  },
-});
-
-export default ({
-  visible,
-  title,
-  desc,
-  type,
-  onPress,
-}: {
+interface AlertType {
   title: string;
   desc: string;
   type: string;
   visible: boolean;
   onPress: any;
-}) => {
+}
+
+export default ({visible, title, desc, type, onPress}: AlertType) => {
   const [color, setColor] = useState('');
   const [icon, setIcon] = useState('');
 
@@ -75,8 +44,8 @@ export default ({
       <View style={styles.alertOverlay}>
         <View style={styles.alertContainer}>
           <Icon name={icon} size={60} color={color} />
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>{desc}</Text>
+          <Text style={styles.alertTitle}>{title}</Text>
+          <Text style={styles.alertDescription}>{desc}</Text>
           <Button
             title={'Aceptar'}
             colorText={COLORS.white}

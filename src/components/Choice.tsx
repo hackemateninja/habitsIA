@@ -4,27 +4,22 @@
 
 //importaciones múltiples al final
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {COLORS, GLOBAL_STYLES} from '../constants';
-import {ChoiceType} from '../types';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  choice: {
-    borderRadius: 20,
-    borderWidth: 1,
-    marginBottom: 10,
-    marginRight: 10,
-    paddingHorizontal: 22,
-    paddingVertical: 14,
-  },
-});
+interface ChoiceType {
+  title: string;
+  isSelected: boolean;
+  onPress: any;
+}
 
 export default ({title, isSelected, onPress}: ChoiceType) => {
   const choiceStyle = {
-    ...styles.choice,
     backgroundColor: isSelected ? COLORS.primary : 'transparent',
     borderColor: isSelected ? COLORS.hardPrimary : COLORS.semiBlue,
+    ...styles.choice,
   };
 
   const textStyle = {

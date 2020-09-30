@@ -332,11 +332,11 @@ const Profile = ({navigation, theme, day, auth}: any) => {
           />
         </View>
         <View
-          style={{paddingHorizontal: 20, ...GLOBAL_STYLES.rowBetweenCenter}}>
+          style={{paddingHorizontal: 20, marginTop:10, ...GLOBAL_STYLES.rowBetweenCenter}}>
           <View
             style={{
               width: '30%',
-              height: LAYOUT.window.height * 0.15,
+              height: LAYOUT.window.height * 0.18,
               borderRadius: 8,
               backgroundColor: theme.colors.cardBackground,
               ...GLOBAL_STYLES.columnEvenlyCenter,
@@ -372,7 +372,7 @@ const Profile = ({navigation, theme, day, auth}: any) => {
           <View
             style={{
               width: '30%',
-              height: LAYOUT.window.height * 0.15,
+              height: LAYOUT.window.height * 0.18,
               borderRadius: 8,
               backgroundColor: theme.colors.cardBackground,
               ...GLOBAL_STYLES.columnEvenlyCenter,
@@ -404,7 +404,7 @@ const Profile = ({navigation, theme, day, auth}: any) => {
           <View
             style={{
               width: '30%',
-              height: LAYOUT.window.height * 0.15,
+              height: LAYOUT.window.height * 0.18,
               borderRadius: 8,
               backgroundColor: theme.colors.cardBackground,
               ...GLOBAL_STYLES.columnEvenlyCenter,
