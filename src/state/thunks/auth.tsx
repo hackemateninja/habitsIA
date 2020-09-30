@@ -30,7 +30,11 @@ export function asyncClear(context: string) {
 
 export function asyncForgot(body: {mail: string}) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'api/user/changePass');
+    const [response] = await useHTTP({
+      method: 'POST',
+      body: body,
+      endpoint: 'api/user/changePass',
+    });
     dispatch(
       forgot(
         response.data,
@@ -44,9 +48,13 @@ export function asyncForgot(body: {mail: string}) {
 }
 
 //obtiene los datos de la companía
-export function asyncGetCompany(body: object) {
+export function asyncGetCompany(code: string) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'api/getCompany');
+    const [response] = await useHTTP({
+      method: 'GET',
+      endpoint: 'api/company/one/',
+      query: `?where[key]=${code}`,
+    });
     console.log(response);
     let areas: string[] = [];
     if (response.company) {
@@ -58,7 +66,7 @@ export function asyncGetCompany(body: object) {
       });
       dispatch(getCompany(response.company.name, response.company._id, areas));
     } else {
-      dispatch(getCompany('Codigo no existe', '', areas));
+      dispatch(getCompany(response.global.es_MX, '', areas));
     }
   };
 }
@@ -66,7 +74,11 @@ export function asyncGetCompany(body: object) {
 //login
 export function asyncLogin(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'login');
+    const [response] = await useHTTP({
+      method: 'POST',
+      body: body,
+      endpoint: 'login',
+    });
     if (response.token) {
       const responseStringy = JSON.stringify(response);
       await AsyncStorage.setItem('@Login', responseStringy);
@@ -125,7 +137,11 @@ export function asyncRegisterCompany(companyId: string, dep: string) {
 //registra los datos personales
 export function asyncRegisterPersonal(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const response = await useHTTP('POST', body, 'api/user/saveUser');
+    const [response] = await useHTTP({
+      method: 'POST',
+      body: body,
+      endpoint: 'api/user/saveUser',
+    });
     if (response.user) {
       dispatch(
         registerPersonal(
@@ -144,12 +160,11 @@ export function asyncRegisterPersonal(body: object) {
 //resetea la contraseña
 export function asyncReset(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    useHTTP('PUT', body, 'api/user/updatePassword')
-      .then((e) => {
-        dispatch(reset(e.message, true));
-      })
-      .catch((e) => {
-        dispatch(reset(e.message, false));
-      });
+    const [response] = await useHTTP({
+      method: 'PUT',
+      body: body,
+      endpoint: 'api/user/updatePassword',
+    });
+    dispatch(reset(response.message, true));
   };
 }

@@ -1,32 +1,23 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 
-// TODO revisar los tipos aca
+interface Data {
+  isLogged: boolean;
+  user: string;
+  avatar: string;
+  company: object;
+  email: string;
+}
 
-let data = {
-  token: '',
-  isLogged: false,
-  user: '',
-  message: '',
-  resolvedTest: false,
-  messageBoarding: [],
-  avatar: '',
-  company: {},
-  email: '',
-};
 export default (verifyLogin: any): boolean => {
-  const [logged, setIsLogged] = React.useState(false);
+  const [isLogged, setIsLogged] = React.useState(false);
   React.useEffect(() => {
     AsyncStorage.getItem('@Login')
       .then((e) => {
         const dataStorage = e != null ? JSON.parse(e) : null;
-        data = {
+        const data: Data = {
           isLogged: dataStorage.token !== null,
           user: dataStorage.user,
-          token: dataStorage.token,
-          message: dataStorage.message.title,
-          resolvedTest: dataStorage.resolvedTest,
-          messageBoarding: dataStorage.messageBoarding,
           avatar: dataStorage.avatar,
           company: dataStorage.company,
           email: dataStorage.email,
@@ -35,9 +26,9 @@ export default (verifyLogin: any): boolean => {
         setIsLogged(true);
       })
       .catch(() => {
-        verifyLogin(data);
+        verifyLogin({});
         setIsLogged(false);
       });
   }, [verifyLogin]);
-  return logged;
+  return isLogged;
 };

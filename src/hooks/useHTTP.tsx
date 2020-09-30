@@ -2,17 +2,18 @@
 import {API} from '@env';
 import AsyncStorage from '@react-native-community/async-storage';
 
-// TODO revisar los tipos aca
-export default async (
-  method: string,
-  endpoint: string,
-  body?: object,
-  query?: string,
-) => {
+interface UseHTTPType {
+  method: string;
+  endpoint: string;
+  body?: object;
+  query?: string;
+}
+
+export default async ({method, endpoint, body, query}: UseHTTPType) => {
   let token = '';
   try {
     const jsonValue = await AsyncStorage.getItem('@Login');
-    const data = jsonValue != null ? JSON.parse(jsonValue) : null;
+    const data = jsonValue !== null ? JSON.parse(jsonValue) : null;
     token = data.token;
   } catch (e) {
     token = '';
@@ -30,8 +31,9 @@ export default async (
         Authorization: `Bearer ${token}`,
       },
     });
-    return await response.json();
+    const data = await response.json();
+    return [true, data];
   } catch (e) {
-    return e;
+    return [false, e];
   }
 };

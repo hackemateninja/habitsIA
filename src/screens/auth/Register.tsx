@@ -41,11 +41,7 @@ const Register = ({
 
   //guncion que sirve para activar el thunk de obtener data de la empresa
   const getData = () => {
-    const body = {
-      name: code.toUpperCase(),
-      option: 3,
-    };
-    getCompany(body);
+    getCompany(code);
   };
 
   //funcion que sirve para mostrar el indicador en pantalla en caso de que haga un dismiss keyboard
@@ -200,7 +196,7 @@ const mapStateToProps = (state: any) => {
 
 //funciones que ejecutan los thunks a los props
 const mapDispatchToProps = (dispatch: any) => ({
-  getCompany: (body: object) => dispatch(asyncGetCompany(body)),
+  getCompany: (code: string) => dispatch(asyncGetCompany(code)),
   clear: (context: string) => dispatch(asyncClear(context)),
   setCompany: (companyId: string, dep: string) =>
     dispatch(asyncRegisterCompany(companyId, dep)),
