@@ -11,12 +11,13 @@ import Tests from './components/Tests';
 import Challenge from './components/Challenge';
 
 const DayResume = (props: any) => {
-  const {theme, name, calendar, month, date, full, getData, day} = props;
+  const {theme, name, calendar, month, date, full, auth, getData, day} = props;
 
+  const userId = auth.login._id;
   const {colors} = theme;
   useEffect(() => {
-    getData(full);
-  }, []);
+    getData(full, userId);
+  }, [full]);
 
   return (
     <GradientContainer
@@ -26,7 +27,7 @@ const DayResume = (props: any) => {
         <Subtitle date={date} month={month} day={calendar} dayName={name} />
         <Activities data={day.activities} color={colors} title="Actividades" />
         <Challenge data={day.challenges} color={colors} title="Retos" />
-        <Tests data={day.tests} color={colors} title="Evaluaciones" />
+        <Tests data={day.quizzes} color={colors} title="Evaluaciones" />
       </View>
     </GradientContainer>
   );
@@ -35,6 +36,6 @@ const mapStateToProps = (state: object) => {
   return state;
 };
 const mapDispatchToProps = (dispatch: ActionCreator<any>) => ({
-  getData: (date: string) => dispatch(asyncGetDay(date)),
+  getData: (date: string, userId: string) => dispatch(asyncGetDay(date, userId)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DayResume);

@@ -8,18 +8,18 @@ import React, {useEffect} from 'react';
 import GradientContainer from '../../components/GradientContainer';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {GLOBAL_STYLES, LAYOUT} from '../../constants';
+import {GLOBAL_STYLES, IMAGES, LAYOUT} from '../../constants';
 import {ActivityIndicator, Image, Text, View} from 'react-native';
-import {LoadingType} from '../../components/types';
 import {useCheckAndroid} from '../../hooks';
 import CareStyles from './styles/CareStyles';
 import {ActionCreator} from 'redux';
-import {asyncGetTest} from '../../state/thunks';
+import {asyncGetMessage} from '../../state/thunks';
 
 //logo
-const LOGO = '../../assets/icons/logo.png';
 
-const CareLoading = ({theme, auth, getTest, navigation}: LoadingType) => {
+const CareLoading = ({theme, navigation, care, auth, getMessage}: any) => {
+  const userId = auth.login._id;
+
   const textStyle = {
     color: theme.colors.mainText,
     marginTop: 30,
@@ -35,17 +35,14 @@ const CareLoading = ({theme, auth, getTest, navigation}: LoadingType) => {
     opacity: 0.6,
     ...GLOBAL_STYLES.p,
   };
+  //console.log(auth);
+
 
   useEffect(() => {
-    getTest({
-      type: 'tipo',
-      id: 'care_test',
-    });
-    setTimeout(() => {
-      auth.login.resolvedTest
-        ? navigation.navigate('Drawer')
-        : navigation.navigate('OneBoarding');
-    }, 2000);
+    /*setTimeout(() => {
+      navigation.navigate('Drawer');
+    }, 2000);*/
+    getMessage(userId);
   }, []);
 
   const size = useCheckAndroid() ? 75 : 'large';
@@ -54,9 +51,9 @@ const CareLoading = ({theme, auth, getTest, navigation}: LoadingType) => {
       topColor={theme.colors.topGradient}
       bottomColor={theme.colors.bottomGradient}>
       <View style={CareStyles.loadingContainer}>
-        <Image style={GLOBAL_STYLES.logo} source={require(LOGO)} />
+        <Image style={GLOBAL_STYLES.logo} source={IMAGES.logo} />
         <Text style={title}>HABITS.AI</Text>
-        <Text style={textStyle}>{`"${auth.login.message.toUpperCase()}"`}</Text>
+        <Text style={textStyle}>{care.messageLoading.message}</Text>
         <ActivityIndicator
           size={size}
           color={theme.colors.mainText}
@@ -74,7 +71,7 @@ const mapStateToProps = (state: any) => {
 };
 //exporta las acciones y las pasa por los props
 const mapDispatchToProps = (dispatch: ActionCreator<any>) => ({
-  getTest: (body: object) => dispatch(asyncGetTest(body)),
+  getMessage: (userId: string) => dispatch(asyncGetMessage(userId)),
 });
 //retorna el estado y exporta la pantalla
 export default connect(mapStateToProps, mapDispatchToProps)(CareLoading);

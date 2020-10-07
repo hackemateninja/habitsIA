@@ -98,7 +98,7 @@ export default StyleSheet.create({
     ...GLOBAL_STYLES.h6,
   },
   separator: {
-    marginBottom: LAYOUT.window.height * 0.04,
+    marginBottom: LAYOUT.window.height * 0.12,
   },
   topAuthScreen: {
     height: LAYOUT.window.height * 0.15,

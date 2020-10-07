@@ -7,10 +7,16 @@ import {connect} from 'react-redux';
 import {GLOBAL_STYLES} from '../../constants';
 import {GradientContainer, Header} from '../../components';
 import {ScrollView, View} from 'react-native';
+import {ActionCreator} from 'redux';
+import {asyncGetTest} from '../../state/thunks';
 
-const CareTest = ({navigation, theme, care}: any) => {
+const CareTest = ({navigation, theme, care, getTest}: any) => {
   const [question, setQuestion] = useState(0);
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getTest();
+  }, []);
 
   const chips = [
     {
@@ -50,19 +56,6 @@ const CareTest = ({navigation, theme, care}: any) => {
     navigation.goBack();
   };
 
-  //const arr = new Array(27);
-
-  // @ts-ignore
-  useEffect(() => {
-    setData((prev) =>
-      prev.concat({
-        // @ts-ignore
-        type: 'in',
-        text: care.careTest.question[question].text,
-        points: care.careTest.question[question].points,
-      }),
-    );
-  }, [care.careTest.question, question]);
 
   return (
     <GradientContainer
@@ -105,27 +98,6 @@ const CareTest = ({navigation, theme, care}: any) => {
                   colorText={theme.colors.bubbleOutText}
                   isLarge={true}
                   title={i.title}
-                  onPress={() => {
-                    setQuestion((prev) => prev + 1);
-                    const local = {
-                      //: care.careTest.question[question].pilar,
-                      type: 'out',
-                      text: i.title,
-                      points: i.value,
-                    };
-                    setData((prev) => prev.concat(local));
-                    setTimeout(() => {
-                      setData((prev) =>
-                        prev.concat({
-                          // @ts-ignore
-                          type: 'in',
-                          text: care.careTest.question[question].text,
-                          points: care.careTest.question[question].points,
-                        }),
-                      );
-                      setQuestion((prev) => prev + 1);
-                    }, 500);
-                  }}
                 />
               );
             })
@@ -136,26 +108,6 @@ const CareTest = ({navigation, theme, care}: any) => {
                   color={theme.colors.bubbleOut}
                   colorText={theme.colors.bubbleOutText}
                   title={i.title}
-                  onPress={() => {
-                    setQuestion((prev) => prev + 1);
-                    const local = {
-                      //: care.careTest.question[question].pilar,
-                      type: 'out',
-                      text: i.title,
-                      points: i.value,
-                    };
-                    setData((prev) => prev.concat(local));
-                    setTimeout(() => {
-                      setData((prev) =>
-                        prev.concat({
-                          // @ts-ignore
-                          type: 'in',
-                          text: care.careTest.question[question].text,
-                          points: care.careTest.question[question].points,
-                        }),
-                      );
-                    }, 500);
-                  }}
                 />
               );
             })}
@@ -166,4 +118,7 @@ const CareTest = ({navigation, theme, care}: any) => {
 const mapStateToProps = (state: object) => {
   return state;
 };
-export default connect(mapStateToProps)(CareTest);
+const mapDispatchToProps = (dispatch: ActionCreator<any>) => ({
+  getTest: () => dispatch(asyncGetTest()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(CareTest);

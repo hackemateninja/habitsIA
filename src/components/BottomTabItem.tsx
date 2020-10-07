@@ -5,7 +5,7 @@
 
 //importaciones multilinea hasta el final
 import React from 'react';
-import {COLORS} from '../constants';
+import {COLORS, IMAGES} from '../constants';
 // @ts-ignore
 import {Image, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -17,7 +17,7 @@ export default () => {
       colors={[COLORS.primary, COLORS.hardPrimary]}
       style={Styles.bottomTabItemContainer}>
       <Image
-        source={require('../../assets/images/anatrans.png')}
+        source={IMAGES.anaTransparent}
         style={Styles.bottomTabItemImage}
         resizeMode={'contain'}
       />

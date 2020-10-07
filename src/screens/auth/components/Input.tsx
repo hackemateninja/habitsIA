@@ -18,14 +18,22 @@ export default ({
   maxLength,
   autofocus,
   clearText,
+  onFocus,
 }: InputType) => {
   const pass = type === 'password';
 
   const [focus, setFocus] = useState(false);
   const [showPass, setShowPass] = useState(pass);
 
-  const changeFocus = () => {
-    setFocus((prev) => !prev);
+  const handleFocus = () => {
+    setFocus(true);
+    if (onFocus) {
+      onFocus();
+    }
+  };
+
+  const handleBlur = () => {
+    setFocus(false);
   };
 
   const icon = showPass ? 'ios-eye-off' : 'ios-eye';
@@ -84,14 +92,15 @@ export default ({
           autoCompleteType={'off'}
           autoFocus={autofocus || false}
           editable={editable}
+          keyboardAppearance="dark"
           keyboardType={keyBoardType()}
           maxLength={maxLength}
           onChangeText={onChange}
           placeholder={placeholder}
           placeholderTextColor={placeHolderColor}
           onEndEditing={onEndEditing}
-          onFocus={changeFocus}
-          onBlur={changeFocus}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           secureTextEntry={showPass}
           style={AuthStyles.input}
           textAlignVertical="center"

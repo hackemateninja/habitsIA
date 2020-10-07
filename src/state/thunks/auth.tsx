@@ -1,25 +1,36 @@
-import {useHTTP} from '../../hooks';
+import {useHTTP, useLogout} from '../../hooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {ActionCreator} from 'redux';
 import {
   forgot,
   getCompany,
   login,
+  setCode,
   register,
-  registerPersonal,
   reset,
 } from '../actions/auth';
+import {LoginType} from '../../types/login';
 
 //limpia los los estados selecionados al ser accionado
 export function asyncClear(context: string) {
   return (dispatch: ActionCreator<any>) => {
     if (context === 'login') {
-      dispatch(login(false, '', '', '', false, [], '', {}, ''));
-    } else if (context === 'register') {
-      dispatch(register('', ''));
+      dispatch(
+        login({
+          _id: '',
+          avatar: undefined,
+          company: undefined,
+          email: '',
+          message: '',
+          token: '',
+          user: '',
+        }),
+      );
+    } else if (context === 'getCode') {
+      dispatch(setCode('', ''));
       dispatch(getCompany('', '', []));
-    } else if (context === 'personal') {
-      dispatch(registerPersonal('', '', '', ''));
+    } else if (context === 'register') {
+      dispatch(register('', '', '', ''));
     } else if ('reset') {
       dispatch(reset('', false));
     } else if ('forgot') {
@@ -30,10 +41,10 @@ export function asyncClear(context: string) {
 
 export function asyncForgot(body: {mail: string}) {
   return async (dispatch: ActionCreator<any>) => {
-    const [response] = await useHTTP({
+    const response = await useHTTP({
       method: 'POST',
       body: body,
-      endpoint: 'api/user/changePass',
+      endpoint: 'api/user/requestChangeUserPassword',
     });
     dispatch(
       forgot(
@@ -50,12 +61,10 @@ export function asyncForgot(body: {mail: string}) {
 //obtiene los datos de la companía
 export function asyncGetCompany(code: string) {
   return async (dispatch: ActionCreator<any>) => {
-    const [response] = await useHTTP({
+    const response = await useHTTP({
       method: 'GET',
-      endpoint: 'api/company/one/',
-      query: `?where[key]=${code}`,
+      endpoint: `api/company/one/?where[key]=${code}`,
     });
-    console.log(response);
     let areas: string[] = [];
     if (response.company) {
       const filters = response.company.filtros;
@@ -74,7 +83,7 @@ export function asyncGetCompany(code: string) {
 //login
 export function asyncLogin(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const [response] = await useHTTP({
+    const response: LoginType = await useHTTP({
       method: 'POST',
       body: body,
       endpoint: 'login',
@@ -83,68 +92,62 @@ export function asyncLogin(body: object) {
       const responseStringy = JSON.stringify(response);
       await AsyncStorage.setItem('@Login', responseStringy);
       dispatch(
-        login(
-          true,
-          response.user,
-          response.token,
-          response.message.title,
-          response.resolvedTest,
-          response.messageBoarding,
-          response.avatar,
-          response.company,
-          response.email,
-        ),
+        login({
+          _id: response._id,
+          user: response.user,
+          message: '',
+          avatar: response.avatar,
+          company: response.company,
+          email: response.email,
+          token: response.token,
+        }),
       );
     } else {
       dispatch(
-        login(false, '', '', response.global.es_MX, false, [], '', {}, ''),
+        login({
+          _id: '',
+          user: '',
+          // @ts-ignore
+          message: response.global.es_MX,
+          avatar: '',
+          company: {_id: '', logo: '', name: ''},
+          email: response.email,
+          token: response.token,
+        }),
       );
     }
   };
 }
 export function asyncLoginVerify(data: any) {
   return async (dispatch: ActionCreator<any>) => {
-    await dispatch(
-      login(
-        data.isLogged,
-        data.user,
-        data.token,
-        data.message,
-        data.resolvedTest,
-        data.messageBoarding,
-        data.avatar,
-        data.company,
-        data.email,
-      ),
-    );
+    await dispatch(login({...data}));
   };
 }
 
-export function asyncLogout() {
+export async function asyncLogout() {
   return async (dispatch: ActionCreator<any>) => {
-    dispatch(login(false, '', '', '', false, [], '', {}, ''));
-    await AsyncStorage.clear();
+    await useLogout(dispatch);
   };
 }
 
 //registra el nombre de la empresa, el id y el departamento
-export function asyncRegisterCompany(companyId: string, dep: string) {
+/*export function asyncRegisterCompany(companyId: string, dep: string) {
   return (dispatch: ActionCreator<any>) => {
-    dispatch(register(companyId, dep));
+    //dispatch(register(companyId, dep));
   };
-}
+}*/
 
 //registra los datos personales
 export function asyncRegisterPersonal(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const [response] = await useHTTP({
+    const response = await useHTTP({
       method: 'POST',
       body: body,
-      endpoint: 'api/user/saveUser',
+      endpoint: 'api/user/register',
     });
     if (response.user) {
       dispatch(
-        registerPersonal(
+        register(
           'usuario registrado con éxito',
           response.user,
           response.sendMail.envelope.from,
@@ -152,7 +155,7 @@ export function asyncRegisterPersonal(body: object) {
         ),
       );
     } else {
-      dispatch(registerPersonal(response.message, '', '', ''));
+      dispatch(register(response.message, '', '', ''));
     }
   };
 }
@@ -160,7 +163,7 @@ export function asyncRegisterPersonal(body: object) {
 //resetea la contraseña
 export function asyncReset(body: object) {
   return async (dispatch: ActionCreator<any>) => {
-    const [response] = await useHTTP({
+    const response = await useHTTP({
       method: 'PUT',
       body: body,
       endpoint: 'api/user/updatePassword',

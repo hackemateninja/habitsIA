@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {COLORS, GLOBAL_STYLES} from '../../../constants';
+import {COLORS} from '../../../constants';
+import DayStyles from '../styles/DayStyles';
 
 export default ({
   date,
@@ -13,22 +14,15 @@ export default ({
   month: string;
   day: string;
 }) => {
+  const dayTextStyle = {
+    color: COLORS.primary,
+    ...DayStyles.subTitleDayText,
+  };
+
   return (
     <>
-      <Text
-        style={{
-          marginTop: 24,
-          color: COLORS.primary,
-          ...GLOBAL_STYLES.p,
-        }}>
-        {day}
-      </Text>
-      <Text
-        style={{
-          marginTop: 8,
-          color: COLORS.grey,
-          ...GLOBAL_STYLES.p,
-        }}>
+      <Text style={dayTextStyle}>{day}</Text>
+      <Text style={DayStyles.subTitleDateText}>
         {dayName} {date} {month}
       </Text>
     </>

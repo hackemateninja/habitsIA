@@ -6,19 +6,19 @@ import React from 'react';
 import AuthStyles from './styles/AuthStyles';
 import {Button, GradientContainer} from '../../components';
 import {View, Text, Image} from 'react-native';
-import WELCOME from './mocks/welcomeMock';
 // @ts-ignore
 import {connect} from 'react-redux';
+import {IMAGES} from '../../constants';
 
 const Welcome = ({theme, navigation}: any) => {
   //styles
   const subTitleStyle = {
-    ...AuthStyles.welcomeSubTitle,
     color: theme.colors.p,
+    ...AuthStyles.welcomeSubTitle,
   };
   const titleStyle = {
-    ...AuthStyles.welcomeTitle,
     color: theme.colors.h1,
+    ...AuthStyles.welcomeTitle,
   };
 
   return (
@@ -26,20 +26,23 @@ const Welcome = ({theme, navigation}: any) => {
       topColor={theme.colors.topGradient}
       bottomColor={theme.colors.bottomGradient}>
       <View style={AuthStyles.welcomeContainer}>
-        <Image style={AuthStyles.welcomeLogo} source={WELCOME.logo} />
-        <Text style={titleStyle}>{WELCOME.title}</Text>
-        <Text style={subTitleStyle}>{WELCOME.subTitle}</Text>
+        <Image style={AuthStyles.welcomeLogo} source={IMAGES.logo} />
+        <Text style={titleStyle}>Bienvenido. Ingresa o regístrate</Text>
+        <Text style={subTitleStyle}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </Text>
         <Button
-          title={WELCOME.primaryButtonTitle}
           colorText={theme.colors.primaryButtonText}
           color={theme.colors.primaryButton}
+          title="Iniciar sesión"
           action={() => navigation.navigate('Login')}
         />
         <View style={AuthStyles.welcomeButtonSeparation} />
         <Button
           color={theme.colors.secondaryButton}
           colorText={theme.colors.secondaryButtonText}
-          title={WELCOME.secondaryButtonTitle}
+          title="Regístrate"
           action={() => navigation.navigate('Register')}
         />
       </View>

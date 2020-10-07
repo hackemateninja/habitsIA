@@ -1,11 +1,5 @@
-import {
-  FORGOT,
-  GET_COMPANY,
-  LOGIN,
-  REGISTER,
-  REGISTER_PERSONAL,
-  RESET,
-} from '../actionTypes';
+import {FORGOT, GET_COMPANY, LOGIN, REGISTER, RESET} from '../actionTypes';
+import {LoginType} from '../../types/login';
 
 export function forgot(
   message: string,
@@ -33,32 +27,28 @@ export function getCompany(name: string, id: string, deps: Array<string>) {
   };
 }
 
-export function login(
-  isLogged: boolean,
-  user: string,
-  token: string,
-  message: string,
-  resolvedTest: boolean,
-  messageBoarding: Array<any>,
-  avatar: string,
-  company: object,
-  email: string,
-) {
+export function login({
+  _id,
+  user,
+  avatar,
+  company,
+  email,
+  message,
+  token,
+}: LoginType) {
   return {
     type: LOGIN,
-    isLogged,
+    _id,
     user,
-    token,
-    message,
-    resolvedTest,
-    messageBoarding,
     avatar,
     company,
     email,
+    message,
+    token,
   };
 }
 
-export function register(companyId: string, dep: string) {
+export function setCode(companyId: string, dep: string) {
   return {
     type: REGISTER,
     companyId,
@@ -66,14 +56,14 @@ export function register(companyId: string, dep: string) {
   };
 }
 
-export function registerPersonal(
+export function register(
   message: string,
   user: string,
   from: string,
   to: string,
 ) {
   return {
-    type: REGISTER_PERSONAL,
+    type: REGISTER,
     message,
     user,
     from,

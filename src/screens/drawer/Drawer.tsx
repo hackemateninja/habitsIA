@@ -97,6 +97,15 @@ const Drawer = (props: any) => {
         />
         <DrawerItem
           onPress={() => {
+            navigation.navigate('Settings');
+          }}
+          icon={'ios-cog-outline'}
+          label={'Configuración'}
+          focused={false}
+          color={theme.colors.mainText}
+        />
+        <DrawerItem
+          onPress={() => {
             navigation.navigate('Support');
           }}
           icon={'ios-help-buoy-outline'}

@@ -3,7 +3,6 @@ import {
   GET_COMPANY,
   LOGIN,
   REGISTER,
-  REGISTER_PERSONAL,
   RESET,
 } from '../actionTypes';
 
@@ -21,21 +20,15 @@ const initialState = {
     deps: [],
   },
   login: {
-    isLogged: false,
+    id: '',
     user: '',
     token: '',
-    message: '',
-    resolvedTest: false,
-    messageBoarding: [],
     avatar: '',
     company: {},
     email: '',
+    message: '',
   },
   register: {
-    companyId: '',
-    dep: '',
-  },
-  registerPersonal: {
     message: '',
     user: '',
     from: '',
@@ -73,29 +66,19 @@ export default (state = initialState, action: any) => {
       return {
         ...state,
         login: {
-          isLogged: action.isLogged,
+          _id: action._id,
           user: action.user,
+          avatar: action.user,
+          email: action.email,
+          company: action.company,
           token: action.token,
           message: action.message,
-          resolvedTest: action.resolvedTest,
-          messageBoarding: action.messageBoarding,
-          avatar: action.avatar,
-          company: action.company,
-          email: action.email,
         },
       };
     case REGISTER:
       return {
         ...state,
         register: {
-          companyId: action.companyId,
-          dep: action.dep,
-        },
-      };
-    case REGISTER_PERSONAL:
-      return {
-        ...state,
-        registerPersonal: {
           message: action.message,
           user: action.user,
           from: action.from,

@@ -58,6 +58,7 @@ export default StyleSheet.create({
     borderWidth: 0.3,
     height: LAYOUT.window.height * 0.15,
     marginRight: 24,
+    marginVertical: 10,
     ...GLOBAL_STYLES.columnEvenlyCenter,
   },
   cardIcon: {
@@ -112,5 +113,14 @@ export default StyleSheet.create({
     marginBottom: 10,
     textAlign: 'left',
     ...GLOBAL_STYLES.h5,
+  },
+  subTitleDayText: {
+    marginTop: 24,
+    ...GLOBAL_STYLES.p,
+  },
+  subTitleDateText: {
+    marginTop: 8,
+    color: COLORS.grey,
+    ...GLOBAL_STYLES.p,
   },
 });

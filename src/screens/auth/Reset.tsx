@@ -11,7 +11,6 @@ import {connect} from 'react-redux';
 import {Button, GradientContainer, Waiting} from '../../components';
 import {asyncClear, asyncReset} from '../../state/thunks/auth';
 
-// TODO usar stado local para manejar el store
 const Reset = ({navigation, theme, auth, clear, reset}: any) => {
   //estado local
   const [code, setCode] = useState('');
@@ -83,7 +82,6 @@ const Reset = ({navigation, theme, auth, clear, reset}: any) => {
         navigation.replace('Login');
       } else {
         setShowWaiting(false);
-        alert(auth.reset.message);
         clear('reset');
       }
     }
@@ -132,51 +130,46 @@ const Reset = ({navigation, theme, auth, clear, reset}: any) => {
         colorText={theme.colors.h1Auth}
       />
       <BottomAuthScreenContainer title={subTitle()} description={description()}>
-        {!showNewPass ? (
-          <Input
-            autofocus={true}
-            maxLength={7}
-            type="number"
-            value={code}
-            clearText={clearText}
-            placeholder="1234567"
-            onChange={(value: string) => {
-              setCode(value);
-            }}
-            label="Ingresa el còdigo de verificaciòn"
-            errorMessage={errorCode}
-          />
-        ) : (
-          <>
-            <Input
-              type="password"
-              value={pass}
-              placeholder="Nueva contraseña"
-              onChange={(value: string) => {
-                setPass(value);
-              }}
-              label="Ingresa tu nueva contraseña"
-              errorMessage={errorPass}
-            />
-            <Input
-              type="password"
-              value={passConfirm}
-              placeholder="Confirma tu contraseña"
-              onChange={(value: string) => {
-                setPassConfirm(value);
-              }}
-              label="Confirma tu nueva contraseña"
-              errorMessage={errorPassConfirm}
-            />
-            <Button
-              title="Actualizar contraseña"
-              action={updatePass}
-              colorText={theme.colors.authButtonText}
-              color={theme.colors.authButton}
-              disable={disable}
-            />
-          </>
-        )}
+        <Input
+          autofocus={true}
+          maxLength={7}
+          type="number"
+          value={code}
+          clearText={clearText}
+          placeholder="1234567"
+          onChange={(value: string) => {
+            setCode(value);
+          }}
+          label="Ingresa el còdigo de verificaciòn"
+          errorMessage={errorCode}
+        />
+        <Input
+          type="password"
+          value={pass}
+          placeholder="Nueva contraseña"
+          onChange={(value: string) => {
+            setPass(value);
+          }}
+          label="Ingresa tu nueva contraseña"
+          errorMessage={errorPass}
+        />
+        <Input
+          type="password"
+          value={passConfirm}
+          placeholder="Confirma tu contraseña"
+          onChange={(value: string) => {
+            setPassConfirm(value);
+          }}
+          label="Confirma tu nueva contraseña"
+          errorMessage={errorPassConfirm}
+        />
+        <Button
+          title="Actualizar contraseña"
+          action={updatePass}
+          colorText={theme.colors.authButtonText}
+          color={theme.colors.authButton}
+          disable={disable}
+        />
       </BottomAuthScreenContainer>
       <Waiting visible={showWaiting} color={theme.colors.primary} />
     </GradientContainer>

@@ -4,14 +4,13 @@
  * */
 import React, {useEffect, useState} from 'react';
 import Link from './components/Link';
-import LOGIN from './mocks/loginMock';
 import TopAuthScreenContainer from './components/TopAuthScreenContainer';
 import BottomAuthScreenContainer from './components/BottomAuthScreenContainer';
 import Input from './components/Input';
 import {useValidateEmail} from '../../hooks';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {asyncLogin, asyncClear} from '../../state/thunks/auth';
+import {asyncLogin, asyncClear} from '../../state/thunks';
 import {Button, GradientContainer, Waiting, Alert} from '../../components';
 
 const Login = ({theme, navigation, login, auth, clear}: any) => {
@@ -20,18 +19,18 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
   const [pass, setPass] = useState('');
   const [enable, setEnable] = useState(false);
   const [errorEmailMessage, setEmailErrorMessage] = useState('');
+  const [errorPassMessage, setPassErrorMessage] = useState('');
   const [showWaiting, setShowWaiting] = useState(false);
   const [alert, setAlert] = useState({
     message: '',
     title: '',
-    show: false,
     type: '',
   });
 
   //borra los datos del estado cuando navega hacia atrás
   const handleGoBack = () => {
     navigation.goBack();
-    clear(LOGIN.clearContext);
+    clear('login');
   };
 
   //ciera la alerta y limpia el estado
@@ -39,10 +38,9 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
     setAlert({
       title: '',
       message: '',
-      show: false,
       type: '',
     });
-    clear(LOGIN.clearContext);
+    clear('login');
   };
 
   //namanda los parametros del body al thunk
@@ -55,34 +53,52 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
     setShowWaiting(true);
   };
 
+  //se dispara cuando se deja de editar el campo de mail y pass
+  const handleOnEndEditing = async () => {
+    if (enable) {
+      await handleSendLogin();
+    }
+  };
+
+  //limpia el campo del mail
+  const handleClearEmail = () => {
+    setMail('');
+  };
+
   //asigna el valor inicial del input del mail
   useEffect(() => {
-    setMail(auth.registerPersonal.to || auth.forgot.mail || '');
-  }, [auth.forgot.mail, auth.registerPersonal.to]);
-  //valida y habilita botón
+    setMail(auth.register.to || auth.forgot.mail || '');
+  }, [auth.forgot.mail, auth.register.to]);
+
+  //muestra mensajes de eeror en caso de que existan y habilita el botón si los datos están bien
   useEffect(() => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const enable = useValidateEmail(mail);
-    setEnable(enable && pass.length >= 8);
-    if (!enable && mail.length > 1) {
+    const validMail = useValidateEmail(mail);
+    const validPass = pass.length >= 8;
+    setEnable(validMail && validPass);
+    if (mail.length > 0 && !validMail) {
       setEmailErrorMessage('Correo inválido');
     } else {
       setEmailErrorMessage('');
+    }
+    if (pass.length > 0 && !validPass) {
+      setPassErrorMessage('La contraseña debe ser de 8 caracteres');
+    } else {
+      setPassErrorMessage('');
     }
   }, [mail, pass]);
 
   //se actualiza con el cambio del estado
   useEffect(() => {
-    if (auth.login.message.length > 1 && !auth.login.isLogged) {
+    if (!auth.login.token) {
       setAlert({
         title: 'Error',
         message: auth.login.message,
-        show: true,
         type: 'error',
       });
       setShowWaiting(false);
     }
-  }, [auth.login.isLogged, auth.login.message]);
+  }, [auth.login.token, auth.login.message]);
 
   return (
     <GradientContainer
@@ -90,39 +106,43 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
       bottomColor={theme.colors.authBackgroundColor}>
       <TopAuthScreenContainer
         colorText={theme.colors.h1Auth}
-        title={LOGIN.topTitle}
+        title="Inicia Sesión"
         onPress={handleGoBack}
       />
       <BottomAuthScreenContainer
-        title={LOGIN.title}
-        description={LOGIN.subTitle}>
+        title="Bienvenido de vuelta"
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
         <Input
           autofocus={mail.length <= 1}
           value={mail}
-          type={LOGIN.mailType}
-          placeholder={LOGIN.mailPlaceHolder}
+          type="mail"
+          placeholder="ejemplo@mail.com"
           onChange={(value: string) => {
-            setMail(value);
+            setMail(value.trim());
           }}
           errorMessage={errorEmailMessage}
-          label={LOGIN.mailLabel}
+          label="Correo electrónico"
+          clearText={handleClearEmail}
+          onEndEditing={handleOnEndEditing}
         />
         <Input
           autofocus={mail.length >= 1}
           value={pass}
-          type={LOGIN.passwordType}
-          placeholder={LOGIN.passwordPlaceHolder}
+          type="password"
+          placeholder="Escribe tu contraseña"
           onChange={(value: string) => {
             setPass(value);
           }}
-          label={LOGIN.passwordLabel}
+          errorMessage={errorPassMessage}
+          label="Contraseña"
+          onEndEditing={handleOnEndEditing}
         />
         <Link
-          text={LOGIN.linkTitle}
-          onPress={() => navigation.navigate(LOGIN.forgotRoute)}
+          text="¿Olvidaste tu contraseña?"
+          onPress={() => navigation.navigate('Forgot')}
         />
         <Button
-          title={LOGIN.buttonTitle}
+          title="Continuar"
           disable={!enable}
           action={handleSendLogin}
           colorText={theme.colors.authButtonText}
@@ -130,13 +150,14 @@ const Login = ({theme, navigation, login, auth, clear}: any) => {
         />
       </BottomAuthScreenContainer>
       <Waiting visible={showWaiting} />
-      <Alert
-        title={alert.title}
-        desc={alert.message}
-        type={alert.type}
-        onPress={handleCloseAlert}
-        visible={alert.show}
-      />
+      {auth.login.message ? (
+        <Alert
+          title={alert.title}
+          desc={alert.message}
+          type={alert.type}
+          onPress={handleCloseAlert}
+        />
+      ) : null}
     </GradientContainer>
   );
 };

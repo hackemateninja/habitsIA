@@ -1,9 +1,15 @@
-import {GET_TEST} from '../actionTypes';
+import {GET_MESSAGE, GET_TEST} from '../actionTypes';
 
 const initialState = {
   careTest: {
     title: '',
-    question: [],
+    description: '',
+    questions: [],
+  },
+  messageLoading: {
+    message: '',
+    showCareTest: false,
+    oneBoarding: [],
   },
 };
 
@@ -14,7 +20,17 @@ export default (state = initialState, action: any) => {
         ...state,
         careTest: {
           title: action.title,
-          question: action.question,
+          description: action.description,
+          questions: action.questions,
+        },
+      };
+    case GET_MESSAGE:
+      return {
+        ...state,
+        messageLoading: {
+          message: action.message,
+          showCareTest: action.showCareTest,
+          oneBoarding: action.oneBoarding,
         },
       };
     default:

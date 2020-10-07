@@ -238,6 +238,8 @@ PODS:
     - React-cxxreact (= 0.63.2)
     - React-jsi (= 0.63.2)
   - React-jsinspector (0.63.2)
+  - react-native-fitness (0.4.0):
+    - React
   - react-native-mail (5.2.0):
     - React
   - react-native-safe-area-context (3.1.7):
@@ -393,6 +395,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - "react-native-fitness (from `../node_modules/@ovalmoney/react-native-fitness`)"
   - react-native-mail (from `../node_modules/react-native-mail`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -466,6 +469,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-fitness:
+    :path: "../node_modules/@ovalmoney/react-native-fitness"
   react-native-mail:
     :path: "../node_modules/react-native-mail"
   react-native-safe-area-context:
@@ -543,6 +548,7 @@ SPEC CHECKSUMS:
   React-jsi: 54245e1d5f4b690dec614a73a3795964eeef13a8
   React-jsiexecutor: 8ca588cc921e70590820ce72b8789b02c67cce38
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
+  react-native-fitness: 0c736103572eb56cf98c56d96539be2f9f5f031c
   react-native-mail: 2d908336968d85ff27cfa0cf085ee70d3b185a34
   react-native-safe-area-context: 955ecfce672683b495d9294d2f154a9ad1d9796b
   react-native-webview: 598605cd213f5096e695f5b33fbee210a47e60ab

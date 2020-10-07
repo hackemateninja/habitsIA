@@ -19,21 +19,23 @@ export default async ({method, endpoint, body, query}: UseHTTPType) => {
     token = '';
   }
 
-  const url = `${API}/${endpoint}/${query || ''}`;
+  const url = `${API}/${endpoint}`;
   try {
     const response = await fetch(url, {
       method: method,
-      body: JSON.stringify({
-        ...body,
-      }),
+      body:
+        method === 'GET'
+          ? null
+          : JSON.stringify({
+              ...body,
+            }),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await response.json();
-    return [true, data];
+    return await response.json();
   } catch (e) {
-    return [false, e];
+    return e;
   }
 };

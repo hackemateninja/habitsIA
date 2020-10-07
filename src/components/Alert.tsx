@@ -10,11 +10,10 @@ interface AlertType {
   title: string;
   desc: string;
   type: string;
-  visible: boolean;
   onPress: any;
 }
 
-export default ({visible, title, desc, type, onPress}: AlertType) => {
+export default ({title, desc, type, onPress}: AlertType) => {
   const [color, setColor] = useState('');
   const [icon, setIcon] = useState('');
 
@@ -39,22 +38,19 @@ export default ({visible, title, desc, type, onPress}: AlertType) => {
     }
   }, [type]);
 
-  if (visible) {
-    return (
-      <View style={styles.alertOverlay}>
-        <View style={styles.alertContainer}>
-          <Icon name={icon} size={60} color={color} />
-          <Text style={styles.alertTitle}>{title}</Text>
-          <Text style={styles.alertDescription}>{desc}</Text>
-          <Button
-            title={'Aceptar'}
-            colorText={COLORS.white}
-            color={COLORS.primary}
-            action={onPress}
-          />
-        </View>
+  return (
+    <View style={styles.alertOverlay}>
+      <View style={styles.alertContainer}>
+        <Icon name={icon} size={60} color={color} />
+        <Text style={styles.alertTitle}>{title}</Text>
+        <Text style={styles.alertDescription}>{desc}</Text>
+        <Button
+          title={'Aceptar'}
+          colorText={COLORS.white}
+          color={COLORS.primary}
+          action={onPress}
+        />
       </View>
-    );
-  }
-  return null;
+    </View>
+  );
 };

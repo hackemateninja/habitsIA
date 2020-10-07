@@ -13,7 +13,8 @@ import {
 } from '@react-navigation/drawer';
 import {
   About,
-  Connect, Courses,
+  Connect,
+  Courses,
   Diet,
   Drawer,
   History,

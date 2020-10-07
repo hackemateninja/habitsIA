@@ -4,7 +4,7 @@ const initialState = {
   status: '',
   activities: [],
   challenges: [],
-  tests: [],
+  quizzes: [],
 };
 export default (state = initialState, action: any) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ export default (state = initialState, action: any) => {
         status: action.status,
         activities: action.activities,
         challenges: action.challenges,
-        tests: action.tests,
+        quizzes: action.quizzes,
       };
     default:
       return state;

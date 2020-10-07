@@ -6,7 +6,6 @@ import {COLORS, GLOBAL_STYLES} from '../../../constants';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default ({name, status, action, image, theme}: CardType) => {
-  // TODO refactor esta vista
   const cardStyle = {
     backgroundColor: theme.cardBackground,
     ...ConnectStyle.card,

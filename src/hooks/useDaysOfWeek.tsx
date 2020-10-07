@@ -1,19 +1,68 @@
 import moment from 'moment';
 
-interface CalendarType {
-  name: string,
-  date: number,
-  calendar: string,
-  month: string,
-  fullDate: string,
+interface Calendar {
+  name: string;
+  date: number;
+  calendar: string;
+  month: string;
+  fullDate: string;
 }
-
-const calendar: Array<CalendarType> = new Array(7);
 
 export default () => {
   const weekStart = moment().startOf('week');
   const date = moment().date();
   const name = moment().format('dddd');
+  const calendar = [
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+    {
+      name: '',
+      date: 0,
+      calendar: '',
+      month: '',
+      fullDate: '',
+    },
+  ];
 
   for (let i = 1; i <= 7; i++) {
     const count = i - 1;

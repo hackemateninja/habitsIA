@@ -9,7 +9,6 @@ export {default as Ana} from './ana/Ana';
 export {default as Forgot} from './auth/Forgot';
 export {default as Login} from './auth/Login';
 export {default as Register} from './auth/Register';
-export {default as RegisterPersonalInfo} from './auth/RegisterPersonalInfo';
 export {default as Reset} from './auth/Reset';
 export {default as Welcome} from './auth/Welcome';
 

@@ -1,162 +1,146 @@
 /*
- * pantalla de registro que obtiene el id de la empresa y los departamentos
+ * Pantalla que sirve para registrar a un usuario
  * */
 import React, {useEffect, useState} from 'react';
-import sendMail from './functions/sendMail';
-import Link from './components/Link';
-import BottomAuthScreenContainer from './components/BottomAuthScreenContainer';
-import Picker from './components/Picker';
-import Input from './components/Input';
+import AuthStyles from './styles/AuthStyles';
 import TopAuthScreenContainer from './components/TopAuthScreenContainer';
-import REGISTER from './mocks/registerMock';
-import {Keyboard} from 'react-native';
+import BottomAuthScreenContainer from './components/BottomAuthScreenContainer';
+import Input from './components/Input';
+import Checkbox from './components/Checkbox';
+import {useValidateEmail} from '../../hooks';
 // @ts-ignore
 import {connect} from 'react-redux';
-import {
-  asyncGetCompany,
-  asyncClear,
-  asyncRegisterCompany,
-} from '../../state/thunks';
-import {GradientContainer, Button, Waiting} from '../../components';
-
-const Register = ({
-  navigation,
-  theme,
-  getCompany,
-  setCompany,
-  auth,
-  clear,
-}: any) => {
-  //estado local
-  const [dep, setDep] = useState([]);
-  const [code, setCode] = useState('');
-  const [validData, setValidData] = useState(false);
+import {asyncClear, asyncRegisterPersonal} from '../../state/thunks';
+import {View} from 'react-native';
+import {Button, GradientContainer, Waiting, Alert} from '../../components';
+const Register = ({navigation, theme, auth, register, clear}: any) => {
+  //stado local
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [enable, setEnable] = useState(false);
+  const [name, setName] = useState('');
+  const [mail, setMail] = useState('');
+  const [pass, setPass] = useState('');
+  const [passVerify, setPassVerify] = useState('');
   const [shoWaiting, setShowWaiting] = useState(false);
+  const [errorName, setErrorName] = useState('');
+  const [errorMail, setErrorMail] = useState('');
+  const [errorPass, setErrorPass] = useState('');
+  const [errorConfirmPass, setErrorConfirmPass] = useState('');
+  const [alert, setAlert] = useState({
+    message: '',
+    title: '',
+    type: '',
+  });
 
-  //borra los datos del estado cuando navega hacia atrás
-  const goBack = () => {
+  //limpia el estado y regresa a la pantall anterior
+  const handleGoBack = () => {
     navigation.goBack();
-    clear(REGISTER.clearContext);
   };
 
-  //guncion que sirve para activar el thunk de obtener data de la empresa
-  const getData = () => {
-    getCompany(code);
+  // limbia el estado global de esta pantalla
+  const handleClear = () => {
+    clear('register');
   };
 
-  //funcion que sirve para mostrar el indicador en pantalla en caso de que haga un dismiss keyboard
-  const onEndEditing = () => {
-    if (code.length >= 7) {
-      getData();
+  //limpia el nombre
+  const handleClearName = () => setName('');
+
+  //limpia el mail
+  const handleClearMail = () => setMail('');
+
+  //envia los datos hacia el thunk
+  const handleSendRegister = async () => {
+    const body = {
+      name: name,
+      mail: mail,
+      pass: pass,
+      company: auth.register.companyId,
+      born_date: '1993-04-11',
+      gender: '5f63d92ff121cd1adfc369bb',
+      //id de la categoria
+      filter: ['5f73798a0e525a0ab633feb6', '5f737a380e525a0ab633feba'],
+      //id del tipo de categoria
+      filter_category: ['5f73779c85538c0a1d0d610e', '5f7377f685538c0a1d0d610f'],
+    };
+    register(body);
+    setShowWaiting(true);
+  };
+
+  const handleCloseAlert = () => {
+    setAlert({
+      title: '',
+      message: '',
+      type: '',
+    });
+    handleClear();
+    setShowWaiting(false);
+  };
+
+  const handleOnEndEditing = async () => {
+    if (enable) {
+      await handleSendRegister();
     }
   };
 
-  //navega a la siguiente pantalla y registra los datos en el store
-  const nav = () => {
-    const selectedDep = dep.length > 1 ? dep : auth.company.deps[0];
-    setCompany(auth.company.id, selectedDep);
-    navigation.navigate(REGISTER.buttonRoute);
-  };
-
-  const clearText = () => {
-    setCode('');
-    clear(REGISTER.clearContext);
-  };
-
-  //efecto que sirve para validar el codigo y mostrar un loading mientras lo carga, si existe la data
-  //hace un dismiss del teclado
+  //verifica que la data que venga sea correcta y libere un alert para cambiar de pantalla
   useEffect(() => {
-    const companyData = auth.company;
-    if (companyData.name.length > 1) {
-      if (companyData.id.length < 1) {
-        setValidData(false);
-        alert(companyData.name);
-        clear(REGISTER.clearContext);
-        setShowWaiting(false);
-      } else {
-        setValidData(true);
-        setShowWaiting(false);
-        Keyboard.dismiss();
-      }
+    if (!auth.register.success) {
+      setAlert({
+        title: 'Error',
+        message: auth.register.message,
+        type: 'error',
+      });
+      handleClear();
+      setShowWaiting(false);
+    } else {
+      setAlert({
+        title: 'Registro exitoso',
+        message: auth.register.message,
+        type: 'success',
+      });
+      setShowWaiting(false);
     }
-  }, []);
+  }, [auth.register.message, auth.register.success]);
 
-  //efecto que verifica que se cumpla el patron en el text input y obtiene los datos
+  //verifica y valida que los campos sean correctos para poder activar el boton
   useEffect(() => {
-    if (code.length >= 3) {
-      const start = code.substring(0, 3);
-      const end = code.substring(4, 7);
-      const string = start + '-' + end;
-      setCode(string);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const validMail = useValidateEmail(mail);
+    const validName = /^([^0-9]*)$/.test(name);
+    const validPassword = pass.length >= 8;
+    const validPasswordVerify = passVerify === pass;
+    if (
+      validName &&
+      validMail &&
+      validPassword &&
+      validPasswordVerify &&
+      toggleCheckBox
+    ) {
+      setEnable(true);
+    } else {
+      setEnable(true);
     }
-  }, [code]);
-
-  const items = [
-    {
-      values: [
-        'Libélula Soft',
-        'Murguía',
-        'Asyste',
-        'Biocodex',
-        'Seguros Monterrey New York Life',
-        'Habits',
-        'Farmapronto',
-        'THE',
-        'Otra',
-        'Natura',
-      ],
-      _id: '5ebddc2b404d8e002418af82',
-      name: 'empresa',
-    },
-    {
-      values: [
-        'Otra',
-        'Comercial',
-        'Marketing',
-        'Administrativo',
-        'Finanzas',
-        'Operaciones',
-      ],
-      _id: '5ebddc2b404d8e002418af83',
-      name: 'areas',
-    },
-  ];
-
-  const InputComponent = () => {
-    if (auth.company.deps.length > 1){
-      return (
-        <>
-          <Input
-            value={auth.company.name}
-            label={REGISTER.companyLabel}
-            onChange={() => {}}
-            editable={false}
-          />
-          {items.map((i, idx) => {
-            return (
-              <Picker
-                key={i.name}
-                value={dep[idx]}
-                items={i.values}
-                label={i.name.toUpperCase()}
-                onValueChange={(itemValue: React.ReactText) => {
-                  // @ts-ignore
-                  setDep((prevState) => [...prevState, itemValue.toString()]);
-                }}
-              />
-            );
-          })}
-          <Button
-            title={REGISTER.buttonTitle}
-            colorText={theme.colors.authButtonText}
-            color={theme.colors.authButton}
-            action={nav}
-          />
-        </>
-      );
+    if (name.length > 1 && !validName) {
+      setErrorName('Nombre inválido');
+    } else {
+      setErrorName('');
     }
-    return null;
-  };
+    if (!validMail) {
+      setErrorMail('Email inválido');
+    } else {
+      setErrorMail('');
+    }
+    if (!validPassword) {
+      setErrorPass('La contraseña debe tener al menos 8 carácteres');
+    } else {
+      setErrorPass('');
+    }
+    if (!validPasswordVerify) {
+      setErrorConfirmPass('Las contraseñas deben coincidir');
+    } else {
+      setErrorConfirmPass('');
+    }
+  }, [name, mail, pass, passVerify, toggleCheckBox]);
 
   return (
     <GradientContainer
@@ -164,43 +148,90 @@ const Register = ({
       bottomColor={theme.colors.authBackgroundColor}>
       <TopAuthScreenContainer
         colorText={theme.colors.h1Auth}
-        title={REGISTER.topTitle}
-        onPress={goBack}
+        title="Regístrate"
+        onPress={handleGoBack}
       />
       <BottomAuthScreenContainer
-        title={REGISTER.title}
-        description={REGISTER.subTitle}>
+        title="Información personal"
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
         <Input
           autofocus={true}
-          maxLength={8}
-          value={code}
-          label={REGISTER.codeLabel}
-          type={REGISTER.codeType}
-          placeholder={REGISTER.codePlaceHolder}
-          onChange={(value: string) => setCode(value)}
-          onEndEditing={onEndEditing}
-          clearText={clearText}
+          value={name}
+          onChange={(value: string) => {
+            setName(value);
+          }}
+          label="Nombre"
+          errorMessage={errorName}
+          onEndEditing={handleOnEndEditing}
+          clearText={handleClearName}
         />
-        <Link text={REGISTER.linkTitle} onPress={sendMail} />
-        <InputComponent />
+        <Input
+          value={mail}
+          onChange={(value: string) => {
+            setMail(value);
+          }}
+          label="Correo electrónico"
+          type="email"
+          errorMessage={errorMail}
+          onEndEditing={handleOnEndEditing}
+          clearText={handleClearMail}
+        />
+        <Input
+          value={pass}
+          onChange={(value: string) => {
+            setPass(value);
+          }}
+          type="password"
+          label="Contraseña"
+          errorMessage={errorPass}
+          onEndEditing={handleOnEndEditing}
+        />
+        <Input
+          value={passVerify}
+          onChange={(value: string) => {
+            setPassVerify(value);
+          }}
+          type="password"
+          label="Repetir contraseña"
+          errorMessage={errorConfirmPass}
+          onEndEditing={handleOnEndEditing}
+        />
+        <Checkbox
+          value={toggleCheckBox}
+          onPress={() => setToggleCheckBox(!toggleCheckBox)}
+          label="Acepto términos y condiciones"
+        />
+        <Button
+          title="Continuar"
+          colorText={theme.colors.authButtonText}
+          color={theme.colors.authButton}
+          action={handleSendRegister}
+          disable={!enable}
+        />
+        <View style={AuthStyles.separator} />
       </BottomAuthScreenContainer>
       <Waiting visible={shoWaiting} />
+      {auth.register.message ? (
+        <Alert
+          title={alert.title}
+          desc={alert.message}
+          type={alert.type}
+          onPress={handleCloseAlert}
+        />
+      ) : null}
     </GradientContainer>
   );
 };
-
-//manta el estado global a los props
+//pasa el estado por los props
 const mapStateToProps = (state: any) => {
   return state;
 };
 
-//funciones que ejecutan los thunks a los props
+//pasa las acciones a los props
 const mapDispatchToProps = (dispatch: any) => ({
-  getCompany: (code: string) => dispatch(asyncGetCompany(code)),
   clear: (context: string) => dispatch(asyncClear(context)),
-  setCompany: (companyId: string, dep: string) =>
-    dispatch(asyncRegisterCompany(companyId, dep)),
+  register: (body: object) => dispatch(asyncRegisterPersonal(body)),
 });
 
-//conecta el estado y las acciones y export la pantalla
+//conecta las dos anteriores funciones y exporta el componente
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

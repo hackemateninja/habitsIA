@@ -1,5 +1,6 @@
 import {ActionCreator} from 'redux';
 import {getDay} from '../actions/day';
+import {useHTTP, useLogout} from '../../hooks';
 
 const activities = [
   {
@@ -90,8 +91,23 @@ const tests = [
   },
 ];
 
-export function asyncGetDay(date: string) {
+export function asyncGetDay(date: string, userId: string) {
   return async (dispatch: ActionCreator<any>) => {
-    dispatch(getDay('200', activities, challenges, tests));
+    const response = await useHTTP({
+      method: 'GET',
+      endpoint: `api/me/today/${userId}`,
+    });
+    if (response.code === 403) {
+      await useLogout(dispatch);
+    } else {
+      dispatch(
+        getDay(
+          response.code,
+          response.data.activities,
+          response.data.challenges,
+          response.data.quizzes,
+        ),
+      );
+    }
   };
 }

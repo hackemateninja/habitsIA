@@ -3,7 +3,6 @@
  * */
 
 import COLORS from './colors';
-// TODO clean unused colors
 export default {
   authBackgroundColor: COLORS.primary,
   authButton: COLORS.black,

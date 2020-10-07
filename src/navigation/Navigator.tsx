@@ -18,7 +18,6 @@ import {
   Login,
   CareOneBoarding,
   Register,
-  RegisterPersonalInfo,
   Reset,
   Welcome,
   Course,
@@ -39,13 +38,15 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
 
   useLoginVerify(verifyLogin);
 
-  const logged = auth.login.isLogged;
+  const logged = auth.login.token;
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         headerMode="none"
-        initialRouteName={'CareTest'}//logged ? 'CareTest' : 'CareTest'}
+        initialRouteName="Loading"
         screenOptions={{gestureEnabled: false}}
+        keyboardHandlingEnabled={false}
         mode={'card'}>
         {logged ? (
           <>
@@ -65,14 +66,9 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
           </>
         ) : (
           <>
-            <Stack.Screen name="CareTest" component={CareTest} />
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen
-              name="RegisterPersonal"
-              component={RegisterPersonalInfo}
-            />
             <Stack.Screen name="Forgot" component={Forgot} />
             <Stack.Screen name="Reset" component={Reset} />
           </>

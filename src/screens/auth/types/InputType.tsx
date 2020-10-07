@@ -12,4 +12,5 @@ export default interface InputType {
   placeholder?: string;
   autofocus?: boolean;
   clearText?: any;
+  onFocus?: any;
 }
