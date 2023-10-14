@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {COLORS} from '../constants';
 // @ts-ignore
 import Icon from 'react-native-vector-icons/Ionicons';

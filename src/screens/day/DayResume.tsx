@@ -19,6 +19,7 @@ const DayResume = (props: any) => {
     getData(full, userId);
   }, [full]);
 
+  // TODO appendizar habito
   return (
     <GradientContainer
       topColor={colors.backGroundScreen}

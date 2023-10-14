@@ -126,7 +126,18 @@ export function asyncLoginVerify(data: any) {
 
 export async function asyncLogout() {
   return async (dispatch: ActionCreator<any>) => {
-    await useLogout(dispatch);
+    dispatch(
+      login({
+        _id: '',
+        avatar: undefined,
+        company: {name: '', logo: '', _id: ''},
+        email: '',
+        message: '',
+        token: '',
+        user: '',
+      }),
+    );
+    await AsyncStorage.clear();
   };
 }
 

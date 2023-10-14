@@ -40,16 +40,9 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
 
   const logged = auth.login.token;
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        headerMode="none"
-        initialRouteName="Loading"
-        screenOptions={{gestureEnabled: false}}
-        keyboardHandlingEnabled={false}
-        mode={'card'}>
-        {logged ? (
-          <>
+	const MainNavigation = () => {
+		return(
+			<>
             <Stack.Screen name="Loading" component={CareLoading} />
             <Stack.Screen name="OneBoarding" component={CareOneBoarding} />
             <Stack.Screen name="CareTest" component={CareTest} />
@@ -64,15 +57,38 @@ const Navigator = ({auth, changeTheme, verifyLogin}: any) => {
               component={Ana}
             />
           </>
-        ) : (
-          <>
+		)
+	}
+
+	const AuthNavigation = () => {
+		return(
+			<>
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Forgot" component={Forgot} />
             <Stack.Screen name="Reset" component={Reset} />
           </>
-        )}
+		)
+	}
+
+
+	const navs = {
+		"true": MainNavigation,
+		"false": AuthNavigation;
+	}
+
+
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        headerMode="none"
+        initialRouteName="Drawer"
+        screenOptions={{gestureEnabled: false}}
+        keyboardHandlingEnabled={false}
+        mode={'card'}>
+        {navs["false"]}
       </Stack.Navigator>
     </NavigationContainer>
   );

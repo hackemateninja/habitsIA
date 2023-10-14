@@ -19,6 +19,7 @@ export default ({
     ...DayStyles.scrollTitle,
   };
 
+  //console.log(data[0])
   const Empty = memo(() => (
     <CardEmptyData
       color={color.cardBackground}
@@ -28,13 +29,14 @@ export default ({
   ));
 
   const Item = ({item}: {item: any}) => {
+    console.log(item.activity);
     return (
       <CardActivity
-        key={item.description}
+        key={item._id}
         onPress={() => {}}
         isHabit={item.isHabit}
-        completed={item.completed}
-        description={item.description}
+        completed={item.ended}
+        description={item.activity.name}
         points={item.points}
         background={color.cardBackground}
         colorText={color.mainText}
@@ -55,7 +57,7 @@ export default ({
             horizontal={true}
             data={data}
             indicatorStyle="black"
-            keyExtractor={(item: any) => item.id}
+            keyExtractor={(item: any) => item._id}
             renderItem={Item}
           />
         </View>
